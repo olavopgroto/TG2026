@@ -1,0 +1,23 @@
+# Variáveis de ambiente e segredos
+.env
+*.env.local
+
+# Dados sensíveis do Hop (credenciais salvas)
+docker/hop/.hop/
+
+# Arquivos temporários do sistema
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Drivers JDBC (opcional - alguns preferem não versionar .jar)
+# docker/hop/lib/*.jar
+
+# Backups do Power BI
+powerbi/*.pbix.bak
+
+# IDE
+.vscode/
+.idea/
