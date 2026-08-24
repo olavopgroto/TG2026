@@ -28,6 +28,7 @@ services:
       - "${HOP_PORT}:8080"
     environment:
       HOP_PROJECT_NAME: tcc-wikipedia
+      HOP_PROJECT_FOLDER: /project
       JDK_JAVA_OPTIONS: >-
         --add-opens=java.base/java.lang=ALL-UNNAMED
         --add-opens=java.base/java.io=ALL-UNNAMED
@@ -36,8 +37,7 @@ services:
         --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
         -XX:-UseContainerSupport
     volumes:
-      - ../hop/transformations:/project/transformations
-      - ../hop/workflows:/project/workflows
+      - ../hop:/project
       - ./hop/lib:/opt/hop/lib/custom
     depends_on:
       postgres:
