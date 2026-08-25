@@ -21,3 +21,6 @@ powerbi/*.pbix.bak
 # IDE
 .vscode/
 .idea/
+
+# Conexões do Hop (contêm credenciais ofuscadas)
+hop/metadata/rdbms/
