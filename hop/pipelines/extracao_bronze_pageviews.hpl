@@ -62,6 +62,11 @@
     </hop>
     <hop>
       <from>Get system info</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
       <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
@@ -79,10 +84,6 @@
     </partitioning>
     <fields>
       <field>
-        <currency/>
-        <decimal/>
-        <format/>
-        <group/>
         <length>-1</length>
         <name>nome_pipeline_hop</name>
         <nullif>extracao_bronze_pageviews</nullif>
@@ -219,7 +220,7 @@
       <schema_name/>
     </partitioning>
     <scaletime>milliseconds</scaletime>
-    <timeout>1000</timeout>
+    <timeout>1500</timeout>
     <attributes/>
     <GUI>
       <xloc>464</xloc>
@@ -565,7 +566,7 @@
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>944</xloc>
+      <xloc>832</xloc>
       <yloc>240</yloc>
     </GUI>
   </transform>
@@ -600,6 +601,35 @@
     <GUI>
       <xloc>368</xloc>
       <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compare>
+      <condition>
+        <conditions>
+</conditions>
+        <function>IS NOT NULL</function>
+        <leftvalue>projeto</leftvalue>
+        <negated>N</negated>
+        <operator>-</operator>
+        <rightvalue>projeto</rightvalue>
+      </condition>
+    </compare>
+    <send_true_to>Table output</send_true_to>
+    <attributes/>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>240</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
