@@ -1,0 +1,13 @@
+nome_evento,categoria,artigo_wikipedia,tipo_acesso,tipo_agente,data_inicio_extracao,data_fim_extracao
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,desktop,user,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,desktop,spider,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,desktop,automated,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-web,user,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-web,spider,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-web,automated,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-app,user,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-app,spider,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Kobe_Bryant,mobile-app,automated,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Los_Angeles_Lakers,desktop,user,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Los_Angeles_Lakers,mobile-web,user,2019-11-28,2021-11-27
+Kobe Bryant,morte_figura_publica,Los_Angeles_Lakers,mobile-app,user,2019-11-28,2021-11-27
