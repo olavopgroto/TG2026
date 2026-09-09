@@ -24,3 +24,6 @@ powerbi/*.pbix.bak
 
 # Conexões do Hop (contêm credenciais ofuscadas)
 hop/metadata/rdbms/
+
+# Backups locais do PostgreSQL
+backup/

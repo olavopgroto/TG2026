@@ -1,0 +1,99 @@
+nome_evento;categoria;data_evento;artigo_wikipedia;palavra_chave_gdelt;data_inicio_extracao;data_fim_extracao;data_inicio_fmt;data_fim_fmt;url_completa;user_agent;nr_erros;descricao_erro
+Terremoto Turquia-Siria    ;desastre_natural    ;2023-02-06;2023_Turkey–Syria_earthquakes                ;earthquake Turkey Syria February 2023;2023-01-07;2023-04-07;20230107;20230407;https://api.gdeltproject.org/api/v2/doc/doc?query=earthquake+Turkey+Syria+February+2023&mode=timelinevolraw&format=json&STARTDATETIME=20230107000000&ENDDATETIME=20230407000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=earthquake+Turkey+Syria+February+2023&mode=timelinevolraw&format=json&STARTDATETIME=20230107000000&ENDDATETIME=20230407000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Terremoto Al Haouz Marrocos;desastre_natural    ;2023-09-08;2023_Marrakesh–Safi_earthquake               ;Morocco earthquake September 2023    ;2023-08-09;2023-11-07;20230809;20231107;https://api.gdeltproject.org/api/v2/doc/doc?query=Morocco+earthquake+September+2023&mode=timelinevolraw&format=json&STARTDATETIME=20230809000000&ENDDATETIME=20231107000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Morocco+earthquake+September+2023&mode=timelinevolraw&format=json&STARTDATETIME=20230809000000&ENDDATETIME=20231107000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Terremoto Noto Japao       ;desastre_natural    ;2024-01-01;2024_Noto_earthquake                         ;Noto earthquake Japan 2024           ;2023-12-02;2024-03-01;20231202;20240301;https://api.gdeltproject.org/api/v2/doc/doc?query=Noto+earthquake+Japan+2024&mode=timelinevolraw&format=json&STARTDATETIME=20231202000000&ENDDATETIME=20240301000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Noto+earthquake+Japan+2024&mode=timelinevolraw&format=json&STARTDATETIME=20231202000000&ENDDATETIME=20240301000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Terremoto Haiti            ;desastre_natural    ;2021-08-14;2021_Haiti_earthquake                        ;Haiti earthquake August 2021         ;2021-07-15;2021-10-13;20210715;20211013;https://api.gdeltproject.org/api/v2/doc/doc?query=Haiti+earthquake+August+2021&mode=timelinevolraw&format=json&STARTDATETIME=20210715000000&ENDDATETIME=20211013000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Haiti+earthquake+August+2021&mode=timelinevolraw&format=json&STARTDATETIME=20210715000000&ENDDATETIME=20211013000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Cupula G20 Rio             ;politico            ;2024-11-18;2024_G20_Rio_de_Janeiro_summit               ;G20 summit Rio de Janeiro 2024       ;2024-10-19;2025-01-17;20241019;20250117;https://api.gdeltproject.org/api/v2/doc/doc?query=G20+summit+Rio+de+Janeiro+2024&mode=timelinevolraw&format=json&STARTDATETIME=20241019000000&ENDDATETIME=20250117000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=G20+summit+Rio+de+Janeiro+2024&mode=timelinevolraw&format=json&STARTDATETIME=20241019000000&ENDDATETIME=20250117000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+COP30 Belem                ;politico            ;2025-11-10;2025_United_Nations_Climate_Change_Conference;COP30 Belem climate conference       ;2025-10-11;2026-01-09;20251011;20260109;https://api.gdeltproject.org/api/v2/doc/doc?query=COP30+Belem+climate+conference&mode=timelinevolraw&format=json&STARTDATETIME=20251011000000&ENDDATETIME=20260109000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=COP30+Belem+climate+conference&mode=timelinevolraw&format=json&STARTDATETIME=20251011000000&ENDDATETIME=20260109000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Connect timed out
+
+
+Rainha Elizabeth II        ;morte_figura_publica;2022-09-08;Death_and_state_funeral_of_Elizabeth_II      ;Queen Elizabeth II death             ;2022-08-09;2022-11-07;20220809;20221107;https://api.gdeltproject.org/api/v2/doc/doc?query=Queen+Elizabeth+II+death&mode=timelinevolraw&format=json&STARTDATETIME=20220809000000&ENDDATETIME=20221107000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Queen+Elizabeth+II+death&mode=timelinevolraw&format=json&STARTDATETIME=20220809000000&ENDDATETIME=20221107000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Papa Bento XVI             ;morte_figura_publica;2022-12-31;Pope_Benedict_XVI                            ;Pope Benedict XVI death              ;2022-12-01;2023-03-01;20221201;20230301;https://api.gdeltproject.org/api/v2/doc/doc?query=Pope+Benedict+XVI+death&mode=timelinevolraw&format=json&STARTDATETIME=20221201000000&ENDDATETIME=20230301000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Pope+Benedict+XVI+death&mode=timelinevolraw&format=json&STARTDATETIME=20221201000000&ENDDATETIME=20230301000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Kobe Bryant                ;morte_figura_publica;2020-01-26;Kobe_Bryant                                  ;Kobe Bryant death                    ;2019-12-27;2020-03-26;20191227;20200326;https://api.gdeltproject.org/api/v2/doc/doc?query=Kobe+Bryant+death&mode=timelinevolraw&format=json&STARTDATETIME=20191227000000&ENDDATETIME=20200326000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Kobe+Bryant+death&mode=timelinevolraw&format=json&STARTDATETIME=20191227000000&ENDDATETIME=20200326000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Apple Vision Pro           ;lancamento_produto  ;2024-02-02;Apple_Vision_Pro                             ;Apple Vision Pro launch              ;2024-01-03;2024-04-02;20240103;20240402;https://api.gdeltproject.org/api/v2/doc/doc?query=Apple+Vision+Pro+launch&mode=timelinevolraw&format=json&STARTDATETIME=20240103000000&ENDDATETIME=20240402000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Apple+Vision+Pro+launch&mode=timelinevolraw&format=json&STARTDATETIME=20240103000000&ENDDATETIME=20240402000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Threads Meta               ;lancamento_produto  ;2023-07-05;Threads_(social_network)                     ;Threads app launch Meta              ;2023-06-05;2023-09-03;20230605;20230903;https://api.gdeltproject.org/api/v2/doc/doc?query=Threads+app+launch+Meta&mode=timelinevolraw&format=json&STARTDATETIME=20230605000000&ENDDATETIME=20230903000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Threads+app+launch+Meta&mode=timelinevolraw&format=json&STARTDATETIME=20230605000000&ENDDATETIME=20230903000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Google Gemini              ;lancamento_produto  ;2023-12-06;Gemini_(language_model)                      ;Google Gemini AI launch              ;2023-11-06;2024-02-04;20231106;20240204;https://api.gdeltproject.org/api/v2/doc/doc?query=Google+Gemini+AI+launch&mode=timelinevolraw&format=json&STARTDATETIME=20231106000000&ENDDATETIME=20240204000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Google+Gemini+AI+launch&mode=timelinevolraw&format=json&STARTDATETIME=20231106000000&ENDDATETIME=20240204000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Imagem Sagitario A         ;ciencia_global      ;2022-05-12;Sagittarius_A*                               ;Sagittarius A black hole image       ;2022-04-12;2022-07-11;20220412;20220711;https://api.gdeltproject.org/api/v2/doc/doc?query=Sagittarius+A+black+hole+image&mode=timelinevolraw&format=json&STARTDATETIME=20220412000000&ENDDATETIME=20220711000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Sagittarius+A+black+hole+image&mode=timelinevolraw&format=json&STARTDATETIME=20220412000000&ENDDATETIME=20220711000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
+Pouso Perseverance Marte   ;ciencia_global      ;2021-02-18;Perseverance_(rover)                         ;Perseverance Mars landing            ;2021-01-19;2021-04-19;20210119;20210419;https://api.gdeltproject.org/api/v2/doc/doc?query=Perseverance+Mars+landing&mode=timelinevolraw&format=json&STARTDATETIME=20210119000000&ENDDATETIME=20210419000000;Olavo-TCC/1.0 (olavopgroto15@gmail.com);1;org.apache.hop.core.exception.HopException: 
+Can not read result from [https://api.gdeltproject.org/api/v2/doc/doc?query=Perseverance+Mars+landing&mode=timelinevolraw&format=json&STARTDATETIME=20210119000000&ENDDATETIME=20210419000000]
+
+Request could not be processed
+org.apache.http.conn.ConnectTimeoutException: Connect to api.gdeltproject.org:443 [api.gdeltproject.org/104.197.47.124] failed: Read timed out
+
+
