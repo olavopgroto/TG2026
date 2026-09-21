@@ -27,3 +27,9 @@ hop/metadata/rdbms/
 
 # Backups locais do PostgreSQL
 backup/
+
+*.bak
+hop/dados_referencia/scripts/cache_visitas_janela.json
+hop/dados_referencia/scripts/cache_datas_criacao.json
+zeros.txt
+volume.txt
