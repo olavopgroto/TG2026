@@ -1,0 +1,181 @@
+nome_evento,categoria,artigo_wikipedia,tipo_acesso,tipo_agente,data_inicio_extracao,data_fim_extracao
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,desktop,user,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,desktop,spider,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,desktop,automated,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-app,user,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-app,spider,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-app,automated,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-web,user,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-web,spider,2021-07-15,2021-10-13
+Terremoto Haiti,desastre_natural,2021_Haiti_earthquake,mobile-web,automated,2021-07-15,2021-10-13
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",desktop,user,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",desktop,spider,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",desktop,automated,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-app,user,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-app,spider,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-app,automated,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-web,user,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-web,spider,2022-08-29,2022-11-27
+Furacao Ian,desastre_natural,"Punta_Gorda,_Florida",mobile-web,automated,2022-08-29,2022-11-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,desktop,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,desktop,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,desktop,automated,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-app,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-app,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-app,automated,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-web,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-web,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,Chatuchak_district,mobile-web,automated,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,desktop,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,desktop,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,desktop,automated,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-app,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-app,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-app,automated,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-web,user,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-web,spider,2025-02-26,2025-05-27
+Terremoto Myanmar,desastre_natural,1976_Longling_earthquake,mobile-web,automated,2025-02-26,2025-05-27
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,desktop,user,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,desktop,spider,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,desktop,automated,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-app,user,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-app,spider,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-app,automated,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-web,user,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-web,spider,2025-10-11,2026-01-09
+COP30 Belem,politico,2025_United_Nations_Climate_Change_Conference,mobile-web,automated,2025-10-11,2026-01-09
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,desktop,user,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,desktop,spider,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,desktop,automated,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-app,user,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-app,spider,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-app,automated,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-web,user,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-web,spider,2024-05-03,2024-08-01
+Eleicao presidencial Mexico,politico,Xóchitl_Gálvez,mobile-web,automated,2024-05-03,2024-08-01
+Eleicao geral India,politico,Appalanaidu_Kalisetti,desktop,user,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,desktop,spider,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,desktop,automated,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-app,user,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-app,spider,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-app,automated,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-web,user,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-web,spider,2024-05-05,2024-08-03
+Eleicao geral India,politico,Appalanaidu_Kalisetti,mobile-web,automated,2024-05-05,2024-08-03
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,desktop,user,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,desktop,spider,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,desktop,automated,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-app,user,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-app,spider,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-app,automated,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-web,user,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-web,spider,2023-10-31,2024-01-29
+COP28 Dubai,politico,2007_United_Nations_Climate_Change_Conference,mobile-web,automated,2023-10-31,2024-01-29
+Tina Turner,morte_figura_publica,Tina_Turner,desktop,user,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,desktop,spider,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,desktop,automated,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-app,user,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-app,spider,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-app,automated,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-web,user,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-web,spider,2023-04-24,2023-07-23
+Tina Turner,morte_figura_publica,Tina_Turner,mobile-web,automated,2023-04-24,2023-07-23
+Diego Maradona,morte_figura_publica,Gary_Lineker,desktop,user,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,desktop,spider,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,desktop,automated,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-app,user,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-app,spider,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-app,automated,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-web,user,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-web,spider,2020-10-26,2021-01-24
+Diego Maradona,morte_figura_publica,Gary_Lineker,mobile-web,automated,2020-10-26,2021-01-24
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),desktop,user,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),desktop,spider,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),desktop,automated,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-app,user,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-app,spider,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-app,automated,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-web,user,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-web,spider,2022-08-09,2022-11-07
+Rainha Elizabeth II,morte_figura_publica,Queen_Camilla_(novel),mobile-web,automated,2022-08-09,2022-11-07
+Shinzo Abe,morte_figura_publica,Mashregh_News,desktop,user,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,desktop,spider,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,desktop,automated,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-app,user,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-app,spider,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-app,automated,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-web,user,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-web,spider,2022-06-08,2022-09-06
+Shinzo Abe,morte_figura_publica,Mashregh_News,mobile-web,automated,2022-06-08,2022-09-06
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,desktop,user,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,desktop,spider,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,desktop,automated,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-app,user,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-app,spider,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-app,automated,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-web,user,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-web,spider,2024-01-03,2024-04-02
+Apple Vision Pro,lancamento_produto,Apple_Vision_Pro,mobile-web,automated,2024-01-03,2024-04-02
+Samsung Galaxy S24,lancamento_produto,Titanium,desktop,user,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,desktop,spider,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,desktop,automated,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-app,user,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-app,spider,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-app,automated,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-web,user,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-web,spider,2023-12-18,2024-03-17
+Samsung Galaxy S24,lancamento_produto,Titanium,mobile-web,automated,2023-12-18,2024-03-17
+ChatGPT,lancamento_produto,Yoshua_Bengio,desktop,user,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,desktop,spider,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,desktop,automated,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-app,user,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-app,spider,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-app,automated,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-web,user,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-web,spider,2022-10-31,2023-01-29
+ChatGPT,lancamento_produto,Yoshua_Bengio,mobile-web,automated,2022-10-31,2023-01-29
+iPhone 15,lancamento_produto,EarPods,desktop,user,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,desktop,spider,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,desktop,automated,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-app,user,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-app,spider,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-app,automated,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-web,user,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-web,spider,2023-08-13,2023-11-11
+iPhone 15,lancamento_produto,EarPods,mobile-web,automated,2023-08-13,2023-11-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,desktop,user,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,desktop,spider,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,desktop,automated,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-app,user,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-app,spider,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-app,automated,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-web,user,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-web,spider,2022-04-12,2022-07-11
+Imagem Sagitario A,ciencia_global,Sagittarius_A*,mobile-web,automated,2022-04-12,2022-07-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,desktop,user,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,desktop,spider,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,desktop,automated,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-app,user,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-app,spider,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-app,automated,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-web,user,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-web,spider,2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,Tokamak,mobile-web,automated,2022-11-13,2023-02-11
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,desktop,user,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,desktop,spider,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,desktop,automated,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-app,user,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-app,spider,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-app,automated,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-web,user,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-web,spider,2022-10-17,2023-01-15
+Lancamento Artemis I,ciencia_global,Heliocentric_orbit,mobile-web,automated,2022-10-17,2023-01-15
+Imagens James Webb,ciencia_global,Olympus-1,desktop,user,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,desktop,spider,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,desktop,automated,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-app,user,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-app,spider,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-app,automated,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-web,user,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-web,spider,2022-06-12,2022-09-10
+Imagens James Webb,ciencia_global,Olympus-1,mobile-web,automated,2022-06-12,2022-09-10

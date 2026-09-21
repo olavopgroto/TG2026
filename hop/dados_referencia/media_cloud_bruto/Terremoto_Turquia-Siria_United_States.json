@@ -1,0 +1,556 @@
+{
+  "evento_referencia": "Terremoto Turquia-Siria",
+  "categoria": "desastre_natural",
+  "pais_cobertura": "United States",
+  "collection_id_mediacloud": 34412234,
+  "query_utilizada": "earthquake AND Turkey AND Syria",
+  "data_extracao": "2026-09-10T12:56:40.721161",
+  "payload": [
+    {
+      "date": "2023-01-07",
+      "count": 0,
+      "total_count": 5293,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-08",
+      "count": 0,
+      "total_count": 5720,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-09",
+      "count": 0,
+      "total_count": 11274,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-10",
+      "count": 0,
+      "total_count": 12207,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-11",
+      "count": 0,
+      "total_count": 12470,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-12",
+      "count": 0,
+      "total_count": 12168,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-13",
+      "count": 0,
+      "total_count": 10803,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-14",
+      "count": 0,
+      "total_count": 5466,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-15",
+      "count": 0,
+      "total_count": 5308,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-16",
+      "count": 0,
+      "total_count": 7869,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-17",
+      "count": 0,
+      "total_count": 11467,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-18",
+      "count": 0,
+      "total_count": 12033,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-19",
+      "count": 0,
+      "total_count": 12376,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-20",
+      "count": 0,
+      "total_count": 10982,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-21",
+      "count": 0,
+      "total_count": 5817,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-22",
+      "count": 0,
+      "total_count": 5601,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-23",
+      "count": 0,
+      "total_count": 10886,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-24",
+      "count": 0,
+      "total_count": 12461,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-25",
+      "count": 0,
+      "total_count": 12237,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-26",
+      "count": 0,
+      "total_count": 12175,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-27",
+      "count": 0,
+      "total_count": 11065,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-28",
+      "count": 0,
+      "total_count": 5320,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-29",
+      "count": 0,
+      "total_count": 5465,
+      "ratio": 0
+    },
+    {
+      "date": "2023-01-30",
+      "count": 1,
+      "total_count": 10978,
+      "ratio": 9.109127345600292e-05
+    },
+    {
+      "date": "2023-01-31",
+      "count": 0,
+      "total_count": 12318,
+      "ratio": 0
+    },
+    {
+      "date": "2023-02-01",
+      "count": 0,
+      "total_count": 12914,
+      "ratio": 0
+    },
+    {
+      "date": "2023-02-02",
+      "count": 0,
+      "total_count": 12162,
+      "ratio": 0
+    },
+    {
+      "date": "2023-02-03",
+      "count": 0,
+      "total_count": 11121,
+      "ratio": 0
+    },
+    {
+      "date": "2023-02-04",
+      "count": 0,
+      "total_count": 5461,
+      "ratio": 0
+    },
+    {
+      "date": "2023-02-05",
+      "count": 49,
+      "total_count": 5506,
+      "ratio": 0.008899382491827097
+    },
+    {
+      "date": "2023-02-06",
+      "count": 390,
+      "total_count": 11025,
+      "ratio": 0.03537414965986395
+    },
+    {
+      "date": "2023-02-07",
+      "count": 344,
+      "total_count": 12358,
+      "ratio": 0.02783621945298592
+    },
+    {
+      "date": "2023-02-08",
+      "count": 303,
+      "total_count": 12614,
+      "ratio": 0.024020929126367527
+    },
+    {
+      "date": "2023-02-09",
+      "count": 283,
+      "total_count": 12906,
+      "ratio": 0.021927785526111885
+    },
+    {
+      "date": "2023-02-10",
+      "count": 204,
+      "total_count": 11532,
+      "ratio": 0.01768990634755463
+    },
+    {
+      "date": "2023-02-11",
+      "count": 98,
+      "total_count": 5491,
+      "ratio": 0.017847386632671644
+    },
+    {
+      "date": "2023-02-12",
+      "count": 120,
+      "total_count": 5893,
+      "ratio": 0.020363142711691838
+    },
+    {
+      "date": "2023-02-13",
+      "count": 159,
+      "total_count": 10871,
+      "ratio": 0.014626069358844633
+    },
+    {
+      "date": "2023-02-14",
+      "count": 147,
+      "total_count": 12379,
+      "ratio": 0.011874949511269085
+    },
+    {
+      "date": "2023-02-15",
+      "count": 104,
+      "total_count": 12426,
+      "ratio": 0.008369547722517303
+    },
+    {
+      "date": "2023-02-16",
+      "count": 81,
+      "total_count": 12632,
+      "ratio": 0.006412286257124762
+    },
+    {
+      "date": "2023-02-17",
+      "count": 67,
+      "total_count": 10819,
+      "ratio": 0.006192808947222479
+    },
+    {
+      "date": "2023-02-18",
+      "count": 85,
+      "total_count": 5579,
+      "ratio": 0.015235705323534684
+    },
+    {
+      "date": "2023-02-19",
+      "count": 58,
+      "total_count": 5027,
+      "ratio": 0.011537696439228168
+    },
+    {
+      "date": "2023-02-20",
+      "count": 111,
+      "total_count": 8043,
+      "ratio": 0.013800820589332338
+    },
+    {
+      "date": "2023-02-21",
+      "count": 72,
+      "total_count": 11538,
+      "ratio": 0.0062402496099844
+    },
+    {
+      "date": "2023-02-22",
+      "count": 43,
+      "total_count": 11976,
+      "ratio": 0.003590514362057448
+    },
+    {
+      "date": "2023-02-23",
+      "count": 40,
+      "total_count": 12323,
+      "ratio": 0.0032459628337255537
+    },
+    {
+      "date": "2023-02-24",
+      "count": 31,
+      "total_count": 11029,
+      "ratio": 0.0028107716021398134
+    },
+    {
+      "date": "2023-02-25",
+      "count": 16,
+      "total_count": 5611,
+      "ratio": 0.0028515416146854392
+    },
+    {
+      "date": "2023-02-26",
+      "count": 20,
+      "total_count": 5467,
+      "ratio": 0.003658313517468447
+    },
+    {
+      "date": "2023-02-27",
+      "count": 61,
+      "total_count": 11401,
+      "ratio": 0.005350407858959741
+    },
+    {
+      "date": "2023-02-28",
+      "count": 40,
+      "total_count": 12716,
+      "ratio": 0.0031456432840515887
+    },
+    {
+      "date": "2023-03-01",
+      "count": 26,
+      "total_count": 12819,
+      "ratio": 0.0020282393322412044
+    },
+    {
+      "date": "2023-03-02",
+      "count": 16,
+      "total_count": 12391,
+      "ratio": 0.0012912597853280607
+    },
+    {
+      "date": "2023-03-03",
+      "count": 9,
+      "total_count": 11115,
+      "ratio": 0.0008097165991902834
+    },
+    {
+      "date": "2023-03-04",
+      "count": 3,
+      "total_count": 5672,
+      "ratio": 0.0005289139633286319
+    },
+    {
+      "date": "2023-03-05",
+      "count": 10,
+      "total_count": 5338,
+      "ratio": 0.0018733608092918695
+    },
+    {
+      "date": "2023-03-06",
+      "count": 31,
+      "total_count": 10739,
+      "ratio": 0.002886674736940125
+    },
+    {
+      "date": "2023-03-07",
+      "count": 10,
+      "total_count": 11984,
+      "ratio": 0.0008344459279038719
+    },
+    {
+      "date": "2023-03-08",
+      "count": 28,
+      "total_count": 12490,
+      "ratio": 0.0022417934347477983
+    },
+    {
+      "date": "2023-03-09",
+      "count": 12,
+      "total_count": 12770,
+      "ratio": 0.0009397024275646045
+    },
+    {
+      "date": "2023-03-10",
+      "count": 14,
+      "total_count": 11553,
+      "ratio": 0.0012118064571972648
+    },
+    {
+      "date": "2023-03-11",
+      "count": 8,
+      "total_count": 5636,
+      "ratio": 0.0014194464158978
+    },
+    {
+      "date": "2023-03-12",
+      "count": 4,
+      "total_count": 6218,
+      "ratio": 0.000643293663557414
+    },
+    {
+      "date": "2023-03-13",
+      "count": 21,
+      "total_count": 12023,
+      "ratio": 0.0017466522498544457
+    },
+    {
+      "date": "2023-03-14",
+      "count": 16,
+      "total_count": 12420,
+      "ratio": 0.0012882447665056361
+    },
+    {
+      "date": "2023-03-15",
+      "count": 37,
+      "total_count": 12682,
+      "ratio": 0.002917520895757767
+    },
+    {
+      "date": "2023-03-16",
+      "count": 16,
+      "total_count": 12295,
+      "ratio": 0.0013013420089467262
+    },
+    {
+      "date": "2023-03-17",
+      "count": 26,
+      "total_count": 11315,
+      "ratio": 0.0022978347326557667
+    },
+    {
+      "date": "2023-03-18",
+      "count": 4,
+      "total_count": 5438,
+      "ratio": 0.000735564545788893
+    },
+    {
+      "date": "2023-03-19",
+      "count": 9,
+      "total_count": 5247,
+      "ratio": 0.0017152658662092624
+    },
+    {
+      "date": "2023-03-20",
+      "count": 26,
+      "total_count": 10801,
+      "ratio": 0.0024071845199518565
+    },
+    {
+      "date": "2023-03-21",
+      "count": 10,
+      "total_count": 11572,
+      "ratio": 0.0008641548565502938
+    },
+    {
+      "date": "2023-03-22",
+      "count": 14,
+      "total_count": 11811,
+      "ratio": 0.0011853357040047413
+    },
+    {
+      "date": "2023-03-23",
+      "count": 21,
+      "total_count": 11884,
+      "ratio": 0.0017670817906428812
+    },
+    {
+      "date": "2023-03-24",
+      "count": 5,
+      "total_count": 10979,
+      "ratio": 0.0004554148829583751
+    },
+    {
+      "date": "2023-03-25",
+      "count": 1,
+      "total_count": 5180,
+      "ratio": 0.00019305019305019305
+    },
+    {
+      "date": "2023-03-26",
+      "count": 4,
+      "total_count": 5103,
+      "ratio": 0.0007838526357044876
+    },
+    {
+      "date": "2023-03-27",
+      "count": 5,
+      "total_count": 11027,
+      "ratio": 0.0004534324839031468
+    },
+    {
+      "date": "2023-03-28",
+      "count": 1,
+      "total_count": 11626,
+      "ratio": 8.60141063134354e-05
+    },
+    {
+      "date": "2023-03-29",
+      "count": 12,
+      "total_count": 11758,
+      "ratio": 0.0010205817315870045
+    },
+    {
+      "date": "2023-03-30",
+      "count": 17,
+      "total_count": 9757,
+      "ratio": 0.0017423388336578866
+    },
+    {
+      "date": "2023-03-31",
+      "count": 8,
+      "total_count": 11282,
+      "ratio": 0.0007090941322460556
+    },
+    {
+      "date": "2023-04-01",
+      "count": 7,
+      "total_count": 5443,
+      "ratio": 0.0012860554841080288
+    },
+    {
+      "date": "2023-04-02",
+      "count": 2,
+      "total_count": 5488,
+      "ratio": 0.00036443148688046647
+    },
+    {
+      "date": "2023-04-03",
+      "count": 7,
+      "total_count": 10888,
+      "ratio": 0.0006429096252755327
+    },
+    {
+      "date": "2023-04-04",
+      "count": 9,
+      "total_count": 11916,
+      "ratio": 0.0007552870090634441
+    },
+    {
+      "date": "2023-04-05",
+      "count": 6,
+      "total_count": 11724,
+      "ratio": 0.0005117707267144319
+    },
+    {
+      "date": "2023-04-06",
+      "count": 1,
+      "total_count": 11231,
+      "ratio": 8.903926631644555e-05
+    },
+    {
+      "date": "2023-04-07",
+      "count": 2,
+      "total_count": 9527,
+      "ratio": 0.00020992967355935762
+    }
+  ]
+}

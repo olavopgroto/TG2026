@@ -19,7 +19,7 @@ Rainha Elizabeth II,morte_figura_publica,2022-09-08,Death_and_state_funeral_of_E
 Diego Maradona,morte_figura_publica,2020-11-25,Diego_Maradona,"""Diego Maradona"" AND death",2020-10-26,2021-01-24
 Papa Bento XVI,morte_figura_publica,2022-12-31,Pope_Benedict_XVI,"""Pope Benedict"" AND death",2022-12-01,2023-03-01
 Kobe Bryant,morte_figura_publica,2020-01-26,Kobe_Bryant,"""Kobe Bryant"" AND death",2019-12-27,2020-03-26
-Pele,morte_figura_publica,2022-12-29,Pelé,"""Pele"" AND death AND football",2022-11-29,2023-02-27
+Pele,morte_figura_publica,2022-12-29,Pelé,"(""Pele"" OR ""Pelé"") AND death AND football",2022-11-29,2023-02-27
 Shinzo Abe,morte_figura_publica,2022-07-08,Assassination_of_Shinzo_Abe,"""Shinzo Abe"" AND assassination",2022-06-08,2022-09-06
 Tina Turner,morte_figura_publica,2023-05-24,Tina_Turner,"""Tina Turner"" AND death",2023-04-24,2023-07-23
 Matthew Perry,morte_figura_publica,2023-10-28,Matthew_Perry,"""Matthew Perry"" AND death",2023-09-28,2023-12-27
@@ -37,5 +37,5 @@ Pouso Perseverance Marte,ciencia_global,2021-02-18,Perseverance_(rover),"""Perse
 Lancamento Artemis I,ciencia_global,2022-11-16,Artemis_I,"""Artemis I"" AND NASA AND launch",2022-10-17,2023-01-15
 Impacto sonda DART,ciencia_global,2022-09-26,Double_Asteroid_Redirection_Test,DART AND NASA AND asteroid,2022-08-27,2022-11-25
 Pouso Chandrayaan-3,ciencia_global,2023-08-23,Chandrayaan-3,Chandrayaan AND India AND Moon,2023-07-24,2023-10-22
-Ignicao fusao nuclear,ciencia_global,2022-12-13,National_Ignition_Facility,"""fusion ignition"" AND ""National Ignition Facility""",2022-11-13,2023-02-11
+Ignicao fusao nuclear,ciencia_global,2022-12-13,National_Ignition_Facility,"fusion AND (""National Ignition Facility"" OR ""Lawrence Livermore"")",2022-11-13,2023-02-11
 Primeiro voo Starship,ciencia_global,2023-04-20,SpaceX_Starship,Starship AND SpaceX AND launch,2023-03-21,2023-06-19
