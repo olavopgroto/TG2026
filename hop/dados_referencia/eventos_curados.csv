@@ -1,21 +1,41 @@
 nome_evento,categoria,data_evento,artigo_wikipedia,palavra_chave_busca,data_inicio_extracao,data_fim_extracao
-Terremoto Turquia-Siria,desastre_natural,2023-02-06,2023_Turkey–Syria_earthquakes,earthquake Turkey Syria February 2023,2023-01-07,2023-04-07
-Terremoto Al Haouz Marrocos,desastre_natural,2023-09-08,2023_Marrakesh–Safi_earthquake,Morocco earthquake September 2023,2023-08-09,2023-11-07
-Terremoto Noto Japao,desastre_natural,2024-01-01,2024_Noto_earthquake,Noto earthquake Japan 2024,2023-12-02,2024-03-01
-Terremoto Haiti,desastre_natural,2021-08-14,2021_Haiti_earthquake,Haiti earthquake August 2021,2021-07-15,2021-10-13
-Terremoto Myanmar,desastre_natural,2025-03-28,2025_Myanmar_earthquake,Myanmar earthquake 2025,2025-02-26,2025-05-27
-Eleicao presidencial EUA,politico,2024-11-05,2024_United_States_presidential_election,US presidential election 2024,2024-10-06,2025-01-04
-Cupula G20 Rio,politico,2024-11-18,2024_G20_Rio_de_Janeiro_summit,G20 summit Rio de Janeiro 2024,2024-10-19,2025-01-17
-COP30 Belem,politico,2025-11-10,2025_United_Nations_Climate_Change_Conference,COP30 Belem climate conference,2025-10-11,2026-01-09
-Rainha Elizabeth II,morte_figura_publica,2022-09-08,Death_and_state_funeral_of_Elizabeth_II,Queen Elizabeth II death,2022-08-09,2022-11-07
-Diego Maradona,morte_figura_publica,2020-11-25,Diego_Maradona,Diego Maradona death,2020-10-26,2021-01-24
-Papa Bento XVI,morte_figura_publica,2022-12-31,Pope_Benedict_XVI,Pope Benedict XVI death,2022-12-01,2023-03-01
-Kobe Bryant,morte_figura_publica,2020-01-26,Kobe_Bryant,Kobe Bryant death,2019-12-27,2020-03-26
-Apple Vision Pro,lancamento_produto,2024-02-02,Apple_Vision_Pro,Apple Vision Pro launch,2024-01-03,2024-04-02
-Threads Meta,lancamento_produto,2023-07-05,Threads_(social_network),Threads app launch Meta,2023-06-05,2023-09-03
-Google Gemini,lancamento_produto,2023-12-06,Gemini_(language_model),Google Gemini AI launch,2023-11-06,2024-02-04
-Samsung Galaxy S24,lancamento_produto,2024-01-17,Samsung_Galaxy_S24,Samsung Galaxy S24 launch Unpacked,2023-12-18,2024-03-17
-Imagens James Webb,ciencia_global,2022-07-12,James_Webb_Space_Telescope,James Webb telescope first images,2022-06-12,2022-09-10
-Imagem Sagitario A,ciencia_global,2022-05-12,Sagittarius_A*,Sagittarius A black hole image,2022-04-12,2022-07-11
-Pouso Perseverance Marte,ciencia_global,2021-02-18,Perseverance_(rover),Perseverance Mars landing,2021-01-19,2021-04-19
-Lancamento Artemis I,ciencia_global,2022-11-16,Artemis_I,Artemis I launch NASA,2022-10-17,2023-01-15
+Terremoto Turquia-Siria,desastre_natural,2023-02-06,2023_Turkey–Syria_earthquakes,earthquake AND Turkey AND Syria,2023-01-07,2023-04-07
+Terremoto Al Haouz Marrocos,desastre_natural,2023-09-08,2023_Al_Haouz_earthquake,earthquake AND Morocco,2023-08-09,2023-11-07
+Terremoto Noto Japao,desastre_natural,2024-01-01,2024_Noto_earthquake,earthquake AND Japan AND Noto,2023-12-02,2024-03-01
+Terremoto Haiti,desastre_natural,2021-08-14,2021_Haiti_earthquake,earthquake AND Haiti,2021-07-15,2021-10-13
+Terremoto Myanmar,desastre_natural,2025-03-28,2025_Myanmar_earthquake,earthquake AND Myanmar,2025-02-26,2025-05-27
+Furacao Ian,desastre_natural,2022-09-28,Hurricane_Ian,hurricane AND Ian AND Florida,2022-08-29,2022-11-27
+Incendios Maui Havai,desastre_natural,2023-08-08,2023_Hawaii_wildfires,wildfire AND Hawaii AND Maui,2023-07-09,2023-10-07
+Enchentes Rio Grande do Sul,desastre_natural,2024-04-29,2024_Rio_Grande_do_Sul_floods,floods AND Brazil AND "Rio Grande do Sul",2024-03-30,2024-06-28
+Eleicao presidencial EUA,politico,2024-11-05,2024_United_States_presidential_election,presidential election AND United States,2024-10-06,2025-01-04
+Cupula G20 Rio,politico,2024-11-18,2024_G20_Rio_de_Janeiro_summit,G20 AND "Rio de Janeiro",2024-10-19,2025-01-17
+COP30 Belem,politico,2025-11-10,2025_United_Nations_Climate_Change_Conference,COP30 AND Belem,2025-10-11,2026-01-09
+Eleicao presidencial Brasil,politico,2022-10-30,2022_Brazilian_general_election,Brazil AND election AND Lula,2022-09-30,2022-12-29
+Eleicao geral India,politico,2024-06-04,2024_Indian_general_election,India AND election AND Modi,2024-05-05,2024-08-03
+COP28 Dubai,politico,2023-11-30,2023_United_Nations_Climate_Change_Conference,COP28 AND Dubai AND climate,2023-10-31,2024-01-29
+Cupula G20 Nova Delhi,politico,2023-09-09,2023_G20_New_Delhi_summit,G20 AND "New Delhi",2023-08-10,2023-11-08
+Eleicao presidencial Mexico,politico,2024-06-02,2024_Mexican_general_election,Mexico AND election AND Sheinbaum,2024-05-03,2024-08-01
+Rainha Elizabeth II,morte_figura_publica,2022-09-08,Death_and_state_funeral_of_Elizabeth_II,"""Queen Elizabeth"" AND death",2022-08-09,2022-11-07
+Diego Maradona,morte_figura_publica,2020-11-25,Diego_Maradona,"""Diego Maradona"" AND death",2020-10-26,2021-01-24
+Papa Bento XVI,morte_figura_publica,2022-12-31,Pope_Benedict_XVI,"""Pope Benedict"" AND death",2022-12-01,2023-03-01
+Kobe Bryant,morte_figura_publica,2020-01-26,Kobe_Bryant,"""Kobe Bryant"" AND death",2019-12-27,2020-03-26
+Pele,morte_figura_publica,2022-12-29,Pelé,"""Pele"" AND death AND football",2022-11-29,2023-02-27
+Shinzo Abe,morte_figura_publica,2022-07-08,Assassination_of_Shinzo_Abe,"""Shinzo Abe"" AND assassination",2022-06-08,2022-09-06
+Tina Turner,morte_figura_publica,2023-05-24,Tina_Turner,"""Tina Turner"" AND death",2023-04-24,2023-07-23
+Matthew Perry,morte_figura_publica,2023-10-28,Matthew_Perry,"""Matthew Perry"" AND death",2023-09-28,2023-12-27
+Apple Vision Pro,lancamento_produto,2024-02-02,Apple_Vision_Pro,"""Apple Vision Pro""",2024-01-03,2024-04-02
+Threads Meta,lancamento_produto,2023-07-05,Threads_(social_network),Meta AND Threads,2023-06-05,2023-09-03
+Google Gemini,lancamento_produto,2023-12-06,Gemini_(language_model),Google AND Gemini AND AI,2023-11-06,2024-02-04
+Samsung Galaxy S24,lancamento_produto,2024-01-17,Samsung_Galaxy_S24,"""Galaxy S24"" AND Samsung",2023-12-18,2024-03-17
+ChatGPT,lancamento_produto,2022-11-30,ChatGPT,ChatGPT AND OpenAI,2022-10-31,2023-01-29
+GPT-4,lancamento_produto,2023-03-14,GPT-4,"""GPT-4"" AND OpenAI",2023-02-12,2023-05-13
+Tesla Cybertruck,lancamento_produto,2023-11-30,Tesla_Cybertruck,Cybertruck AND Tesla,2023-10-31,2024-01-29
+iPhone 15,lancamento_produto,2023-09-12,IPhone_15,"""iPhone 15"" AND Apple",2023-08-13,2023-11-11
+Imagens James Webb,ciencia_global,2022-07-12,James_Webb_Space_Telescope,"""James Webb"" AND telescope AND images",2022-06-12,2022-09-10
+Imagem Sagitario A,ciencia_global,2022-05-12,Sagittarius_A*,"""Sagittarius A"" AND ""black hole""",2022-04-12,2022-07-11
+Pouso Perseverance Marte,ciencia_global,2021-02-18,Perseverance_(rover),"""Perseverance rover""",2021-01-19,2021-04-19
+Lancamento Artemis I,ciencia_global,2022-11-16,Artemis_I,"""Artemis I"" AND NASA AND launch",2022-10-17,2023-01-15
+Impacto sonda DART,ciencia_global,2022-09-26,Double_Asteroid_Redirection_Test,DART AND NASA AND asteroid,2022-08-27,2022-11-25
+Pouso Chandrayaan-3,ciencia_global,2023-08-23,Chandrayaan-3,Chandrayaan AND India AND Moon,2023-07-24,2023-10-22
+Ignicao fusao nuclear,ciencia_global,2022-12-13,National_Ignition_Facility,"""fusion ignition"" AND ""National Ignition Facility""",2022-11-13,2023-02-11
+Primeiro voo Starship,ciencia_global,2023-04-20,SpaceX_Starship,Starship AND SpaceX AND launch,2023-03-21,2023-06-19
