@@ -28,8 +28,16 @@ hop/metadata/rdbms/
 # Backups locais do PostgreSQL
 backup/
 
+# Backups automaticos (.bak) gerados pelo script 02
 *.bak
+
+# Caches regeneraveis do script 02 (grandes, recriados ao rodar o script)
 hop/dados_referencia/scripts/cache_visitas_janela.json
 hop/dados_referencia/scripts/cache_datas_criacao.json
+
+# Saidas temporarias de consultas (resultados do psql em .txt)
+tmp/
 zeros.txt
 volume.txt
+contagens.txt
+sequencias.txt
