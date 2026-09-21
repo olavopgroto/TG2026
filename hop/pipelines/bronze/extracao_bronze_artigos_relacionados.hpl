@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pipeline>
   <info>
-    <name>extracao_bronze_eventos_volume</name>
+    <name>extracao_bronze_artigos_relacionados</name>
     <name_sync_with_filename>Y</name_sync_with_filename>
     <description/>
     <extended_description/>
@@ -13,41 +13,16 @@
     <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
     <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
     <created_user>-</created_user>
-    <created_date>2026/09/05 14:37:31.794</created_date>
+    <created_date>2026/08/26 11:26:28.275</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2026/09/05 14:37:31.794</modified_date>
+    <modified_date>2026/08/26 11:26:28.275</modified_date>
   </info>
   <notepads>
   </notepads>
   <order>
     <hop>
-      <from>Add constants</from>
-      <to>Generate random value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>CSV file input</from>
       <to>Replace in string</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Delay row</from>
-      <to>REST client</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Generate random value</from>
-      <to>Get system info</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input</from>
-      <to>Add constants</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>REST client</from>
-      <to>JSON input</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -61,8 +36,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Delay row</from>
+      <to>REST client</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>REST client</from>
-      <to>Log erros GDELT</to>
+      <to>JSON input</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -73,6 +53,21 @@
     <hop>
       <from>Filter rows</from>
       <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get variables</from>
+      <to>Get system info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON input</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Get variables</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -91,16 +86,15 @@
       <field>
         <length>-1</length>
         <name>nome_pipeline_hop</name>
-        <nullif>extracao_bronze_eventos_volume</nullif>
+        <nullif>extracao_bronze_artigos_relacionados</nullif>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <type>String</type>
       </field>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>96</yloc>
+      <xloc>736</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -114,7 +108,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/project/dados_referencia/eventos_curados.csv</filename>
+    <filename>/project/dados_referencia/artigos_relacionados.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -147,18 +141,7 @@
         <currency>¤</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>20</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>data_evento</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency>¤</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>-1</length>
+        <length>16</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -169,18 +152,29 @@
         <currency>¤</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>45</length>
+        <length>44</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>palavra_chave_gdelt</name>
+        <name>tipo_acesso</name>
         <type>String</type>
         <format/>
         <currency>¤</currency>
         <decimal>.</decimal>
         <group>,</group>
-        <length>37</length>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>tipo_agente</name>
+        <type>String</type>
+        <format/>
+        <currency>¤</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -209,8 +203,8 @@
     </fields>
     <attributes/>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>96</yloc>
+      <xloc>96</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -225,11 +219,11 @@
       <schema_name/>
     </partitioning>
     <scaletime>milliseconds</scaletime>
-    <timeout>20000</timeout>
+    <timeout>1500</timeout>
     <attributes/>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>96</yloc>
+      <xloc>464</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -248,39 +242,17 @@
         <conditions>
 </conditions>
         <function>IS NOT NULL</function>
-        <leftvalue>volume_artigos</leftvalue>
+        <leftvalue>projeto</leftvalue>
         <negated>N</negated>
         <operator>-</operator>
+        <rightvalue>projeto</rightvalue>
       </condition>
     </compare>
     <send_true_to>Table output</send_true_to>
     <attributes/>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>208</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Generate random value</name>
-    <type>RandomValue</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>id_lote_origem</name>
-        <type>random uuid</type>
-      </field>
-    </fields>
-    <attributes/>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>96</yloc>
+      <xloc>944</xloc>
+      <yloc>240</yloc>
     </GUI>
   </transform>
   <transform>
@@ -302,8 +274,35 @@
     </fields>
     <attributes/>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>96</yloc>
+      <xloc>944</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Get variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <length>-1</length>
+        <name>id_lote_origem</name>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <type>String</type>
+        <variable>${id_lote_origem}</variable>
+      </field>
+    </fields>
+    <attributes/>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -337,8 +336,8 @@
     </file>
     <fields>
       <field>
-        <name>timestamp_cobertura_bruto</name>
-        <path>$.timeline[0].data[*].date</path>
+        <name>projeto</name>
+        <path>$.items[*].project</path>
         <type>String</type>
         <format/>
         <currency/>
@@ -350,8 +349,73 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>volume_artigos</name>
-        <path>$.timeline[0].data[*].value</path>
+        <name>artigo</name>
+        <path>$.items[*].article</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>granularidade</name>
+        <path>$.items[*].granularity</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>timestamp_bruto</name>
+        <path>$.items[*].timestamp</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>tipo_acesso</name>
+        <path>$.items[*].access</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>tipo_agente</name>
+        <path>$.items[*].agent</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>visualizacoes</name>
+        <path>$.items[*].views</path>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -377,58 +441,8 @@
     <sizeFieldName/>
     <attributes/>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>96</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Log erros GDELT</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema_definition/>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>/project/logs/erros_gdelt</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-    </fields>
-    <attributes/>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>224</yloc>
+      <xloc>640</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -443,7 +457,6 @@
       <schema_name/>
     </partitioning>
     <applicationType>TEXT PLAIN</applicationType>
-    <bodyField/>
     <connectionTimeout>10000</connectionTimeout>
     <dynamicMethod>N</dynamicMethod>
     <headers>
@@ -452,34 +465,24 @@
         <name>user_agent</name>
       </header>
     </headers>
-    <httpLogin/>
-    <httpPassword/>
     <ignoreSsl>N</ignoreSsl>
     <matrixParameters>
 </matrixParameters>
     <method>GET</method>
-    <methodFieldName/>
     <parameters>
 </parameters>
     <preemptive>N</preemptive>
-    <proxyHost/>
-    <proxyPort/>
     <readTimeout>10000</readTimeout>
     <result>
-      <code/>
       <name>resposta_json</name>
-      <response_header/>
-      <response_time/>
     </result>
-    <trustStoreFile/>
     <trustStorePassword>Encrypted </trustStorePassword>
-    <url/>
     <urlField>url_completa</urlField>
     <urlInField>Y</urlInField>
     <attributes/>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>96</yloc>
+      <xloc>544</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -517,8 +520,8 @@
     </fields>
     <attributes/>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>96</yloc>
+      <xloc>208</xloc>
+      <yloc>128</yloc>
     </GUI>
   </transform>
   <transform>
@@ -532,32 +535,40 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <commit>50</commit>
+    <commit>1000</commit>
     <connection>postgres</connection>
     <fields>
       <field>
-        <column_name>nome_evento</column_name>
+        <column_name>evento_referencia</column_name>
         <stream_name>nome_evento</stream_name>
       </field>
       <field>
-        <column_name>palavra_chave_busca</column_name>
-        <stream_name>palavra_chave_gdelt</stream_name>
+        <column_name>projeto</column_name>
+        <stream_name>projeto</stream_name>
       </field>
       <field>
-        <column_name>data_evento</column_name>
-        <stream_name>data_evento</stream_name>
+        <column_name>artigo</column_name>
+        <stream_name>artigo</stream_name>
       </field>
       <field>
-        <column_name>categoria_preliminar</column_name>
-        <stream_name>categoria</stream_name>
+        <column_name>granularidade</column_name>
+        <stream_name>granularidade</stream_name>
       </field>
       <field>
-        <column_name>timestamp_cobertura</column_name>
-        <stream_name>timestamp_cobertura_bruto</stream_name>
+        <column_name>timestamp_bruto</column_name>
+        <stream_name>timestamp_bruto</stream_name>
       </field>
       <field>
-        <column_name>volume_artigos</column_name>
-        <stream_name>volume_artigos</stream_name>
+        <column_name>tipo_acesso</column_name>
+        <stream_name>tipo_acesso</stream_name>
+      </field>
+      <field>
+        <column_name>tipo_agente</column_name>
+        <stream_name>tipo_agente</stream_name>
+      </field>
+      <field>
+        <column_name>visualizacoes</column_name>
+        <stream_name>visualizacoes</stream_name>
       </field>
       <field>
         <column_name>nome_pipeline_hop</column_name>
@@ -580,15 +591,15 @@
     <return_keys>N</return_keys>
     <schema>bronze</schema>
     <specify_fields>Y</specify_fields>
-    <table>eventos_bruto</table>
+    <table>pageviews_bruto</table>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>208</yloc>
+      <xloc>832</xloc>
+      <yloc>240</yloc>
     </GUI>
   </transform>
   <transform>
@@ -603,14 +614,6 @@
       <schema_name/>
     </partitioning>
     <formula>
-      <field_name>url_completa</field_name>
-      <formula_string>"https://api.gdeltproject.org/api/v2/doc/doc?query=" + java.net.URLEncoder.encode(palavra_chave_gdelt, java.nio.charset.StandardCharsets.UTF_8) + "&amp;mode=timelinevolraw&amp;format=json&amp;STARTDATETIME=" + data_inicio_fmt + "000000&amp;ENDDATETIME=" + data_fim_fmt + "000000"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
       <field_name>user_agent</field_name>
       <formula_string>"Olavo-TCC/1.0 (olavopgroto15@gmail.com)"</formula_string>
       <value_type>String</value_type>
@@ -618,25 +621,21 @@
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
+    <formula>
+      <field_name>url_completa</field_name>
+      <formula_string>"https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/" + tipo_acesso + "/" + tipo_agente + "/" + java.net.URLEncoder.encode(artigo_wikipedia, java.nio.charset.StandardCharsets.UTF_8) + "/daily/" + data_inicio_fmt + "/" + data_fim_fmt</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
     <attributes/>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>352</xloc>
       <yloc>128</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
-    <error>
-      <source_transform>REST client</source_transform>
-      <target_transform>Log erros GDELT</target_transform>
-      <is_enabled>Y</is_enabled>
-      <nr_valuename>nr_erros</nr_valuename>
-      <descriptions_valuename>descricao_erro</descriptions_valuename>
-      <fields_valuename/>
-      <codes_valuename/>
-      <max_errors/>
-      <max_pct_errors>100</max_pct_errors>
-      <min_pct_rows>20</min_pct_rows>
-    </error>
   </transform_error_handling>
   <attributes/>
 </pipeline>
