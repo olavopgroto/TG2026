@@ -37,7 +37,22 @@
     </hop>
     <hop>
       <from>REST client</from>
+      <to>Separar por codigo HTTP</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Separar por codigo HTTP</from>
       <to>JSON input</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Separar por codigo HTTP</from>
+      <to>Sem dado na API (404)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Separar por codigo HTTP</from>
+      <to>Abortar - resposta inesperada</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -61,6 +76,27 @@
       <enabled>Y</enabled>
     </hop>
   </order>
+  <transform>
+    <name>Abortar - resposta inesperada</name>
+    <type>Abort</type>
+    <description>Qualquer codigo diferente de 200 e 404 (ex.: 429 limite de requisicoes, 5xx) para a carga para nao perder dado em silencio</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <abort_option>ABORT_WITH_ERROR</abort_option>
+    <always_log_rows>Y</always_log_rows>
+    <message>Resposta HTTP inesperada da Wikimedia (nem 200 nem 404). Ver url_completa e codigo_http na linha registrada.</message>
+    <row_threshold>0</row_threshold>
+    <attributes/>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>208</yloc>
+    </GUI>
+  </transform>
   <transform>
     <name>Add constants</name>
     <type>Constant</type>
@@ -436,6 +472,7 @@
     <preemptive>N</preemptive>
     <readTimeout>10000</readTimeout>
     <result>
+      <code>codigo_http</code>
       <name>resposta_json</name>
     </result>
     <trustStorePassword>Encrypted </trustStorePassword>
@@ -445,6 +482,54 @@
     <GUI>
       <xloc>448</xloc>
       <yloc>112</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Sem dado na API (404)</name>
+    <type>Dummy</type>
+    <description>Combinacoes sem nenhum dado na janela (ex.: principal do Marrocos, coberto pelos aliases). Nao gravam linha; viram nulo na Silver</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>304</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Separar por codigo HTTP</name>
+    <type>SwitchCase</type>
+    <description>200 segue para o JSON input; 404 (titulo sem dado na janela) vai para o Dummy e vira nulo na Silver; qualquer outro codigo aborta a carga</description>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <case_value_type>Integer</case_value_type>
+    <cases>
+      <case>
+        <target_transform>JSON input</target_transform>
+        <value>200</value>
+      </case>
+      <case>
+        <target_transform>Sem dado na API (404)</target_transform>
+        <value>404</value>
+      </case>
+    </cases>
+    <default_target_transform>Abortar - resposta inesperada</default_target_transform>
+    <fieldname>codigo_http</fieldname>
+    <use_contains>N</use_contains>
+    <attributes/>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>208</yloc>
     </GUI>
   </transform>
   <transform>

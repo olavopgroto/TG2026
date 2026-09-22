@@ -62,9 +62,17 @@ WHERE p.dia IS NULL;
 
 -- combinacoes sem NENHUMA linha, separando as de artigo criado depois da janela
 CREATE TEMP TABLE gate_combo_vazio AS
-SELECT nome_evento, artigo, acesso, agente,
-       BOOL_AND(data_criacao > data_fim_extracao) AS criado_depois_da_janela
-FROM gate_faltas GROUP BY 1, 2, 3, 4 HAVING COUNT(*) = 91;
+SELECT f.nome_evento, f.artigo, f.acesso, f.agente,
+       BOOL_AND(f.data_criacao > f.data_fim_extracao) AS criado_depois_da_janela,
+       -- principal (ou alias) sem dado no proprio titulo, mas com outro titulo da familia carregado:
+       -- caso do Marrocos, cujas visitas estao todas nos nomes antigos
+       BOOL_AND(f.eh_principal OR f.alias_de IS NOT NULL) AND EXISTS (
+           SELECT 1 FROM gate_meta m JOIN gate_pv p
+             ON p.evento_referencia = m.nome_evento AND p.artigo = m.artigo_wikipedia
+           WHERE m.nome_evento = f.nome_evento AND p.tipo_acesso = f.acesso AND p.tipo_agente = f.agente
+             AND (m.eh_principal = 'True' OR NULLIF(m.alias_de, '') IS NOT NULL)
+             AND m.artigo_wikipedia <> f.artigo) AS coberto_por_outro_titulo
+FROM gate_faltas f GROUP BY 1, 2, 3, 4 HAVING COUNT(*) = 91;
 
 -- =====================================================================
 -- GATE E - eventos e janelas
@@ -146,7 +154,14 @@ WHERE jsonb_array_length(c.payload) <> 91
 INSERT INTO gate_resultado
 SELECT 'B', 'B2a', 'combinacoes esperadas sem NENHUMA linha na Bronze', COUNT(*), '0',
        CASE WHEN COUNT(*) = 0 THEN 'OK' ELSE 'FALHA' END
-FROM gate_combo_vazio WHERE NOT COALESCE(criado_depois_da_janela, false);
+FROM gate_combo_vazio
+WHERE NOT COALESCE(criado_depois_da_janela, false) AND NOT COALESCE(coberto_por_outro_titulo, false);
+
+INSERT INTO gate_resultado
+SELECT 'B', 'B2f', 'combinacoes vazias cobertas por outro titulo do mesmo artigo (alias)', COUNT(*),
+       '9 (principal do Marrocos)',
+       CASE WHEN COUNT(*) = 9 THEN 'OK' ELSE 'INFO' END
+FROM gate_combo_vazio WHERE coberto_por_outro_titulo AND NOT COALESCE(criado_depois_da_janela, false);
 
 INSERT INTO gate_resultado
 SELECT 'B', 'B2e', 'combinacoes vazias de artigo criado DEPOIS da janela', COUNT(*), '0',
@@ -286,9 +301,9 @@ SELECT status, COUNT(*) AS checagens FROM gate_resultado GROUP BY status ORDER B
 -- DETALHES (so aparecem linhas quando existe o problema)
 -- =====================================================================
 \qecho ''
-\qecho '>>> B2a / B2e: combinacoes sem nenhuma linha (ate 30)'
-SELECT nome_evento, artigo, acesso, agente, criado_depois_da_janela
-FROM gate_combo_vazio ORDER BY 5, 1, 2, 3, 4 LIMIT 30;
+\qecho '>>> B2a / B2e / B2f: combinacoes sem nenhuma linha (ate 30)'
+SELECT nome_evento, artigo, acesso, agente, criado_depois_da_janela, coberto_por_outro_titulo
+FROM gate_combo_vazio ORDER BY 5, 6, 1, 2, 3, 4 LIMIT 30;
 
 \qecho '>>> B2c: artigos com dias ausentes depois da criacao (top 30 por dias ausentes)'
 SELECT nome_evento, artigo, data_criacao, COUNT(*) / 9.0 AS dias_ausentes_por_combinacao,
