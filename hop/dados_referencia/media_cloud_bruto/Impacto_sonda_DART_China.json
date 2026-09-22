@@ -1,0 +1,556 @@
+{
+  "evento_referencia": "Impacto sonda DART",
+  "categoria": "ciencia_global",
+  "pais_cobertura": "China",
+  "collection_id_mediacloud": 34412193,
+  "query_utilizada": "DART AND NASA AND asteroid",
+  "data_extracao": "2026-09-22T00:20:00.339784",
+  "payload": [
+    {
+      "date": "2022-08-27",
+      "count": 0,
+      "total_count": 983,
+      "ratio": 0
+    },
+    {
+      "date": "2022-08-28",
+      "count": 0,
+      "total_count": 881,
+      "ratio": 0
+    },
+    {
+      "date": "2022-08-29",
+      "count": 0,
+      "total_count": 1521,
+      "ratio": 0
+    },
+    {
+      "date": "2022-08-30",
+      "count": 0,
+      "total_count": 1573,
+      "ratio": 0
+    },
+    {
+      "date": "2022-08-31",
+      "count": 0,
+      "total_count": 1757,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-01",
+      "count": 0,
+      "total_count": 1960,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-02",
+      "count": 0,
+      "total_count": 1750,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-03",
+      "count": 0,
+      "total_count": 1173,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-04",
+      "count": 0,
+      "total_count": 870,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-05",
+      "count": 0,
+      "total_count": 1601,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-06",
+      "count": 0,
+      "total_count": 1702,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-07",
+      "count": 0,
+      "total_count": 1593,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-08",
+      "count": 0,
+      "total_count": 1807,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-09",
+      "count": 0,
+      "total_count": 1868,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-10",
+      "count": 0,
+      "total_count": 1022,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-11",
+      "count": 0,
+      "total_count": 815,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-12",
+      "count": 0,
+      "total_count": 832,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-13",
+      "count": 0,
+      "total_count": 1492,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-14",
+      "count": 0,
+      "total_count": 1706,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-15",
+      "count": 0,
+      "total_count": 1823,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-16",
+      "count": 0,
+      "total_count": 1948,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-17",
+      "count": 0,
+      "total_count": 1151,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-18",
+      "count": 0,
+      "total_count": 862,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-19",
+      "count": 0,
+      "total_count": 1395,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-20",
+      "count": 0,
+      "total_count": 1751,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-21",
+      "count": 0,
+      "total_count": 1639,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-22",
+      "count": 0,
+      "total_count": 1721,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-23",
+      "count": 0,
+      "total_count": 1749,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-24",
+      "count": 0,
+      "total_count": 990,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-25",
+      "count": 3,
+      "total_count": 827,
+      "ratio": 0.0036275695284159614
+    },
+    {
+      "date": "2022-09-26",
+      "count": 0,
+      "total_count": 1657,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-27",
+      "count": 1,
+      "total_count": 1781,
+      "ratio": 0.0005614823133071309
+    },
+    {
+      "date": "2022-09-28",
+      "count": 0,
+      "total_count": 1946,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-29",
+      "count": 0,
+      "total_count": 1964,
+      "ratio": 0
+    },
+    {
+      "date": "2022-09-30",
+      "count": 0,
+      "total_count": 2020,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-01",
+      "count": 0,
+      "total_count": 1165,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-02",
+      "count": 0,
+      "total_count": 982,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-03",
+      "count": 0,
+      "total_count": 1020,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-04",
+      "count": 0,
+      "total_count": 914,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-05",
+      "count": 0,
+      "total_count": 903,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-06",
+      "count": 0,
+      "total_count": 874,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-07",
+      "count": 0,
+      "total_count": 946,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-08",
+      "count": 0,
+      "total_count": 1485,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-09",
+      "count": 0,
+      "total_count": 1258,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-10",
+      "count": 0,
+      "total_count": 1498,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-11",
+      "count": 0,
+      "total_count": 1510,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-12",
+      "count": 0,
+      "total_count": 1314,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-13",
+      "count": 0,
+      "total_count": 1435,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-14",
+      "count": 0,
+      "total_count": 1300,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-15",
+      "count": 0,
+      "total_count": 946,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-16",
+      "count": 0,
+      "total_count": 1038,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-17",
+      "count": 0,
+      "total_count": 1094,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-18",
+      "count": 0,
+      "total_count": 1190,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-19",
+      "count": 0,
+      "total_count": 1253,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-20",
+      "count": 0,
+      "total_count": 1424,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-21",
+      "count": 0,
+      "total_count": 1271,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-22",
+      "count": 0,
+      "total_count": 982,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-23",
+      "count": 0,
+      "total_count": 674,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-24",
+      "count": 0,
+      "total_count": 1173,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-25",
+      "count": 0,
+      "total_count": 1422,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-26",
+      "count": 0,
+      "total_count": 1428,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-27",
+      "count": 0,
+      "total_count": 1444,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-28",
+      "count": 0,
+      "total_count": 1566,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-29",
+      "count": 0,
+      "total_count": 978,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-30",
+      "count": 0,
+      "total_count": 929,
+      "ratio": 0
+    },
+    {
+      "date": "2022-10-31",
+      "count": 0,
+      "total_count": 1593,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-01",
+      "count": 0,
+      "total_count": 1763,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-02",
+      "count": 0,
+      "total_count": 1547,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-03",
+      "count": 0,
+      "total_count": 1716,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-04",
+      "count": 0,
+      "total_count": 1770,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-05",
+      "count": 0,
+      "total_count": 1046,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-06",
+      "count": 0,
+      "total_count": 907,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-07",
+      "count": 0,
+      "total_count": 1537,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-08",
+      "count": 0,
+      "total_count": 1537,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-09",
+      "count": 0,
+      "total_count": 1641,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-10",
+      "count": 0,
+      "total_count": 1582,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-11",
+      "count": 0,
+      "total_count": 1650,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-12",
+      "count": 0,
+      "total_count": 1111,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-13",
+      "count": 0,
+      "total_count": 913,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-14",
+      "count": 0,
+      "total_count": 1462,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-15",
+      "count": 0,
+      "total_count": 1591,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-16",
+      "count": 0,
+      "total_count": 1729,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-17",
+      "count": 0,
+      "total_count": 1735,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-18",
+      "count": 0,
+      "total_count": 1626,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-19",
+      "count": 0,
+      "total_count": 1115,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-20",
+      "count": 0,
+      "total_count": 861,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-21",
+      "count": 0,
+      "total_count": 1393,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-22",
+      "count": 0,
+      "total_count": 1559,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-23",
+      "count": 0,
+      "total_count": 1389,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-24",
+      "count": 0,
+      "total_count": 1641,
+      "ratio": 0
+    },
+    {
+      "date": "2022-11-25",
+      "count": 0,
+      "total_count": 1567,
+      "ratio": 0
+    }
+  ]
+}
