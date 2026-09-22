@@ -99,7 +99,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/project/dados_referencia/teste_volume.csv</filename>
+    <filename>/project/dados_referencia/artigos_relacionados.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
