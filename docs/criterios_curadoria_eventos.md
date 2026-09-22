@@ -29,13 +29,15 @@ Este documento define as regras objetivas usadas para selecionar os eventos incl
 - Presente na lista "Deaths in [ano]" da Wikipedia, categorias política, entretenimento ou esporte
 - Quantidade de fontes distintas que publicaram sobre o óbito nos 7 dias seguintes ≥ 50 (Media Cloud API v4, soma das 10 coleções nacionais validadas — ver seção "Composição das coleções Media Cloud"; critério recalibrado após substituição da GDELT DOC 2.0 pela Media Cloud; validação final pendente de execução em lote da extração)
 
-## Critério 4 — Lançamento de produto/tecnologia
+## Critério 4 — Lançamento de produto ou tecnologia (revisado em 21/09/2026)
 
-**Definição**: lançamento de produto por empresa de grande relevância global, com repercussão imediata.
+**Definição**: lançamento ou anúncio oficial de produto ou tecnologia por empresa de alcance global, com repercussão imediata.
 
 **Regras de inclusão** (atender ambas):
-- Empresa entre as 100 maiores por valor de marca (ranking Interbrand, ano do lançamento)
-- Artigo da Wikipedia sobre o produto criado em até 30 dias do lançamento oficial
+- Empresa entre as 100 marcas mais valiosas do ranking Interbrand no ano do lançamento. **Exceção documentada**: OpenAI (ChatGPT e GPT-4), que não consta no ranking, mas foi incluída porque o ChatGPT foi o produto de consumo com crescimento de usuários mais rápido registrado até então, e porque produtos de IA generativa são parte central do período analisado.
+- Artigo próprio na Wikipédia em inglês com visitas registradas até 7 dias após a data do evento, considerando também títulos anteriores do mesmo artigo.
+
+**Nota de revisão**: a regra original exigia artigo criado em até 30 dias do lançamento. Ela foi substituída após a verificação das datas de criação mostrar que ela media a novidade da página, e não a possibilidade de medir a atenção. Vários artigos de produto existem antes do lançamento, como rascunho ou desde o anúncio (Apple Vision Pro, Samsung Galaxy S24, iPhone 15, GPT-4 e Tesla Cybertruck não cumpririam a regra antiga). A nova regra exige o que a análise realmente depende: um artigo com visitas registradas no período do evento. Os 8 eventos da categoria cumprem as duas regras; o ChatGPT é o caso mais próximo do limite, com artigo criado 5 dias após o lançamento.
 
 ## Critério 5 — Descobertas científicas de alcance global
 
@@ -120,3 +122,4 @@ Nos dois eventos, a janela de extração foi recalculada e o ranking de artigos 
 - 26/08/2026: versão consolidada, 5 critérios, 20 eventos curados.
 - 09/09/2026: substituição da fonte de cobertura midiática (GDELT DOC 2.0 → Media Cloud API v4) em todos os critérios que dependiam dela, após descontinuação da GDELT por rate limiting. Escopo de coleções definido (10 países, curadoria nacional validada via Directory API). Documentada a mudança de eixo comparativo central (PT vs. EN → Wikipedia vs. Media Cloud), a recriação de `bronze.eventos_bruto`, a renomeação de `palavra_chave_gdelt` e a descontinuação de `artigos_teste.csv`.
 - 21/09/2026: definida a regra da data do evento; corrigidas as datas do iPhone 15 e da ignição de fusão nuclear.
+- 21/09/2026: Critério 4 revisado (regra de criação do artigo em até 30 dias substituída por artigo com visitas registradas até 7 dias após o evento; exceção documentada da OpenAI na regra do ranking Interbrand).
