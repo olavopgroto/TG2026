@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>carga_silver_pageviews_artigo</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description>Monta a grade completa (todo artigo x 91 dias x 9 combinacoes), traz o valor da Bronze quando existe e classifica a origem de cada celula: api, ausente_antes_criacao ou ausente_pos_criacao</description>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2026/09/22 19:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026/09/22 19:00:00.000</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+    <hop>
+      <from>Grade de dias x Bronze</from>
+      <to>Classificar origem do valor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Classificar origem do valor</from>
+      <to>Gravar silver.pageviews_diario_artigo</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Grade de dias x Bronze</name>
+    <type>TableInput</type>
+    <description>Gera os 91 dias de cada artigo nas 9 combinacoes e traz o valor da Bronze quando existe. O LEFT JOIN e feito no banco porque sao 1,17 milhao de linhas cruzando com 1,1 milhao: com indice o Postgres resolve em minutos, enquanto um lookup linha a linha no Hop levaria horas</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres</connection>
+    <sql>SELECT a.id_evento,
+       a.id_artigo,
+       g.dia::date                                AS dia,
+       (g.dia::date - e.data_evento)              AS dias_desde_evento,
+       c.tipo_acesso,
+       c.tipo_agente,
+       p.visualizacoes,
+       a.data_criacao
+FROM silver.artigos a
+JOIN silver.eventos e ON e.id_evento = a.id_evento
+CROSS JOIN LATERAL generate_series(e.data_inicio_extracao, e.data_fim_extracao, INTERVAL '1 day') AS g(dia)
+CROSS JOIN (VALUES ('desktop','user'), ('desktop','spider'), ('desktop','automated'),
+                   ('mobile-app','user'), ('mobile-app','spider'), ('mobile-app','automated'),
+                   ('mobile-web','user'), ('mobile-web','spider'), ('mobile-web','automated')
+           ) AS c(tipo_acesso, tipo_agente)
+LEFT JOIN bronze.pageviews_bruto p
+       ON p.evento_referencia = e.nome_evento
+      AND p.artigo            = a.artigo
+      AND p.timestamp_bruto   = to_char(g.dia, 'YYYYMMDD') || '00'
+      AND p.tipo_acesso       = c.tipo_acesso
+      AND p.tipo_agente       = c.tipo_agente
+ORDER BY a.id_artigo, g.dia, c.tipo_acesso, c.tipo_agente</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Classificar origem do valor</name>
+    <type>Janino</type>
+    <description>Regra zero x nulo: a Wikimedia devolve o dia com 0 quando o titulo existe e ninguem acessou, entao linha com valor = ZERO. Dia sem linha na Bronze = NULO, e a data de criacao do artigo explica o motivo</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>origem_valor</field_name>
+      <formula_string>visualizacoes != null ? "api" : ((data_criacao != null &amp;&amp; dia.before(data_criacao)) ? "ausente_antes_criacao" : "ausente_pos_criacao")</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gravar silver.pageviews_diario_artigo</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>5000</commit>
+    <connection>postgres</connection>
+    <fields>
+      <field>
+        <column_name>id_evento</column_name>
+        <stream_name>id_evento</stream_name>
+      </field>
+      <field>
+        <column_name>id_artigo</column_name>
+        <stream_name>id_artigo</stream_name>
+      </field>
+      <field>
+        <column_name>dia</column_name>
+        <stream_name>dia</stream_name>
+      </field>
+      <field>
+        <column_name>dias_desde_evento</column_name>
+        <stream_name>dias_desde_evento</stream_name>
+      </field>
+      <field>
+        <column_name>tipo_acesso</column_name>
+        <stream_name>tipo_acesso</stream_name>
+      </field>
+      <field>
+        <column_name>tipo_agente</column_name>
+        <stream_name>tipo_agente</stream_name>
+      </field>
+      <field>
+        <column_name>visualizacoes</column_name>
+        <stream_name>visualizacoes</stream_name>
+      </field>
+      <field>
+        <column_name>origem_valor</column_name>
+        <stream_name>origem_valor</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>silver</schema>
+    <specify_fields>Y</specify_fields>
+    <table>pageviews_diario_artigo</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
