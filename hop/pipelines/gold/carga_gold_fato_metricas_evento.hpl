@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>carga_gold_fato_metricas_evento</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description>Carrega gold.fato_metricas_evento: as metricas de ciclo de vida por evento e por fonte. Le a propria gold.fato_serie_diaria, que ja tem as duas series alinhadas e o eixo contado a partir do pico. Grao evento x fonte, 80 linhas.</description>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2026/09/29 15:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026/09/29 15:00:00.000</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+    <hop>
+      <from>Ler as series e os ajustes</from>
+      <to>Aplicar a regra da base</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Aplicar a regra da base</from>
+      <to>Calcular o decaimento</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calcular o decaimento</from>
+      <to>Gravar gold.fato_metricas_evento</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Ler as series e os ajustes</name>
+    <type>TableInput</type>
+    <description>Empilha as duas fontes em formato longo e calcula os insumos: pico, quedas observadas, volume, base e as tres regressoes de ln(valor) contra os dias desde o pico. A regressao e agregacao estatistica do banco; as formulas do trabalho (lambda, meia-vida, validade da base, amplificacao) ficam nos dois transforms seguintes.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres</connection>
+    <sql>WITH serie AS (
+    -- as duas fontes empilhadas, cada uma com o seu proprio eixo a partir do pico
+    SELECT id_evento,
+           'publico'::varchar(20)  AS fonte,
+           dia,
+           dias_desde_evento,
+           dias_desde_pico_publico AS dias_desde_pico,
+           views_principal         AS valor
+    FROM gold.fato_serie_diaria
+    UNION ALL
+    SELECT id_evento,
+           'midia'::varchar(20),
+           dia,
+           dias_desde_evento,
+           dias_desde_pico_midia,
+           materias::bigint
+    FROM gold.fato_serie_diaria
+),
+pico AS (
+    -- maior valor da serie e o dia em que ocorreu; empate fica com o dia mais cedo
+    SELECT DISTINCT ON (id_evento, fonte)
+           id_evento,
+           fonte,
+           valor             AS valor_pico,
+           dias_desde_evento AS dia_pico,
+           dia               AS data_pico
+    FROM serie
+    WHERE valor IS NOT NULL
+    ORDER BY id_evento, fonte, valor DESC NULLS LAST, dias_desde_evento
+),
+queda AS (
+    -- contagem direta: em quantos dias apos o pico a serie cai abaixo de metade e de um decimo dele
+    SELECT s.id_evento,
+           s.fonte,
+           MIN(s.dias_desde_pico) FILTER (WHERE s.valor &lt; p.valor_pico * 0.5) AS meia_vida_observada,
+           MIN(s.dias_desde_pico) FILTER (WHERE s.valor &lt; p.valor_pico * 0.1) AS dias_ate_10pct
+    FROM serie s
+    JOIN pico p ON p.id_evento = s.id_evento AND p.fonte = s.fonte
+    WHERE s.dias_desde_pico &gt; 0
+      AND s.valor IS NOT NULL
+    GROUP BY s.id_evento, s.fonte
+),
+volume AS (
+    -- soma dos 30 primeiros dias contados da data do evento
+    SELECT id_evento,
+           fonte,
+           COALESCE(SUM(valor), 0)::bigint AS volume_30d
+    FROM serie
+    WHERE dias_desde_evento BETWEEN 0 AND 29
+    GROUP BY id_evento, fonte
+),
+base AS (
+    -- linha de base: dias com dado e mediana do periodo de -30 a -4
+    SELECT id_evento,
+           fonte,
+           COUNT(valor)::int AS base_dias_com_dado,
+           PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY valor) AS base_mediana
+    FROM serie
+    WHERE dias_desde_evento BETWEEN -30 AND -4
+    GROUP BY id_evento, fonte
+),
+ajuste AS (
+    -- regressao de ln(valor) contra os dias desde o pico, em tres recortes.
+    -- O NULLIF com GREATEST descarta zero e negativo antes do logaritmo, que so existe para positivo.
+    SELECT id_evento,
+           fonte,
+           regr_slope(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico &gt;= 0) AS slope_simples,
+           regr_r2(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico &gt;= 0) AS r2_simples_raw,
+           COUNT(*) FILTER (WHERE dias_desde_pico &gt;= 0 AND valor &gt; 0)::int AS n_pontos_simples,
+
+           regr_slope(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico BETWEEN 0 AND 7) AS slope_fase1,
+           regr_r2(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico BETWEEN 0 AND 7) AS r2_fase1_raw,
+           COUNT(*) FILTER (WHERE dias_desde_pico BETWEEN 0 AND 7 AND valor &gt; 0)::int AS n_pontos_fase1,
+
+           regr_slope(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico &gt;= 8) AS slope_fase2,
+           regr_r2(LN(NULLIF(GREATEST(valor, 0), 0)::double precision), dias_desde_pico)
+               FILTER (WHERE dias_desde_pico &gt;= 8) AS r2_fase2_raw,
+           COUNT(*) FILTER (WHERE dias_desde_pico &gt;= 8 AND valor &gt; 0)::int AS n_pontos_fase2
+    FROM serie
+    GROUP BY id_evento, fonte
+)
+SELECT p.id_evento,
+       p.fonte,
+       p.valor_pico,
+       p.dia_pico,
+       p.data_pico,
+       q.meia_vida_observada,
+       q.dias_ate_10pct,
+       v.volume_30d,
+       b.base_dias_com_dado,
+       b.base_mediana,
+       a.slope_simples,
+       a.r2_simples_raw,
+       a.n_pontos_simples,
+       a.slope_fase1,
+       a.r2_fase1_raw,
+       a.n_pontos_fase1,
+       a.slope_fase2,
+       a.r2_fase2_raw,
+       a.n_pontos_fase2
+FROM pico p
+JOIN volume v ON v.id_evento = p.id_evento AND v.fonte = p.fonte
+JOIN base   b ON b.id_evento = p.id_evento AND b.fonte = p.fonte
+JOIN ajuste a ON a.id_evento = p.id_evento AND a.fonte = p.fonte
+LEFT JOIN queda q ON q.id_evento = p.id_evento AND q.fonte = p.fonte
+ORDER BY p.id_evento, p.fonte</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Aplicar a regra da base</name>
+    <type>Janino</type>
+    <description>Regra da linha de base decidida em 26/09: a base so vale com pelo menos 14 dias com dado no periodo de -30 a -4 e mediana acima do piso da fonte, que e de 10 visitas por dia no publico e 1 materia por dia na midia. Base invalida deixa a amplificacao nula, e o motivo fica registrado linha a linha.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>piso_base</field_name>
+      <formula_string>fonte.equals("publico") ? Double.valueOf(10.0) : Double.valueOf(1.0)</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>base_valida</field_name>
+      <formula_string>base_dias_com_dado.longValue() &lt; 14 ? Boolean.FALSE : (base_mediana == null ? Boolean.FALSE : (base_mediana.doubleValue() &lt; piso_base.doubleValue() ? Boolean.FALSE : Boolean.TRUE))</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>base_motivo</field_name>
+      <formula_string>base_dias_com_dado.longValue() &lt; 14 ? "poucos_dias_com_dado" : (base_mediana == null ? "poucos_dias_com_dado" : (base_mediana.doubleValue() &lt; piso_base.doubleValue() ? "abaixo_do_piso" : "ok"))</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>amplificacao</field_name>
+      <formula_string>base_valida.booleanValue() ? Double.valueOf(valor_pico.doubleValue() / base_mediana.doubleValue()) : (Double) null</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Calcular o decaimento</name>
+    <type>Janino</type>
+    <description>As formulas do modelo exponencial. Lambda e o negativo da inclinacao da reta ajustada sobre o logaritmo; a meia-vida e o logaritmo natural de 2 dividido por lambda. Ajuste com menos de 5 pontos e descartado, porque uma reta sobre poucos pontos nao descreve nada. O R2 combinado das duas fases e a media dos dois, ponderada pelo numero de dias de cada uma.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>lambda_simples</field_name>
+      <formula_string>n_pontos_simples.longValue() &lt; 5 ? (Double) null : (slope_simples == null ? (Double) null : Double.valueOf(-slope_simples.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>meia_vida_simples</field_name>
+      <formula_string>lambda_simples == null ? (Double) null : (lambda_simples.doubleValue() &lt;= 0 ? (Double) null : Double.valueOf(Math.log(2.0) / lambda_simples.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>r2_simples</field_name>
+      <formula_string>n_pontos_simples.longValue() &lt; 5 ? (Double) null : r2_simples_raw</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>lambda_fase1</field_name>
+      <formula_string>n_pontos_fase1.longValue() &lt; 5 ? (Double) null : (slope_fase1 == null ? (Double) null : Double.valueOf(-slope_fase1.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>meia_vida_fase1</field_name>
+      <formula_string>lambda_fase1 == null ? (Double) null : (lambda_fase1.doubleValue() &lt;= 0 ? (Double) null : Double.valueOf(Math.log(2.0) / lambda_fase1.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>r2_fase1</field_name>
+      <formula_string>n_pontos_fase1.longValue() &lt; 5 ? (Double) null : r2_fase1_raw</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>lambda_fase2</field_name>
+      <formula_string>n_pontos_fase2.longValue() &lt; 5 ? (Double) null : (slope_fase2 == null ? (Double) null : Double.valueOf(-slope_fase2.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>meia_vida_fase2</field_name>
+      <formula_string>lambda_fase2 == null ? (Double) null : (lambda_fase2.doubleValue() &lt;= 0 ? (Double) null : Double.valueOf(Math.log(2.0) / lambda_fase2.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>r2_fase2</field_name>
+      <formula_string>n_pontos_fase2.longValue() &lt; 5 ? (Double) null : r2_fase2_raw</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>r2_combinado_fases</field_name>
+      <formula_string>r2_fase1 == null ? (Double) null : (r2_fase2 == null ? (Double) null : Double.valueOf((r2_fase1.doubleValue() * n_pontos_fase1.longValue() + r2_fase2.doubleValue() * n_pontos_fase2.longValue()) / (n_pontos_fase1.longValue() + n_pontos_fase2.longValue())))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>ganho_r2_sobre_simples</field_name>
+      <formula_string>r2_combinado_fases == null ? (Double) null : (r2_simples == null ? (Double) null : Double.valueOf(r2_combinado_fases.doubleValue() - r2_simples.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gravar gold.fato_metricas_evento</name>
+    <type>TableOutput</type>
+    <description>Grava as 80 linhas, duas por evento. Os campos de apoio (slope, r2 bruto e piso da base) ficam de fora porque a gravacao lista os campos um a um.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>postgres</connection>
+    <fields>
+      <field>
+        <column_name>id_evento</column_name>
+        <stream_name>id_evento</stream_name>
+      </field>
+      <field>
+        <column_name>fonte</column_name>
+        <stream_name>fonte</stream_name>
+      </field>
+      <field>
+        <column_name>valor_pico</column_name>
+        <stream_name>valor_pico</stream_name>
+      </field>
+      <field>
+        <column_name>dia_pico</column_name>
+        <stream_name>dia_pico</stream_name>
+      </field>
+      <field>
+        <column_name>data_pico</column_name>
+        <stream_name>data_pico</stream_name>
+      </field>
+      <field>
+        <column_name>meia_vida_observada</column_name>
+        <stream_name>meia_vida_observada</stream_name>
+      </field>
+      <field>
+        <column_name>dias_ate_10pct</column_name>
+        <stream_name>dias_ate_10pct</stream_name>
+      </field>
+      <field>
+        <column_name>volume_30d</column_name>
+        <stream_name>volume_30d</stream_name>
+      </field>
+      <field>
+        <column_name>base_mediana</column_name>
+        <stream_name>base_mediana</stream_name>
+      </field>
+      <field>
+        <column_name>base_dias_com_dado</column_name>
+        <stream_name>base_dias_com_dado</stream_name>
+      </field>
+      <field>
+        <column_name>base_valida</column_name>
+        <stream_name>base_valida</stream_name>
+      </field>
+      <field>
+        <column_name>base_motivo</column_name>
+        <stream_name>base_motivo</stream_name>
+      </field>
+      <field>
+        <column_name>amplificacao</column_name>
+        <stream_name>amplificacao</stream_name>
+      </field>
+      <field>
+        <column_name>lambda_simples</column_name>
+        <stream_name>lambda_simples</stream_name>
+      </field>
+      <field>
+        <column_name>meia_vida_simples</column_name>
+        <stream_name>meia_vida_simples</stream_name>
+      </field>
+      <field>
+        <column_name>r2_simples</column_name>
+        <stream_name>r2_simples</stream_name>
+      </field>
+      <field>
+        <column_name>n_pontos_simples</column_name>
+        <stream_name>n_pontos_simples</stream_name>
+      </field>
+      <field>
+        <column_name>lambda_fase1</column_name>
+        <stream_name>lambda_fase1</stream_name>
+      </field>
+      <field>
+        <column_name>meia_vida_fase1</column_name>
+        <stream_name>meia_vida_fase1</stream_name>
+      </field>
+      <field>
+        <column_name>r2_fase1</column_name>
+        <stream_name>r2_fase1</stream_name>
+      </field>
+      <field>
+        <column_name>n_pontos_fase1</column_name>
+        <stream_name>n_pontos_fase1</stream_name>
+      </field>
+      <field>
+        <column_name>lambda_fase2</column_name>
+        <stream_name>lambda_fase2</stream_name>
+      </field>
+      <field>
+        <column_name>meia_vida_fase2</column_name>
+        <stream_name>meia_vida_fase2</stream_name>
+      </field>
+      <field>
+        <column_name>r2_fase2</column_name>
+        <stream_name>r2_fase2</stream_name>
+      </field>
+      <field>
+        <column_name>n_pontos_fase2</column_name>
+        <stream_name>n_pontos_fase2</stream_name>
+      </field>
+      <field>
+        <column_name>r2_combinado_fases</column_name>
+        <stream_name>r2_combinado_fases</stream_name>
+      </field>
+      <field>
+        <column_name>ganho_r2_sobre_simples</column_name>
+        <stream_name>ganho_r2_sobre_simples</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>gold</schema>
+    <specify_fields>Y</specify_fields>
+    <table>fato_metricas_evento</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
