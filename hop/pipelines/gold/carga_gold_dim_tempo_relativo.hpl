@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>carga_gold_dim_tempo_relativo</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description>Gera o eixo de tempo relativo ao evento, de -30 a +60, e carrega gold.dim_tempo_relativo. E o eixo que permite comparar eventos ocorridos em datas diferentes.</description>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2026/09/26 10:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026/09/26 10:00:00.000</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+    <hop>
+      <from>Gerar 91 linhas</from>
+      <to>Numerar de -30 a 60</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Numerar de -30 a 60</from>
+      <to>Classificar a fase</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Classificar a fase</from>
+      <to>Gravar gold.dim_tempo_relativo</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Gerar 91 linhas</name>
+    <type>RowGenerator</type>
+    <description>Uma linha por dia da janela de observacao: 30 antes, o dia do evento e 60 depois.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>marcador</name>
+        <type>Integer</type>
+        <format>#</format>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <currency/>
+        <decimal/>
+        <group/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <interval_in_ms>5000</interval_in_ms>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+    <limit>91</limit>
+    <never_ending>N</never_ending>
+    <row_time_field>now</row_time_field>
+    <attributes/>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Numerar de -30 a 60</name>
+    <type>Sequence</type>
+    <description>Contador em memoria comecando em -30. E a propria chave da dimensao.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>dias_desde_evento</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name>contador_relativo</counter_name>
+    <start_at>-30</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Classificar a fase</name>
+    <type>Janino</type>
+    <description>Regra das fases: pre_evento ate o dia -1, dia_do_evento no dia 0, primeira_semana do 1 ao 7, primeiro_mes do 8 ao 30 e cauda do 31 ao 60. A semana relativa agrupa de sete em sete dias a partir do evento.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>fase</field_name>
+      <formula_string>dias_desde_evento.longValue() &lt; 0 ? "pre_evento" : (dias_desde_evento.longValue() == 0 ? "dia_do_evento" : (dias_desde_evento.longValue() &lt;= 7 ? "primeira_semana" : (dias_desde_evento.longValue() &lt;= 30 ? "primeiro_mes" : "cauda")))</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>eh_pos_evento</field_name>
+      <formula_string>dias_desde_evento.longValue() &gt;= 0</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>semana_relativa</field_name>
+      <formula_string>(int) Math.floor(dias_desde_evento.longValue() / 7.0)</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gravar gold.dim_tempo_relativo</name>
+    <type>TableOutput</type>
+    <description>Grava as 91 linhas. O campo marcador nao entra porque a gravacao lista os campos um a um.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>postgres</connection>
+    <fields>
+      <field>
+        <column_name>dias_desde_evento</column_name>
+        <stream_name>dias_desde_evento</stream_name>
+      </field>
+      <field>
+        <column_name>fase</column_name>
+        <stream_name>fase</stream_name>
+      </field>
+      <field>
+        <column_name>eh_pos_evento</column_name>
+        <stream_name>eh_pos_evento</stream_name>
+      </field>
+      <field>
+        <column_name>semana_relativa</column_name>
+        <stream_name>semana_relativa</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>gold</schema>
+    <specify_fields>Y</specify_fields>
+    <table>dim_tempo_relativo</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
