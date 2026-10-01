@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>carga_gold_fato_defasagem_evento</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description>Carrega gold.fato_defasagem_evento: o resumo do correlograma por evento e variante, com a validacao pela distancia entre os picos e a leitura final. Grao evento x variante, 80 linhas.</description>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2026/10/01 09:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026/10/01 09:00:00.000</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+    <hop>
+      <from>Ler o melhor de cada correlograma</from>
+      <to>Comparar com os picos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Comparar com os picos</from>
+      <to>Classificar a leitura</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Classificar a leitura</from>
+      <to>Gravar gold.fato_defasagem_evento</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Ler o melhor de cada correlograma</name>
+    <type>TableInput</type>
+    <description>Pega, de cada evento e variante, a defasagem com a maior correlacao, e traz junto o que a classificacao precisa: o dia do pico de cada curva, se o artigo principal nasceu depois do evento e a contagem de dias sem dado. Empate na correlacao fica com a defasagem mais proxima de zero, para nao premiar deslocamento sem motivo.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres</connection>
+    <sql>WITH melhor AS (
+    SELECT DISTINCT ON (id_evento, variante)
+           id_evento,
+           variante,
+           defasagem        AS defasagem_otima,
+           correlacao       AS correlacao_maxima,
+           eh_significativa
+    FROM gold.fato_correlacao_defasagem
+    ORDER BY id_evento, variante, correlacao DESC NULLS LAST, abs(defasagem), defasagem
+),
+qualidade AS (
+    -- dias da janela sem dado no publico e dias sem nenhuma materia
+    SELECT id_evento,
+           COUNT(*) FILTER (WHERE views_principal IS NULL)::int AS dias_nulos_publico,
+           COUNT(*) FILTER (WHERE materias = 0)::int            AS dias_sem_materia
+    FROM gold.fato_serie_diaria
+    GROUP BY id_evento
+)
+SELECT m.id_evento,
+       m.variante,
+       m.defasagem_otima,
+       m.correlacao_maxima,
+       m.eh_significativa,
+       mp.dia_pico AS dia_pico_publico,
+       mm.dia_pico AS dia_pico_midia,
+       q.dias_nulos_publico,
+       q.dias_sem_materia,
+       (e.data_criacao_principal &gt; e.data_evento) AS principal_criado_apos_evento
+FROM melhor m
+JOIN gold.dim_evento e ON e.id_evento = m.id_evento
+JOIN gold.fato_metricas_evento mp ON mp.id_evento = m.id_evento AND mp.fonte = 'publico'
+JOIN gold.fato_metricas_evento mm ON mm.id_evento = m.id_evento AND mm.fonte = 'midia'
+JOIN qualidade q ON q.id_evento = m.id_evento
+ORDER BY m.id_evento, m.variante</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Comparar com os picos</name>
+    <type>Janino</type>
+    <description>A segunda medida da defasagem, que nao usa estatistica nenhuma: a distancia entre o dia do pico de cada curva. Mesma convencao da correlacao, positivo significa midia antes. As duas concordam quando apontam a mesma direcao, com tolerancia de um dia: a Wikimedia fecha o dia em UTC e as materias vem de dez paises em fusos diferentes, entao um dia de diferenca esta dentro da imprecisao da medida.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>lag_por_pico</field_name>
+      <formula_string>dia_pico_publico.longValue() - dia_pico_midia.longValue()</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>concorda_com_lag_por_pico</field_name>
+      <formula_string>Math.abs(defasagem_otima.longValue()) &lt;= 1 &amp;&amp; Math.abs(lag_por_pico.longValue()) &lt;= 1 ? Boolean.TRUE : (defasagem_otima.longValue() &gt;= 2 &amp;&amp; lag_por_pico.longValue() &gt;= 1 ? Boolean.TRUE : (defasagem_otima.longValue() &lt;= -2 &amp;&amp; lag_por_pico.longValue() &lt;= -1 ? Boolean.TRUE : Boolean.FALSE))</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Classificar a leitura</name>
+    <type>Janino</type>
+    <description>A conclusao de cada evento em uma palavra, pela ordem: primeiro os casos em que a comparacao nao se aplica (artigo criado depois do evento, ou picos a mais de sete dias um do outro, o que acontece em eventos com duas datas ou que duram semanas), depois a falta de significancia, e por fim a direcao, que so e afirmada quando as duas medidas concordam.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>leitura</field_name>
+      <formula_string>principal_criado_apos_evento.booleanValue() ? "inicio_nao_observavel" : (Math.abs(lag_por_pico.longValue()) &gt; 7 ? "picos_distantes" : (eh_significativa.booleanValue() == false ? "inconclusivo" : (concorda_com_lag_por_pico.booleanValue() == false ? "inconclusivo" : (Math.abs(defasagem_otima.longValue()) &lt;= 1 ? "simultaneo" : (defasagem_otima.longValue() &gt;= 2 ? "midia_antes" : "publico_antes")))))</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gravar gold.fato_defasagem_evento</name>
+    <type>TableOutput</type>
+    <description>Grava as 80 linhas, duas por evento. Os campos de apoio (dia do pico de cada curva e a marca de criacao do principal) ficam de fora porque a gravacao lista os campos um a um.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>postgres</connection>
+    <fields>
+      <field>
+        <column_name>id_evento</column_name>
+        <stream_name>id_evento</stream_name>
+      </field>
+      <field>
+        <column_name>variante</column_name>
+        <stream_name>variante</stream_name>
+      </field>
+      <field>
+        <column_name>defasagem_otima</column_name>
+        <stream_name>defasagem_otima</stream_name>
+      </field>
+      <field>
+        <column_name>correlacao_maxima</column_name>
+        <stream_name>correlacao_maxima</stream_name>
+      </field>
+      <field>
+        <column_name>eh_significativa</column_name>
+        <stream_name>eh_significativa</stream_name>
+      </field>
+      <field>
+        <column_name>lag_por_pico</column_name>
+        <stream_name>lag_por_pico</stream_name>
+      </field>
+      <field>
+        <column_name>concorda_com_lag_por_pico</column_name>
+        <stream_name>concorda_com_lag_por_pico</stream_name>
+      </field>
+      <field>
+        <column_name>dias_nulos_publico</column_name>
+        <stream_name>dias_nulos_publico</stream_name>
+      </field>
+      <field>
+        <column_name>dias_sem_materia</column_name>
+        <stream_name>dias_sem_materia</stream_name>
+      </field>
+      <field>
+        <column_name>leitura</column_name>
+        <stream_name>leitura</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>gold</schema>
+    <specify_fields>Y</specify_fields>
+    <table>fato_defasagem_evento</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>

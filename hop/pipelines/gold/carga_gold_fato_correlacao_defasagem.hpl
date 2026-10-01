@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <name>carga_gold_fato_correlacao_defasagem</name>
+    <name_sync_with_filename>Y</name_sync_with_filename>
+    <description>Carrega gold.fato_correlacao_defasagem: o correlograma de cada evento, nas duas variantes, com as 21 defasagens de -10 a +10. Grao evento x variante x defasagem, 1.680 linhas.</description>
+    <extended_description/>
+    <pipeline_version/>
+    <pipeline_type>Normal</pipeline_type>
+    <parameters>
+    </parameters>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <created_user>-</created_user>
+    <created_date>2026/10/01 09:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026/10/01 09:00:00.000</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <order>
+    <hop>
+      <from>Calcular as correlacoes</from>
+      <to>Marcar a significancia</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Marcar a significancia</from>
+      <to>Gravar gold.fato_correlacao_defasagem</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <transform>
+    <name>Calcular as correlacoes</name>
+    <type>TableInput</type>
+    <description>Desloca a curva da midia de -10 a +10 dias e mede, em cada posicao, o quanto ela se parece com a curva do publico. Convencao de sinal provada com serie artificial: a juncao pareia o publico do dia com a midia de dias anteriores, entao defasagem positiva significa midia antes. Os dias sem dado no publico entram como nulo e a funcao de correlacao descarta o par, em vez de trata-los como zero acesso.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres</connection>
+    <sql>WITH serie AS (
+    SELECT id_evento,
+           dias_desde_evento                AS dia_relativo,
+           views_principal::double precision AS publico,
+           materias::double precision        AS midia
+    FROM gold.fato_serie_diaria
+),
+defasagens AS (
+    SELECT generate_series(-10, 10) AS defasagem
+),
+calculo AS (
+    -- para cada evento e cada deslocamento, as duas variantes de uma vez
+    SELECT a.id_evento,
+           d.defasagem,
+           corr(a.publico, b.midia)                       AS r_linear,
+           corr(ln(1 + a.publico), ln(1 + b.midia))       AS r_log,
+           COUNT(a.publico)::int                          AS n_pares
+    FROM defasagens d
+    CROSS JOIN serie a
+    JOIN serie b ON b.id_evento = a.id_evento
+                AND b.dia_relativo = a.dia_relativo - d.defasagem
+    GROUP BY a.id_evento, d.defasagem
+)
+SELECT id_evento, 'nivel_linear'::varchar(20) AS variante, defasagem, r_linear AS correlacao, n_pares
+FROM calculo
+UNION ALL
+SELECT id_evento, 'nivel_log'::varchar(20), defasagem, r_log, n_pares
+FROM calculo
+ORDER BY 1, 2, 3</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Marcar a significancia</name>
+    <type>Janino</type>
+    <description>Regua de significancia: dois dividido pela raiz do numero de pares. Uma correlacao acima disso, em modulo, e considerada forte o bastante para nao ser acaso. Como o numero de pares muda de evento para evento, por causa dos dias sem artigo, a regua fica mais exigente justamente onde ha menos dado.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>limite_critico</field_name>
+      <formula_string>Double.valueOf(2.0 / Math.sqrt(n_pares.doubleValue()))</formula_string>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>eh_significativa</field_name>
+      <formula_string>correlacao == null ? Boolean.FALSE : (Math.abs(correlacao.doubleValue()) &gt; limite_critico.doubleValue() ? Boolean.TRUE : Boolean.FALSE)</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Gravar gold.fato_correlacao_defasagem</name>
+    <type>TableOutput</type>
+    <description>Grava as 1.680 linhas: 40 eventos x 2 variantes x 21 defasagens. O correlograma inteiro fica guardado, e nao so o maximo, para mostrar se o pico de correlacao e nitido ou chapado.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>postgres</connection>
+    <fields>
+      <field>
+        <column_name>id_evento</column_name>
+        <stream_name>id_evento</stream_name>
+      </field>
+      <field>
+        <column_name>variante</column_name>
+        <stream_name>variante</stream_name>
+      </field>
+      <field>
+        <column_name>defasagem</column_name>
+        <stream_name>defasagem</stream_name>
+      </field>
+      <field>
+        <column_name>correlacao</column_name>
+        <stream_name>correlacao</stream_name>
+      </field>
+      <field>
+        <column_name>n_pares</column_name>
+        <stream_name>n_pares</stream_name>
+      </field>
+      <field>
+        <column_name>limite_critico</column_name>
+        <stream_name>limite_critico</stream_name>
+      </field>
+      <field>
+        <column_name>eh_significativa</column_name>
+        <stream_name>eh_significativa</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
+    <return_keys>N</return_keys>
+    <schema>gold</schema>
+    <specify_fields>Y</specify_fields>
+    <table>fato_correlacao_defasagem</table>
+    <tablename_field/>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>N</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
+    </GUI>
+  </transform>
+  <transform_error_handling>
+  </transform_error_handling>
+  <attributes/>
+</pipeline>
