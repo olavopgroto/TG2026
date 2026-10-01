@@ -1,242 +1,279 @@
-# Pendências e limitações conhecidas da camada Gold
+# Pendências, decisões e limitações da camada Gold
 
-Documento vivo. Registra tudo o que foi verificado, o que divergiu do esperado, o que
-ficou fora de escopo e o que ainda é suposição não testada. A intenção é não fechar a
+Documento vivo. Registra o que foi verificado, o que divergiu do esperado, as decisões de
+método tomadas durante a construção e o que ficou fora de escopo. A intenção é não fechar a
 camada com a impressão de que está tudo resolvido.
 
-Atualizado em 29/09/2026, após a carga da `fato_metricas_evento`.
+Atualizado em 01/10/2026, depois do gate e da auditoria profunda.
 
-**Estado da camada:** 7 das 9 tabelas carregadas e validadas. Faltam as duas de
-correlação, o workflow de orquestração e o gate.
+**Estado: camada completa.** 9 tabelas carregadas, 1 view, 9 pipelines, 1 workflow e 2
+arquivos de auditoria.
 
-| Tabela | Linhas | Estado |
-|---|---|---|
-| `dim_data` | 2.254 | validada |
-| `dim_tempo_relativo` | 91 | validada |
-| `dim_evento` | 40 | validada |
-| `fato_serie_diaria` | 3.640 | validada |
-| `fato_serie_robos` | 7.280 | validada |
-| `fato_serie_sensibilidade` | 14.560 | validada |
-| `fato_metricas_evento` | 80 | validada |
-| `fato_correlacao_defasagem` | 1.680 | vazia |
-| `fato_defasagem_evento` | 80 | vazia |
+| Auditoria | Resultado |
+|---|---|
+| `gate_gold.sql` | 54 OK, 5 informativos, nenhum alerta |
+| `auditoria_gold_profunda.sql` | 53 OK, nenhum alerta |
 
----
+São 112 checagens no total, das quais 53 refazem a conta por um caminho independente e
+comparam com o que a pipeline gravou.
 
-## 1. Entregas que faltam antes de fechar a camada
-
-| # | O que é | Prazo |
-|---|---|---|
-| P1 | As duas fatos de correlação, começando por um piloto no Kobe antes de virar pipeline | semana de 12/10 |
-| P2 | Gate da Gold, com as checagens da seção 10 | semana de 18/10 |
-| P3 | Workflow `hop/workflows/gold/wf_carga_gold.hwf` encadeando as nove pipelines na ordem de dependência | antes do gate |
-| P4 | Checagem de curvas de robô inteiramente zeradas, dentro do gate (ver G1) | dentro do P2 |
+| Tabela | Linhas |
+|---|---|
+| `dim_data` | 2.254 |
+| `dim_tempo_relativo` | 91 |
+| `dim_evento` | 40 |
+| `fato_serie_diaria` | 3.640 |
+| `fato_serie_robos` | 7.280 |
+| `fato_serie_sensibilidade` | 14.560 |
+| `fato_metricas_evento` | 80 |
+| `fato_correlacao_defasagem` | 1.680 |
+| `fato_defasagem_evento` | 80 |
 
 ---
 
-## 2. Resolvidas
+## 1. O que ainda falta
 
-### G1. Média de controle dos robôs calculada sobre 39 eventos, não 40
-**Status:** parcialmente resolvido, vira checagem do gate
-O artigo `Kobe_Bryant` não teve nenhum acesso `automated` na janela inteira. Com pico zero,
-o `pct_pico` fica nulo e o evento sai de qualquer média. As médias de controle apresentadas
-foram calculadas sobre 39 eventos. A correção é declarar o N em toda média publicada e
-listar as curvas zeradas no gate.
-
-### G2. Soma parcial silenciosa quando um tipo de acesso é nulo e outro não
-**Status:** resolvido, verificado
-Contagem de dias com 1 ou 2 acessos preenchidos: **zero ocorrências** em toda a Silver. Ou
-os três acessos têm dado, ou nenhum tem. Nenhuma soma da Gold está subestimada. Virou
-checagem do gate.
-
-### G3. Número de eventos sem linha de base estava errado na documentação
-**Status:** resolvido
-A documentação antiga falava em 11. Os números reais, com o critério aplicado:
-
-| Fonte | Base válida | Motivo da exclusão |
+| # | O que é | Prioridade |
 |---|---|---|
-| Público | 25 de 40 | 15 por poucos dias com dado (menos de 14 no período de -30 a -4) |
-| Mídia | 26 de 40 | 14 por base abaixo do piso (mediana menor que 1 matéria por dia) |
+| P1 | Recarregar a camada do zero pelo workflow, para provar que ela é reproduzível (nunca foi executado de ponta a ponta) | ALTA |
+| P2 | Power BI: modelo, medidas e painéis | ALTA |
+| P3 | Capítulos 4, 5 e 6, aplicando as decisões da seção 7 | ALTA |
+| P4 | Resumo de uma página para a orientadora | ALTA |
+| P5 | Decidir onde guardar as saídas das auditorias como evidência (hoje caem em `tmp/`, que é ignorado pelo git) | MÉDIA |
 
-Nenhum evento caiu pelo piso de 10 visitas no público: a regra dos 14 dias já elimina os
-casos de tráfego quase nulo.
+---
 
-### G4. A meia-vida do ajuste simples superestima a queda em 5 a 8 vezes
-**Status:** resolvido, virou resultado do trabalho
+## 2. Decisões de método tomadas durante a construção
 
-| Fonte | Meia-vida contada | Fase 1 (0 a 7 dias) | Ajuste simples |
+Cada uma foi testada antes de virar regra. Todas valem igualmente para os 40 eventos.
+
+### D1. A correlação ignora os dias sem dado, em vez de convertê-los em zero
+**Revisão da regra original, feita em 01/10.** A regra anterior transformava "sem dado" em
+zero, o que criava uma curva de público em degrau nos eventos cujo artigo não existia no
+começo da janela. O teste mostrou que isso fabricava defasagem: o iPhone 15 aparecia com 8
+dias de defasagem e, com os nulos ignorados, cai para 0, com correlação praticamente igual
+(0,475 contra 0,492). O mesmo aconteceu com o Google Gemini e as Enchentes do RS.
+
+A função `corr` do PostgreSQL descarta o par quando um lado é nulo. O número de pares de
+cada linha fica gravado em `n_pares`, e varia de 46 a 91 conforme o evento.
+
+### D2. O sinal da distância entre picos foi corrigido
+O comentário original dizia "dia do pico da mídia menos o do público". A conta estava
+invertida em relação à convenção do projeto. A forma correta é **dia do pico do público
+menos o da mídia**, coerente com a convenção provada por série artificial: defasagem
+positiva significa mídia antes.
+
+### D3. Tolerância de um dia entre as duas medidas
+Uma direção só é afirmada quando a correlação e a distância entre os picos apontam o mesmo
+sentido, e uma diferença de até um dia conta como empate.
+
+Justificativa: a Wikimedia fecha o dia em UTC e as matérias vêm de dez países em fusos que
+vão das Américas à Oceania, então um dia de diferença está dentro da imprecisão da medida.
+Sem a tolerância, 11 eventos cairiam em inconclusivo apenas por isso, entre eles Kobe
+Bryant, Diego Maradona e Elizabeth II, todos com correlação zero e picos a um dia.
+
+### D4. Limiar de sete dias para eventos de picos distantes
+A distância entre os picos vale 0 em 19 eventos, 1 em 16, e depois 3, 4, 10, 13 e 29.
+**Nenhum evento fica entre 2 e 9 dias**, então qualquer limiar nessa faixa produz o mesmo
+resultado: a separação está no dado, e não na escolha do número.
+
+### D5. Seis leituras possíveis, calculadas por regra no transform
+| Leitura | Quando |
+|---|---|
+| `inicio_nao_observavel` | artigo principal criado depois do dia do evento |
+| `picos_distantes` | picos a mais de 7 dias um do outro |
+| `inconclusivo` | correlação não significativa, ou medidas discordantes |
+| `simultaneo` | as duas medidas dentro da tolerância de um dia |
+| `midia_antes` | as duas medidas indicam a imprensa na frente |
+| `publico_antes` | as duas medidas indicam o público na frente |
+
+A categoria `publico_antes` foi mantida mesmo ficando vazia: uma classificação que não
+consegue expressar o resultado contrário à hipótese seria enviesada. Ela ficar vazia **é**
+o resultado.
+
+### D6. A variante oficial é a logarítmica
+A linear responde "os picos coincidem?" e a logarítmica responde "o ciclo inteiro tem o
+mesmo formato?". A segunda é a pergunta do trabalho, e é a mais estável: no Kobe, a linear
+despenca de 0,88 para 0,45 com um dia de deslocamento, enquanto a log mantém um platô
+largo. A linear fica como análise de sensibilidade.
+
+### D7. Faixa de defasagem mantida em -10 a +10
+Com os nulos ignorados, a maior defasagem observada é 6, longe do teto. Ampliar a faixa
+apenas abriria espaço para defasagem falsa.
+
+### D8. Amplificação como métrica secundária
+Reportada por categoria e sempre com o número de eventos, nunca como média geral dos 40.
+Base válida em 25 de 40 eventos no público e 26 na mídia.
+
+---
+
+## 3. Resultados confirmados
+
+### R1. Público e imprensa se movem juntos na resolução diária
+
+| Leitura | Eventos |
+|---|---|
+| Simultâneo | 31 |
+| Mídia antes | 1 (Furacão Ian) |
+| Público antes | 0 |
+| Inconclusivo | 2 (Galaxy S24, Cybertruck) |
+| Início não observável | 3 (ChatGPT, Enchentes RS, Maui) |
+| Picos distantes | 3 (COP28, COP30, Eleição do Brasil) |
+
+**Nenhum evento tem o público na frente.** Quando há diferença, é sempre a imprensa.
+
+**Ressalva importante para o texto:** o Furacão Ian, única conclusão direcional do trabalho,
+só aparece como `midia_antes` na variante logarítmica; na linear ele é simultâneo. A
+conclusão precisa vir com essa ressalva.
+
+### R2. A atenção cai em dois a três dias, e uma exponencial única não enxerga isso
+
+| Fonte | Meia-vida contada | Fase 1 | Reta única |
 |---|---|---|---|
 | Público | 2,21 dias | 3,27 dias | 16,88 dias |
 | Mídia | 2,05 dias | 3,44 dias | 15,21 dias |
 
-A regressão simples cobre do pico até o dia 60, e a cauda longa domina a reta, achatando a
-queda brutal dos primeiros dias. O R² não denuncia o problema: no Kobe o ajuste simples dá
-0,690 no público e 0,805 na mídia. A contagem direta, que não depende de modelo nenhum,
-confirma que a fase 1 é a medida correta.
+A reta única erra por 5 a 8 vezes, e o R² não denuncia o problema. A fase 1 supera o ajuste
+simples em 34 de 40 eventos no público e 28 na mídia.
 
-### G5. O ajuste em duas fases parecia pior que o simples na mídia
-**Status:** resolvido, com a conclusão invertida
-O `r2_combinado_fases` é uma métrica ruim de comparação, e a proposta foi minha. Ele mistura
-a fase 1, que é o que interessa, com a fase 2, que na mídia costuma ser ruído (R² de 0,034
-no Matthew Perry). A comparação correta é o R² da fase 1 contra o do ajuste simples:
+### R3. O transbordamento varia muito por categoria
+Artigos que ao menos dobram de acesso com o evento, de 35: desastre natural 35,6; morte de
+figura pública 34,9; político 29,8; ciência 25,5; **lançamento de produto 7,0**. Os oito
+eventos com menos sobreviventes são exatamente os oito lançamentos de produto.
 
-| Fonte | Fase 1 melhor | Simples melhor | R² simples médio | R² fase 1 médio |
-|---|---|---|---|---|
-| Público | 34 de 40 | 6 | 0,700 | 0,882 |
-| Mídia | 28 de 40 | 12 | 0,508 | 0,678 |
+### R4. A cauda do público é mais longa que a da imprensa
+Dias até cair a 10% do pico: 10,4 no público e 7,2 na mídia; máximos de 40 e 19 dias.
 
-O modelo de duas fases se confirma nas duas fontes.
+### R5. A série da imprensa é mais difícil de modelar
+R² médio da reta única: 0,508 na mídia contra 0,700 no público.
 
----
+### R6. Os robôs reagem ao evento, contrariando a hipótese original
+A hipótese era que a curva dos robôs não reagisse, servindo de controle. O dado mostra o
+contrário:
 
-## 3. Verificados e aprovados
+| Série | Média antes | Média na 1ª semana | Multiplicador |
+|---|---|---|---|
+| Público | 0,0523 | 0,4165 | 8,0x |
+| Spider | 0,0916 | 0,4732 | 5,2x |
+| Automated | 0,0767 | 0,3460 | 4,5x |
 
-| # | O que foi testado | Resultado |
-|---|---|---|
-| V1 | Estrutura da Gold contra o DDL, coluna a coluna | 9 tabelas e 1 view corretas |
-| V2 | `dim_data`: 2.254 linhas, 4 datas conferidas manualmente | correto, incluindo dia da semana |
-| V3 | `dim_tempo_relativo`: fases e semanas nas bordas | correto, inclusive semana -1 |
-| V4 | `dim_evento`: contagens contra os gates da Bronze e da Silver | tudo batendo |
-| V5 | `fato_serie_diaria`: soma contra a Silver | 132.558.655 visitas e 195.771 matérias, idênticas |
-| V6 | Picos contra a tabela F3 do gate da Silver | Kobe dia 0, Eleição Brasil dia -28, ChatGPT dia 55 |
-| V7 | Normalização: 40 dias com pct igual a 1, máximo 1 | correto |
-| V8 | `artigos_com_dado` idêntico nos três acessos | zero divergências |
-| V9 | Dias nulos por posição na janela | 11 a partir do evento, batendo com o gate |
-| V10 | Corte 1x da sensibilidade contra a série diária, por caminhos de cálculo independentes | **zero divergências em 3.640 linhas** |
-| V11 | Base válida na `fato_metricas_evento` contra a medição prévia | 25 e 26, exatamente como previsto |
+O padrão por categoria aponta a explicação: 31x em desastres, cujos artigos nascem com o
+evento, e 1,4x em lançamentos de produto, cujos artigos já existiam. Rastreadores visitam
+mais as páginas novas e em edição intensa, ou seja, reagem à atividade editorial provocada
+pelo interesse humano.
 
 ---
 
 ## 4. Divergências explicadas e aceitas
 
-### D1. Kobe Bryant sem nenhum acesso `automated` na janela
-Dado real. Em janeiro de 2020 a Wikimedia praticamente não classificava tráfego nessa
-categoria. Consequência registrada em G1.
+### A1. Furacão Ian classificado de forma diferente nas duas variantes
+Ver R1. Das 40 leituras, 5 divergem entre as variantes: Galaxy S24 e Cybertruck
+(inconclusivo no log, simultâneo no linear), Shinzo Abe e Terremoto de Myanmar (o
+contrário) e o Furacão Ian. As outras 35 concordam.
 
-### D2. Pico isolado de tráfego `automated` na Turquia, 43 dias após o evento
-16.763 acessos em 21/03/2023, quase o dobro do segundo maior dia, concentrados no título da
-época (`2023_Turkey–Syria_earthquake`). Causa desconhecida. Não afeta métrica nenhuma do
-MVP, porque a curva dos robôs não entra em decaimento nem em correlação.
+### A2. Kobe Bryant sem nenhum acesso automatizado na janela
+Dado real: em janeiro de 2020 a Wikimedia praticamente não classificava tráfego nessa
+categoria. Com pico zero, o percentual do pico fica nulo e o evento sai de qualquer média
+de robôs. A checagem V1 do gate lista as curvas zeradas, e toda média publicada precisa
+declarar sobre quantos eventos foi calculada.
 
-### D3. Empate no pico de matérias do ChatGPT
-Dias 54 e 55 com 152 matérias cada. O desempate adotado, dia mais cedo, fica com o 54. O
-pico da atenção pública do mesmo evento é o dia 55: as duas curvas explodem na mesma virada
-de janeiro de 2023.
+### A3. Pico isolado de tráfego automatizado na Turquia, 43 dias após o evento
+16.763 acessos em 21/03/2023, concentrados no título da época
+(`2023_Turkey–Syria_earthquake`). Causa desconhecida. Não afeta métrica nenhuma, porque a
+curva dos robôs não entra em decaimento nem em correlação.
 
-### D4. 41 dias com `pct_pico_midia` igual a 1, e não 40
-Consequência de D3.
+### A4. Empate no pico de matérias do ChatGPT
+Dias 54 e 55 com 152 matérias cada; o desempate adotado fica com o dia mais cedo. O pico da
+atenção pública do mesmo evento é o dia 55: as duas curvas explodem na mesma virada de
+janeiro de 2023.
 
-### G6. ChatGPT sem meia-vida contada nem dias até 10% do pico
-Pico no dia 55, janela termina no 60. Não há tempo de observar a queda. As colunas são
-nulas por desenho, justamente para permitir esse caso. Vira nota no texto.
+### A5. Quatro séries não caem a 10% do pico dentro da janela
+ChatGPT (nas duas fontes), GPT-4 e Galaxy S24 no público. No ChatGPT o motivo é o pico no
+dia 55, com apenas 5 dias de janela restantes; nos outros dois é cauda longa de acesso. O
+ChatGPT também não tem meia-vida contada no público.
 
-### Curva de conjunto colapsada nos cortes altos
-Google Gemini fica com 1 artigo no corte de 5x e Samsung Galaxy S24 com 2. Nesses eventos a
-análise de sensibilidade perde o sentido, porque a curva do conjunto vira a do principal. É
-o dado indicando ausência de transbordamento, não erro.
+### A6. Os dois eventos inconclusivos não são por correlação fraca
+A checagem V5 do gate mostrou que **nenhum** evento tem a melhor correlação abaixo do
+limite de significância. Galaxy S24 e Cybertruck caíram em inconclusivo por discordância
+entre as duas medidas, não por falta de sinal. A redação precisa refletir isso.
+
+### A7. Curva do conjunto colapsada nos cortes altos
+Google Gemini fica com 1 artigo no corte de 5x e Galaxy S24 com 2. Nesses eventos a análise
+de sensibilidade perde o sentido, porque a curva do conjunto vira a do principal. É o dado
+indicando ausência de transbordamento.
 
 ---
 
-## 5. Hipótese do trabalho refutada pelo dado
+## 5. Erros cometidos e corrigidos durante a construção
 
-### R1. Os agentes automatizados reagem ao evento
-A hipótese original era que a curva de robôs não reage ao evento, servindo de controle. **O
-dado não sustenta isso.**
+Registrados porque mostram onde o método é frágil e porque explicam decisões.
 
-| Série | Média antes | Média na 1ª semana | Multiplicador |
+| # | Erro | Como apareceu | Correção |
 |---|---|---|---|
-| Público (`user`) | 0,0523 | 0,4165 | 8,0x |
-| Spider | 0,0916 | 0,4732 | 5,2x |
-| Automated | 0,0767 | 0,3460 | 4,5x |
-
-O padrão por categoria aponta a explicação: a reação dos robôs é de 31x em desastres, cujos
-artigos nascem com o evento, e de 1,4x em lançamentos de produto, cujos artigos já existiam
-e já eram acessados. Rastreadores visitam com mais frequência páginas novas e páginas em
-edição intensa, ou seja, reagem à atividade editorial provocada pelo interesse humano.
+| E1 | Conversão de nulo em zero na correlação | defasagem de 8 dias no iPhone 15, com picos no mesmo dia | regra revista (D1) |
+| E2 | Sinal da distância entre picos invertido no DDL | Furacão Ian daria "público antes" com a mídia na frente | comentário e fórmula corrigidos (D2) |
+| E3 | R² combinado usado como critério de comparação | indicava que o ajuste duplo era pior em 38 de 39 eventos na mídia | a comparação válida é R² da fase 1 contra o da reta única |
+| E4 | Métrica de assimetria proposta sem checar os dados | o pico cai no dia 0 ou 1 na maioria dos eventos, zerando o denominador | métrica descartada |
+| E5 | Duas checagens da auditoria escritas com `GROUP BY` em subconsulta escalar | devolviam vazio em vez de zero e disparavam alerta falso | checagens reescritas |
 
 ---
 
-## 6. Achados que vão para o capítulo 5
-
-Não são pendências, são resultados que apareceram durante a validação e que precisam ser
-lembrados na hora de escrever.
-
-1. **O transbordamento varia muito por categoria.** Artigos que sobrevivem ao corte de 2x:
-   35,6 em desastre natural, 34,9 em morte de figura pública, 29,8 em político, 25,5 em
-   ciência global e **7,0 em lançamento de produto**. Os oito eventos com menos
-   sobreviventes são exatamente os oito lançamentos de produto. Confirma com número que o
-   volume alto do conjunto em produtos é tráfego de base, e não atenção ao evento.
-2. **A cauda do público é mais longa que a da imprensa.** Média de dias até cair a 10% do
-   pico: 10,4 no público e 7,2 na mídia; máximos de 40 e 19 dias. As duas caem rápido no
-   começo, com meia-vida parecida, mas a imprensa abandona o assunto de vez.
-3. **A série da imprensa é sistematicamente mais difícil de ajustar** que a de visitas
-   (R² médio de 0,508 contra 0,700 no ajuste simples).
-4. **Uma única exponencial não descreve o ciclo de atenção** nestes eventos, e o R² não
-   denuncia o problema (ver G4).
-
----
-
-## 7. Decisões que precisam estar na frente na hora de escrever
-
-| # | Decisão | Motivo |
-|---|---|---|
-| T1 | A meia-vida reportada é a da **fase 1**, com a contada ao lado como validação. A do ajuste simples entra só como demonstração de que o modelo único falha | ver G4 |
-| T2 | O `ganho_r2_sobre_simples` sai da conclusão. A comparação válida é R² da fase 1 contra R² do simples | ver G5 |
-| T3 | O argumento dos robôs é reescrito: eles reagem, e a reação é à atividade editorial | ver R1 |
-| T4 | Amplificação é métrica secundária, reportada por categoria e sempre com o N | ver G3 |
-| T5 | Toda média publicada declara sobre quantos eventos foi calculada | ver G1 |
-| T6 | Corrigir a Tabela 1 (cronograma) e o `: :` duplicado nas palavras-chave | pendência antiga |
-| T7 | Ajustar as seções 2.4 e 2.6, que afirmam que o gate exige aprovação total: na prática ele separa o que bloqueia do que é alerta documentado | pendência antiga |
-
----
-
-## 8. Limitações aceitas, para documentar no texto
+## 6. Limitações a declarar no texto
 
 | # | Limitação |
 |---|---|
-| L1 | A `razao_amplificacao` usada nos cortes foi medida na curadoria com `all-access/all-agents`, enquanto as séries da Gold usam `user` com os três acessos somados |
-| L2 | O pico é calculado sobre a janela inteira. A Eleição do Brasil tem pico no dia -28 (primeiro turno) e o ChatGPT no dia 55 |
-| L3 | Queries da Media Cloud apenas em inglês, o que subestima a cobertura em países cuja imprensa não escreve em inglês |
-| L4 | Cinco pares de evento e país sem nenhuma matéria: China em COP30, Enchentes do RS, Tina Turner e Cybertruck; Alemanha em Shinzo Abe |
-| L5 | Imagem de Sagitário A com apenas 25 dias de cobertura após o evento, o que dá mais ruído à correlação desse evento |
+| L1 | **Resolução diária.** Se a imprensa publica às 8h e o público consulta às 11h, isso é defasagem zero no dado. O fenômeno pode ocorrer em horas, e a Wikimedia só oferece granularidade diária nesse endpoint |
+| L2 | **Tendência comum.** A correlação em log nunca fica negativa em nenhuma defasagem, o que indica que parte dela vem de as duas séries subirem e descerem juntas ao longo da janela. A variante de primeira diferença resolveria isso e ficou fora do escopo |
+| L3 | **Razão de amplificação em outro recorte.** Foi medida na curadoria com `all-access/all-agents`, enquanto as séries da Gold usam o agente `user` com os três acessos somados |
+| L4 | **Pico sobre a janela inteira.** A Eleição do Brasil tem pico no dia -28 (primeiro turno) e o ChatGPT no dia 55 |
+| L5 | **Queries da Media Cloud apenas em inglês**, o que subestima a cobertura em países cuja imprensa não escreve em inglês |
+| L6 | **Cinco pares de evento e país sem matéria**: China em COP30, Enchentes do RS, Tina Turner e Cybertruck; Alemanha em Shinzo Abe |
+| L7 | **Imagem de Sagitário A** com apenas 25 dias de cobertura após o evento |
+| L8 | **Número de pares variável na correlação**, de 46 a 91, conforme os dias sem artigo de cada evento. O limite de significância acompanha e fica mais exigente onde há menos dado |
 
 ---
 
-## 9. Backlog, fora do escopo do MVP
+## 7. Decisões que precisam estar na frente ao escrever
+
+| # | Decisão |
+|---|---|
+| T1 | A meia-vida reportada é a da **fase 1**, com a contada ao lado como validação. A da reta única entra só como demonstração de que o modelo único falha |
+| T2 | O ganho de R² combinado sai da conclusão. A comparação válida é R² da fase 1 contra o da reta única |
+| T3 | O argumento dos robôs é reescrito: eles reagem, e a reação é à atividade editorial |
+| T4 | Amplificação é métrica secundária, por categoria e sempre com o N |
+| T5 | Toda média publicada declara sobre quantos eventos foi calculada |
+| T6 | A conclusão do Furacão Ian vem com a ressalva de que a leitura muda na variante linear |
+| T7 | Os dois eventos inconclusivos são por discordância entre medidas, não por correlação fraca |
+| T8 | Corrigir a Tabela 1 (cronograma) e o `: :` duplicado nas palavras-chave |
+| T9 | Ajustar as seções 2.4 e 2.6, que afirmam que o gate exige aprovação total: na prática ele separa o que bloqueia do que é alerta documentado |
+| T10 | Atualizar o número de eventos sem linha de base: 25 válidos no público e 26 na mídia, e não os 11 da documentação antiga |
+
+---
+
+## 8. Backlog, fora do escopo
 
 | # | Item | Motivo |
 |---|---|---|
-| B1 | `dim_pais` e fato de cobertura por país, com análise de viés doméstico | dado preservado na Silver, análise não cabe no prazo |
+| B1 | `dim_pais` e fato de cobertura por país, com análise de viés doméstico | dado preservado na Silver |
 | B2 | Corte otimizado das duas fases | o corte fixo em 7 dias entrega o que o artigo prometeu |
-| B3 | Terceira variante da correlação (primeira diferença do log) | exige explicar remoção de tendência |
-| B4 | Escore padronizado (z-score) | o percentual do pico já normaliza e é mais fácil de explicar |
-| B5 | Assimetria da curva | não funciona nestes dados: o pico cai no dia 0 ou 1 na maioria dos eventos |
+| B3 | Terceira variante da correlação (primeira diferença do log) | resolveria L2, mas exige explicar remoção de tendência |
+| B4 | Escore padronizado (z-score) | o percentual do pico já normaliza |
+| B5 | Assimetria da curva | ver E4 |
 | B6 | Quebra por tipo de acesso | dado preservado na Silver |
-| B7 | Proporção de cobertura (`materias_total`) | fora das métricas do MVP |
-| B8 | Recalcular a razão de amplificação no recorte `user` | ver L1 |
-| B9 | Investigar a origem do pico de 21/03/2023 na Turquia | ver D2 |
+| B7 | Proporção de cobertura | fora das métricas do MVP |
+| B8 | Recalcular a razão de amplificação no recorte `user` | ver L3 |
+| B9 | Investigar a origem do pico de 21/03/2023 na Turquia | ver A3 |
 | B10 | Curva do conjunto como resultado próprio, por categoria | entra se sobrar tempo |
-| B11 | Testar média em vez de mediana na base da mídia, que salvaria parte dos 14 eventos zerados | mediana foi escolhida por robustez |
+| B11 | Testar média em vez de mediana na base da mídia | mediana escolhida por robustez |
+| B12 | Remover a coluna `views_principal_tratado`, que ficou sem uso | exigiria recarregar duas tabelas validadas; mantida como registro da regra revista |
 
 ---
 
-## 10. Checagens que o gate da Gold precisa ter
+## 9. Onde estão as auditorias
 
-1. Contagem de linhas de cada tabela contra o esperado
-2. Fidelidade à Silver: somas de visitas e de matérias idênticas
-3. Grade completa: todo evento com 91 dias em cada fato de série
-4. Coerência da regra de zero e nulo: `views_principal_tratado` igual a zero exatamente
-   onde `views_principal` é nulo
-5. Todo evento com exatamente um dia de `pct_pico` igual a 1, por série e por agente
-6. Curvas inteiramente zeradas, listadas por evento e agente (ver G1)
-7. Dias com soma parcial de acessos, que deve ser sempre zero (ver G2)
-8. Corte 1x da sensibilidade idêntico ao `views_conjunto` da série diária
-9. `artigos_no_corte` nunca menor que 1, e decrescente conforme o corte sobe
-10. Toda data das fatos presente na `dim_data` e todo `dias_desde_evento` na
-    `dim_tempo_relativo`
-11. Eventos com base inválida listados com o motivo, e o total batendo com 25 e 26
-12. Coerência entre `base_valida` e `amplificacao`: uma nula implica a outra nula
-13. `meia_vida_simples` nula sempre que `lambda_simples` for nulo ou não positivo
-14. Ajustes com menos de 5 pontos descartados, ou seja, lambda e R² nulos
-15. Eventos sem `meia_vida_observada` ou sem `dias_ate_10pct`, listados com o dia do pico
-16. Sempre informar sobre quantos eventos cada média foi calculada
+| Arquivo | O que faz |
+|---|---|
+| `sql/auditoria/gate_gold.sql` | 59 checagens de consistência, volumes, fidelidade à Silver e coerência entre tabelas. Inclui o teste da convenção de sinal com série artificial gerada na execução |
+| `sql/auditoria/auditoria_gold_profunda.sql` | 53 checagens que recalculam as métricas por caminhos independentes, incluindo a regressão do decaimento, as 1.680 correlações e a regra da leitura reescrita em SQL para testar o transform do Hop |
+
+As duas devem ser executadas depois de qualquer recarga da camada.
