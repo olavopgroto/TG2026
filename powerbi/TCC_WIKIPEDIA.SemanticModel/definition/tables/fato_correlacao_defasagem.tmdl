@@ -1,0 +1,80 @@
+table fato_correlacao_defasagem
+	lineageTag: d7f7e0bd-9956-43e5-a6f3-cfd8e6b0f0fc
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: dc3543a1-943e-49d5-84d6-993d2082c4de
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column variante
+		dataType: string
+		lineageTag: ab9f8e93-93d3-4bd7-b2b2-2874436d081d
+		summarizeBy: none
+		sourceColumn: variante
+
+		annotation SummarizationSetBy = Automatic
+
+	column defasagem
+		dataType: int64
+		formatString: 0
+		lineageTag: 48a5e1ec-510b-4225-b125-4348502eb230
+		summarizeBy: sum
+		sourceColumn: defasagem
+
+		annotation SummarizationSetBy = Automatic
+
+	column correlacao
+		dataType: double
+		lineageTag: fc234495-250e-41fc-834f-ef019cb873be
+		summarizeBy: sum
+		sourceColumn: correlacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_pares
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d37d127-01ff-4d3a-b9f3-0e23537d4d77
+		summarizeBy: sum
+		sourceColumn: n_pares
+
+		annotation SummarizationSetBy = Automatic
+
+	column limite_critico
+		dataType: double
+		lineageTag: 0932c98a-164f-4bd0-90b5-d363d75d7ad7
+		summarizeBy: sum
+		sourceColumn: limite_critico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column eh_significativa
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1eb6cc0b-1adb-4210-801f-0485426913d1
+		summarizeBy: none
+		sourceColumn: eh_significativa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fato_correlacao_defasagem = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_correlacao_defasagem = Fonte{[Schema="gold",Item="fato_correlacao_defasagem"]}[Data]
+				in
+				    gold_fato_correlacao_defasagem
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

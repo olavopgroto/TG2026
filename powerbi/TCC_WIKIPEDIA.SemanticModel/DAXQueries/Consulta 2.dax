@@ -1,0 +1,9 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(INFO.VIEW.COLUMNS(), [Table] IN {"dim_tempo_relativo", "dim_evento"}),
+    "Tabela", [Table],
+    "Coluna", [Name],
+    "Oculta", [IsHidden],
+    "OrdenadaPor", [SortByColumn],
+    "Resumo", [SummarizeBy]
+)

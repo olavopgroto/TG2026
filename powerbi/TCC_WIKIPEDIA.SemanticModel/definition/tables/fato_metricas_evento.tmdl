@@ -1,0 +1,272 @@
+table fato_metricas_evento
+	lineageTag: 6e2f7967-e2db-4e17-9d82-004538eb4f04
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: fc9bf35e-20a5-4ab3-92a3-a3ac4e49ac07
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column fonte
+		dataType: string
+		lineageTag: 00e1f2c5-ac89-4871-acf1-9ff3a24102f4
+		summarizeBy: none
+		sourceColumn: fonte
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_pico
+		dataType: int64
+		formatString: 0
+		lineageTag: 988190b0-9c35-414b-be72-16b2d0cd1a26
+		summarizeBy: sum
+		sourceColumn: valor_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_pico
+		dataType: int64
+		formatString: 0
+		lineageTag: c14b7eb9-4059-4990-97ad-0251d368587d
+		summarizeBy: sum
+		sourceColumn: dia_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_pico
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f86cb4e8-50a5-4a8d-99e8-19553e038cfb
+		summarizeBy: none
+		sourceColumn: data_pico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column meia_vida_observada
+		dataType: int64
+		formatString: 0
+		lineageTag: a0c96269-6b6f-4330-964d-7601b0a6390c
+		summarizeBy: sum
+		sourceColumn: meia_vida_observada
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_ate_10pct
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bcb33da-6a08-40d4-baf8-45eafbf5ce9a
+		summarizeBy: sum
+		sourceColumn: dias_ate_10pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column volume_30d
+		dataType: int64
+		formatString: 0
+		lineageTag: 102316ef-42f2-4974-921d-b3ecbbdb9373
+		summarizeBy: sum
+		sourceColumn: volume_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_mediana
+		dataType: double
+		lineageTag: 544e1409-9d8e-4b72-9521-1e6522f6e891
+		summarizeBy: sum
+		sourceColumn: base_mediana
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column base_dias_com_dado
+		dataType: int64
+		formatString: 0
+		lineageTag: 2392b5c2-beb8-4d93-aadf-e6ec54c9939e
+		summarizeBy: sum
+		sourceColumn: base_dias_com_dado
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_valida
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4397ac29-b2a1-47b7-9364-b20b339527d5
+		summarizeBy: none
+		sourceColumn: base_valida
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_motivo
+		dataType: string
+		lineageTag: db02ee8c-e43b-4803-b2ed-c3c626387f38
+		summarizeBy: none
+		sourceColumn: base_motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column amplificacao
+		dataType: double
+		lineageTag: 2fbec54e-943c-4528-aea5-603f0c99597f
+		summarizeBy: sum
+		sourceColumn: amplificacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lambda_simples
+		dataType: double
+		lineageTag: 93e8e16b-cd9c-42e2-90f7-35517357f5db
+		summarizeBy: sum
+		sourceColumn: lambda_simples
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meia_vida_simples
+		dataType: double
+		lineageTag: 7f09edbf-c7e8-49fa-82fc-d2ff546dc2ab
+		summarizeBy: sum
+		sourceColumn: meia_vida_simples
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2_simples
+		dataType: double
+		lineageTag: 767be4ed-fe54-4290-8f08-ae216164fb66
+		summarizeBy: sum
+		sourceColumn: r2_simples
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_pontos_simples
+		dataType: int64
+		formatString: 0
+		lineageTag: 080c3d6b-0e78-4f63-8563-9bd179e846a3
+		summarizeBy: sum
+		sourceColumn: n_pontos_simples
+
+		annotation SummarizationSetBy = Automatic
+
+	column lambda_fase1
+		dataType: double
+		lineageTag: 3c0bb603-6cf8-4598-b93f-ab3eb826417a
+		summarizeBy: sum
+		sourceColumn: lambda_fase1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meia_vida_fase1
+		dataType: double
+		lineageTag: 06e1a57b-80cb-479e-a04d-ed1f6ad895fe
+		summarizeBy: sum
+		sourceColumn: meia_vida_fase1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2_fase1
+		dataType: double
+		lineageTag: 4920558f-07bd-41cb-a9a7-94c8b9a0df53
+		summarizeBy: sum
+		sourceColumn: r2_fase1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_pontos_fase1
+		dataType: int64
+		formatString: 0
+		lineageTag: 8133ab0d-5407-4a86-9b8b-5fefaa576a01
+		summarizeBy: sum
+		sourceColumn: n_pontos_fase1
+
+		annotation SummarizationSetBy = Automatic
+
+	column lambda_fase2
+		dataType: double
+		lineageTag: 07e136f6-540c-4fc8-bd4a-85f948a376ef
+		summarizeBy: sum
+		sourceColumn: lambda_fase2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meia_vida_fase2
+		dataType: double
+		lineageTag: 7d5d2ea1-96f7-498f-900c-6392fb1fb65e
+		summarizeBy: sum
+		sourceColumn: meia_vida_fase2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2_fase2
+		dataType: double
+		lineageTag: ceba40d6-5e9f-4e9e-9d1c-50ea6f3bf2b6
+		summarizeBy: sum
+		sourceColumn: r2_fase2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column n_pontos_fase2
+		dataType: int64
+		formatString: 0
+		lineageTag: a68f6ce7-f191-4576-a22f-acd51836e755
+		summarizeBy: sum
+		sourceColumn: n_pontos_fase2
+
+		annotation SummarizationSetBy = Automatic
+
+	column r2_combinado_fases
+		dataType: double
+		lineageTag: 48043c12-39bb-4aeb-8b95-99a7d3d99dc2
+		summarizeBy: sum
+		sourceColumn: r2_combinado_fases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ganho_r2_sobre_simples
+		dataType: double
+		lineageTag: 5527dde4-2395-4215-b72e-65e3960dcb72
+		summarizeBy: sum
+		sourceColumn: ganho_r2_sobre_simples
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fato_metricas_evento = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_metricas_evento = Fonte{[Schema="gold",Item="fato_metricas_evento"]}[Data]
+				in
+				    gold_fato_metricas_evento
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

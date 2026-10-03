@@ -1,0 +1,72 @@
+relationship c73933c0-8162-40ef-a20c-35f4ad1ae00c
+	fromColumn: fato_defasagem_evento.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5dd59e63-8203-4866-b5e4-1e8aac1260e0
+	fromColumn: fato_correlacao_defasagem.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship b89cb3f7-deab-4905-9a62-957898f74934
+	fromColumn: fato_metricas_evento.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship c574479c-ecef-48c2-83d9-f6ff005e435e
+	fromColumn: fato_serie_diaria.dia
+	toColumn: dim_data.data
+
+	annotation PBI_IsFromSource = FS
+
+relationship 6b1d8dcd-15b7-4895-8954-e963d03a7e69
+	fromColumn: fato_serie_diaria.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship 42d51a05-45ed-4a46-9123-059930e8ae7a
+	fromColumn: fato_serie_diaria.dias_desde_evento
+	toColumn: dim_tempo_relativo.dias_desde_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship 90e4a776-c4ea-45e4-8c43-71ac39a7aa19
+	fromColumn: fato_serie_robos.dia
+	toColumn: dim_data.data
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4ce6e53f-51d9-44dc-9d84-b7d440d19740
+	fromColumn: fato_serie_robos.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship cdcddc02-876e-42a5-bdb8-881794dc79fd
+	fromColumn: fato_serie_robos.dias_desde_evento
+	toColumn: dim_tempo_relativo.dias_desde_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5add7a1f-a52a-4405-8e83-326052b14b25
+	fromColumn: fato_serie_sensibilidade.dia
+	toColumn: dim_data.data
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3ff9f9a1-285f-479a-b674-f4acbfc9f88a
+	fromColumn: fato_serie_sensibilidade.id_evento
+	toColumn: dim_evento.id_evento
+
+	annotation PBI_IsFromSource = FS
+
+relationship 20e0b3c1-1c64-48f7-a922-49a197a5e25d
+	fromColumn: fato_serie_sensibilidade.dias_desde_evento
+	toColumn: dim_tempo_relativo.dias_desde_evento
+
+	annotation PBI_IsFromSource = FS
+

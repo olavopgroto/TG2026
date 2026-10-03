@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "3f9226d7e57a4bb25185",
+  "position": {
+    "x": 300,
+    "y": 570,
+    "z": 5000,
+    "height": 150,
+    "width": 280,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "VisitasPublico"
+                }
+              },
+              "queryRef": "_Medidas.VisitasPublico",
+              "nativeQueryRef": "VisitasPublico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Materias"
+                }
+              },
+              "queryRef": "_Medidas.Materias",
+              "nativeQueryRef": "Materias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "TotalEventos"
+                }
+              },
+              "queryRef": "_Medidas.TotalEventos",
+              "nativeQueryRef": "TotalEventos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "EventosSimultaneos"
+                }
+              },
+              "queryRef": "_Medidas.EventosSimultaneos",
+              "nativeQueryRef": "EventosSimultaneos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "MeiaVidaContada"
+                }
+              },
+              "queryRef": "_Medidas.MeiaVidaContada",
+              "nativeQueryRef": "MeiaVidaContada"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

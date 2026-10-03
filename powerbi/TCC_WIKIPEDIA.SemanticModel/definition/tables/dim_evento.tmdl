@@ -1,0 +1,162 @@
+table dim_evento
+	lineageTag: 7dd9c45e-42b8-426c-a47f-bc790fb7fcc4
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 69542999-11ad-43e1-8764-4826cd84873a
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_evento
+		dataType: string
+		lineageTag: 5b393c34-e61a-4f94-a3e0-50843a11a35b
+		summarizeBy: none
+		sourceColumn: nome_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: ec177e4b-898d-4712-934f-03bd771fa597
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_evento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7015bb3c-8df7-4bbd-8f3d-721abed82ac5
+		summarizeBy: none
+		sourceColumn: data_evento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column artigo_principal
+		dataType: string
+		lineageTag: ab51e820-15ea-4dec-ae05-ee7b8ba53815
+		summarizeBy: none
+		sourceColumn: artigo_principal
+
+		annotation SummarizationSetBy = Automatic
+
+	column palavra_chave_busca
+		dataType: string
+		lineageTag: b319f927-21f3-405e-974c-9dbd2420ee1d
+		summarizeBy: none
+		sourceColumn: palavra_chave_busca
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio_janela
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a54fd360-d519-47d4-a178-ab487659662f
+		summarizeBy: none
+		sourceColumn: data_inicio_janela
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim_janela
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5717d484-7f34-421b-b70f-3f15fb309c41
+		summarizeBy: none
+		sourceColumn: data_fim_janela
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column qtd_artigos
+		dataType: int64
+		formatString: 0
+		lineageTag: 70e1aca8-5c55-48bc-abe2-ffea14ce6f9a
+		summarizeBy: sum
+		sourceColumn: qtd_artigos
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_aliases
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d3bff42-a028-4180-82c5-b45bc7856a4c
+		summarizeBy: sum
+		sourceColumn: qtd_aliases
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_criacao_principal
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 43010555-4006-4b1f-b020-a26ec5da5063
+		summarizeBy: none
+		sourceColumn: data_criacao_principal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column principal_criado_apos_evento
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c1cf1593-8e77-429e-ba67-e41d3926d854
+		summarizeBy: none
+		sourceColumn: principal_criado_apos_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_sem_dado_principal
+		dataType: int64
+		formatString: 0
+		lineageTag: c2813b3c-5805-4183-bf9b-9da017336716
+		summarizeBy: sum
+		sourceColumn: dias_sem_dado_principal
+
+		annotation SummarizationSetBy = Automatic
+
+	column paises_sem_materia
+		dataType: int64
+		formatString: 0
+		lineageTag: 5201b647-c2e5-4181-99cf-d06b1f930ac0
+		summarizeBy: sum
+		sourceColumn: paises_sem_materia
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_com_materia_pos_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 741888f6-efa9-4af5-bbc2-0c862f656707
+		summarizeBy: sum
+		sourceColumn: dias_com_materia_pos_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoEvento = YEAR(dim_evento[data_evento])
+		formatString: 0
+		lineageTag: 98635ea4-82b2-41fb-ab4f-968685098c2e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	partition dim_evento = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_dim_evento = Fonte{[Schema="gold",Item="dim_evento"]}[Data]
+				in
+				    gold_dim_evento
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

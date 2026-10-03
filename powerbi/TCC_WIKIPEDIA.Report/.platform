@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "TCC_WIKIPEDIA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "dc76a0fc-7f5c-4494-bcb0-b50ba8b856d4"
+  }
+}

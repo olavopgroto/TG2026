@@ -1,0 +1,83 @@
+table fato_serie_sensibilidade
+	lineageTag: c2e7dca7-7c0a-4135-aae1-38f46e333103
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: be8f36e3-e90c-4050-97b9-273a9ba4ab20
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 652bc0c2-eb3f-43b5-bc54-e853cc8e47a2
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_desde_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a5abf36-9e02-4b1c-b256-8d75247ec444
+		summarizeBy: none
+		sourceColumn: dias_desde_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column corte_amplificacao
+		dataType: double
+		lineageTag: 1a04855c-62bd-4d76-a24d-83927c2832aa
+		summarizeBy: sum
+		sourceColumn: corte_amplificacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column views_conjunto
+		dataType: int64
+		formatString: 0
+		lineageTag: 18d65ad2-0dea-4aed-89fb-347a7cf75776
+		summarizeBy: sum
+		sourceColumn: views_conjunto
+
+		annotation SummarizationSetBy = Automatic
+
+	column artigos_no_corte
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d3ad8cf-8706-4166-a05b-932244b2161d
+		summarizeBy: sum
+		sourceColumn: artigos_no_corte
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_pico
+		dataType: double
+		lineageTag: 554a1d9a-793d-414d-aab0-07b1689c7c36
+		summarizeBy: sum
+		sourceColumn: pct_pico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fato_serie_sensibilidade = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_serie_sensibilidade = Fonte{[Schema="gold",Item="fato_serie_sensibilidade"]}[Data]
+				in
+				    gold_fato_serie_sensibilidade
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

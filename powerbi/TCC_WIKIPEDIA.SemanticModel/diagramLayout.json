@@ -1,0 +1,143 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1013.3333333333334,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1482.9908530294481,
+            "y": 226.16424322865078
+          },
+          "nodeIndex": "fato_correlacao_defasagem",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 255.422288145915
+          },
+          "nodeIndex": "dim_data",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 891.9050223644881,
+            "y": 307.289104351721
+          },
+          "nodeIndex": "dim_evento",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 224.27755014415158,
+            "y": 611.14027381664084
+          },
+          "nodeIndex": "dim_tempo_relativo",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1178.9069329249278,
+            "y": 505.54576475775775
+          },
+          "nodeIndex": "fato_defasagem_evento",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1233.0806329633338,
+            "y": 0
+          },
+          "nodeIndex": "fato_metricas_evento",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 602.01029375709345,
+            "y": 632.4462778186919
+          },
+          "nodeIndex": "fato_serie_diaria",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 339.84207553929809,
+            "y": 24.73180363744882
+          },
+          "nodeIndex": "fato_serie_robos",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 511.10584385966382,
+            "y": 327.82647443681816
+          },
+          "nodeIndex": "fato_serie_sensibilidade",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1716.9908530294481,
+            "y": 414.22313890934595
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "5a2ec08f-79f1-4b2f-b6e5-df2922368f72",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

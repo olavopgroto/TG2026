@@ -1,0 +1,137 @@
+table fato_serie_diaria
+	lineageTag: db9209c3-dc51-4863-8b85-67bd88a0f486
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 564e44e3-55eb-4e50-9e88-aab558845109
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1ed39be9-d15a-4d70-8dfa-aca0eca06e4b
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_desde_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: a8258b4a-41b0-45ed-9930-816e7026ac0a
+		summarizeBy: none
+		sourceColumn: dias_desde_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column views_principal
+		dataType: int64
+		formatString: 0
+		lineageTag: 92fca9dc-a5b8-45e9-beff-0ffdba535674
+		summarizeBy: sum
+		sourceColumn: views_principal
+
+		annotation SummarizationSetBy = Automatic
+
+	column views_conjunto
+		dataType: int64
+		formatString: 0
+		lineageTag: cbcfd2f5-89f2-45da-aba7-01132d6a16ac
+		summarizeBy: sum
+		sourceColumn: views_conjunto
+
+		annotation SummarizationSetBy = Automatic
+
+	column views_principal_tratado
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cf88a10-e5f4-4bd0-8991-5677b3ce5dc7
+		summarizeBy: sum
+		sourceColumn: views_principal_tratado
+
+		annotation SummarizationSetBy = Automatic
+
+	column artigos_com_dado
+		dataType: int64
+		formatString: 0
+		lineageTag: fe0af40e-4c41-4628-b3d5-6ef913c6ccad
+		summarizeBy: sum
+		sourceColumn: artigos_com_dado
+
+		annotation SummarizationSetBy = Automatic
+
+	column materias
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c041c38-b739-4031-b4e3-92cec86a13e2
+		summarizeBy: sum
+		sourceColumn: materias
+
+		annotation SummarizationSetBy = Automatic
+
+	column paises_com_materia
+		dataType: int64
+		formatString: 0
+		lineageTag: fb8ead7d-755c-49b0-bc83-05b9350145eb
+		summarizeBy: sum
+		sourceColumn: paises_com_materia
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_pico_publico
+		dataType: double
+		lineageTag: 8b7e5814-5e46-4a89-a800-6745abb5862f
+		summarizeBy: sum
+		sourceColumn: pct_pico_publico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_pico_midia
+		dataType: double
+		lineageTag: 171a14ee-53f1-4b31-a0df-204f308da8f2
+		summarizeBy: sum
+		sourceColumn: pct_pico_midia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dias_desde_pico_publico
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a3bbffa-45b6-4a06-bbf5-5db96a88f2ea
+		summarizeBy: sum
+		sourceColumn: dias_desde_pico_publico
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_desde_pico_midia
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d137fd6-a644-42e8-81b3-6c726899d148
+		summarizeBy: sum
+		sourceColumn: dias_desde_pico_midia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fato_serie_diaria = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_serie_diaria = Fonte{[Schema="gold",Item="fato_serie_diaria"]}[Data]
+				in
+				    gold_fato_serie_diaria
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

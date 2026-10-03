@@ -1,0 +1,107 @@
+table dim_data
+	lineageTag: 36bc0c87-8c08-4c97-a803-8498673b70b3
+	dataCategory: Time
+
+	column data
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 21aabffa-4123-40d2-83ad-783c6650c120
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 9606ae61-5916-4e20-b246-85d1fdc6b61e
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 53a902df-1d41-463b-8973-3f9de6dffcb8
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b64fb18-173b-41ec-a40d-5598f35139d2
+		summarizeBy: sum
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes
+		dataType: string
+		lineageTag: 2792b149-5d06-4480-8b65-5348d45728f3
+		summarizeBy: none
+		sourceColumn: ano_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes
+		dataType: string
+		lineageTag: 222c3eca-c645-428b-ac60-bc48cc7b6a44
+		summarizeBy: none
+		sourceColumn: nome_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: dd805c2c-b81e-4696-98a6-07c58dbc1321
+		summarizeBy: sum
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_da_semana
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ac86187-5c50-4a55-9449-5c5226e27b8f
+		summarizeBy: sum
+		sourceColumn: dia_da_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_dia_semana
+		dataType: string
+		lineageTag: 740d4eae-ba99-4bfb-b3bb-18aa19549576
+		summarizeBy: none
+		sourceColumn: nome_dia_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column eh_fim_de_semana
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 91f3f38e-61e2-482c-9202-2509be99d3e9
+		summarizeBy: none
+		sourceColumn: eh_fim_de_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_data = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_dim_data = Fonte{[Schema="gold",Item="dim_data"]}[Data]
+				in
+				    gold_dim_data
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

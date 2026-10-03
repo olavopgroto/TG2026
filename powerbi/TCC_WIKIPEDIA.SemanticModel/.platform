@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TCC_WIKIPEDIA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "82c3fd4a-86d2-45c9-b9a1-95318548ea71"
+  }
+}

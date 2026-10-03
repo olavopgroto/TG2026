@@ -1,0 +1,81 @@
+table fato_serie_robos
+	lineageTag: 14b3d0da-70a6-4c43-ac88-5397d577ece0
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 702f37b9-85d2-4a98-9e5e-d38d5bd1779d
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 43b8735a-ad5d-4b8e-a65e-1d0800eb44eb
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_desde_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: 84ba159c-04de-4e48-bf31-7e03ea9730ba
+		summarizeBy: none
+		sourceColumn: dias_desde_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_agente
+		dataType: string
+		lineageTag: 9fac88b4-8e34-4f2f-9f9b-b8da585ef66f
+		summarizeBy: none
+		sourceColumn: tipo_agente
+
+		annotation SummarizationSetBy = Automatic
+
+	column views_principal
+		dataType: int64
+		formatString: 0
+		lineageTag: fd7b51c8-e0fc-4c22-a9bd-db8375407467
+		summarizeBy: sum
+		sourceColumn: views_principal
+
+		annotation SummarizationSetBy = Automatic
+
+	column views_principal_tratado
+		dataType: int64
+		formatString: 0
+		lineageTag: 6609013a-3c3b-4f45-8d0b-db7c03e5959c
+		summarizeBy: sum
+		sourceColumn: views_principal_tratado
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_pico
+		dataType: double
+		lineageTag: d6899194-7ad3-4dfc-97a0-a1d5bf72bcbc
+		summarizeBy: sum
+		sourceColumn: pct_pico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fato_serie_robos = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_serie_robos = Fonte{[Schema="gold",Item="fato_serie_robos"]}[Data]
+				in
+				    gold_fato_serie_robos
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

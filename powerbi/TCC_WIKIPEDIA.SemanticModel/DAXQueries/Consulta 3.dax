@@ -1,0 +1,6 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(INFO.VIEW.TABLES(), [Name] = "dim_data"),
+    "Tabela", [Name],
+    "Categoria", [DataCategory]
+)

@@ -1,0 +1,105 @@
+table fato_defasagem_evento
+	lineageTag: 6dcec682-c7c4-4a31-a384-9e68bd27e1da
+
+	column id_evento
+		dataType: int64
+		formatString: 0
+		lineageTag: d74cafc5-9e24-41b8-ab34-30b0e4927f37
+		summarizeBy: none
+		sourceColumn: id_evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column variante
+		dataType: string
+		lineageTag: 89523d45-1756-4fac-ba76-8bb2d3a3baa0
+		summarizeBy: none
+		sourceColumn: variante
+
+		annotation SummarizationSetBy = Automatic
+
+	column defasagem_otima
+		dataType: int64
+		formatString: 0
+		lineageTag: 52e5a471-f25b-4575-ac4b-dc11e396a521
+		summarizeBy: sum
+		sourceColumn: defasagem_otima
+
+		annotation SummarizationSetBy = Automatic
+
+	column correlacao_maxima
+		dataType: double
+		lineageTag: 639688bb-1890-45fc-af9a-677a61e56d9f
+		summarizeBy: sum
+		sourceColumn: correlacao_maxima
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column eh_significativa
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: abe477d0-4ef1-4f79-a97c-7f940130b97b
+		summarizeBy: none
+		sourceColumn: eh_significativa
+
+		annotation SummarizationSetBy = Automatic
+
+	column lag_por_pico
+		dataType: int64
+		formatString: 0
+		lineageTag: f0410b51-d225-431f-a0c0-ff1a14590a1d
+		summarizeBy: sum
+		sourceColumn: lag_por_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column concorda_com_lag_por_pico
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f8bdbdbd-c4aa-4c11-8652-33d9c8597936
+		summarizeBy: none
+		sourceColumn: concorda_com_lag_por_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_nulos_publico
+		dataType: int64
+		formatString: 0
+		lineageTag: ea5d6a24-bdf9-421f-9407-dc8f157a4fb8
+		summarizeBy: sum
+		sourceColumn: dias_nulos_publico
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_sem_materia
+		dataType: int64
+		formatString: 0
+		lineageTag: 4da16487-6455-4907-9a1c-cf0b9756f875
+		summarizeBy: sum
+		sourceColumn: dias_sem_materia
+
+		annotation SummarizationSetBy = Automatic
+
+	column leitura
+		dataType: string
+		lineageTag: dfb48b41-d1be-47f1-8f65-deeaabf0149d
+		summarizeBy: none
+		sourceColumn: leitura
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fato_defasagem_evento = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost:5432", "tcc_wikipedia"),
+				    gold_fato_defasagem_evento = Fonte{[Schema="gold",Item="fato_defasagem_evento"]}[Data]
+				in
+				    gold_fato_defasagem_evento
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

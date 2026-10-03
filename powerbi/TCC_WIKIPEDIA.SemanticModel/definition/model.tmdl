@@ -1,0 +1,28 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_data","dim_evento","dim_tempo_relativo","fato_defasagem_evento","fato_correlacao_defasagem","fato_metricas_evento","fato_serie_diaria","fato_serie_robos","fato_serie_sensibilidade","_Medidas"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table dim_data
+ref table dim_evento
+ref table dim_tempo_relativo
+ref table fato_defasagem_evento
+ref table fato_correlacao_defasagem
+ref table fato_metricas_evento
+ref table fato_serie_diaria
+ref table fato_serie_robos
+ref table fato_serie_sensibilidade
+ref table _Medidas
+
+ref cultureInfo pt-BR
+

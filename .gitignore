@@ -41,3 +41,6 @@ zeros.txt
 volume.txt
 contagens.txt
 sequencias.txt
+# Power BI: cache de dados e configuracoes locais
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
