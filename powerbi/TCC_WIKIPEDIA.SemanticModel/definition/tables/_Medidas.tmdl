@@ -6,7 +6,7 @@ table _Medidas
 		lineageTag: 69b9ed68-7d30-46dc-b346-d8e6b2f1e3c5
 
 	measure Materias = SUM(fato_serie_diaria[materias])
-		formatString: 0
+		formatString: #,0
 		lineageTag: 16d00780-f8f6-4603-aa9b-0e194564a9d5
 
 	measure MeiaVidaContada = AVERAGE(fato_metricas_evento[meia_vida_observada])
@@ -23,19 +23,16 @@ table _Medidas
 		lineageTag: ef5c3525-376d-45a3-a0e0-2227add9e2df
 
 	measure PctPicoPublico = AVERAGE(fato_serie_diaria[pct_pico_publico])
+		formatString: 0%;-0%;0%
 		lineageTag: dc9e1a34-cf59-4856-bdfd-b2bc164adde3
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure PctPicoImprensa = AVERAGE(fato_serie_diaria[pct_pico_midia])
+		formatString: 0%;-0%;0%
 		lineageTag: 9ac12537-413c-4300-9d79-346537146a54
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure PctPicoRobos = AVERAGE(fato_serie_robos[pct_pico])
+		formatString: 0%;-0%;0%
 		lineageTag: a007593f-8e12-4dca-9460-2f45168a3a3a
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure MeiaVidaAjustada = AVERAGE(fato_metricas_evento[meia_vida_fase1])
 		lineageTag: aa5c2233-5a57-4d67-bdce-97990defaee6
@@ -48,8 +45,9 @@ table _Medidas
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure MeiaVidaPublico = CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "publico")
-		formatString: 0.0
 		lineageTag: c5008be9-3883-4207-881f-4bb24bdfe68d
+
+		formatStringDefinition = "0.0 ""dias"""
 
 	measure EventosPorLeitura = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[variante] = "nivel_log")
 		formatString: 0
