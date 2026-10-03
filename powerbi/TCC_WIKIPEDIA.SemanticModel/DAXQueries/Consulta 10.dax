@@ -1,0 +1,7 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(INFO.VIEW.COLUMNS(), [Table] = "fato_defasagem_evento" && [Name] IN {"leitura", "LeituraOrdem", "Leitura do evento"}),
+    "Coluna", [Name],
+    "Oculta", [IsHidden],
+    "OrdenadaPor", [SortByColumn]
+)

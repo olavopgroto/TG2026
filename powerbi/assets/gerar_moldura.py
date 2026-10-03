@@ -163,8 +163,6 @@ def pagina_subida_e_queda():
     s.append(texto(20, 390, "Fase da janela", 11, COR["rotulo"]))
     s.append(ret(20, 398, 184, 32, COR["cartao"], 6, COR["borda"]))
     pos["filtro_fase"] = {"x": 20, "y": 398, "largura": 184, "altura": 32}
-    s.append(texto(20, 454, "Agente", 11, COR["rotulo"]))
-    pos["filtro_agente"] = {"x": 20, "y": 462, "largura": 184, "altura": 32}
 
     # quatro cartoes
     gap = 16

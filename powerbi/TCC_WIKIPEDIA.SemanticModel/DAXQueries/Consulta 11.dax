@@ -1,0 +1,6 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_evento[categoria],
+    "Rotulo", SWITCH(SELECTEDVALUE(dim_evento[categoria]), "ciencia_global", "Ciência", "desastre_natural", "Desastre natural", "lancamento_produto", "Lançamento de produto", "morte_figura_publica", "Morte de figura pública", "politico", "Político"),
+    "Eventos", COUNTROWS(dim_evento)
+)

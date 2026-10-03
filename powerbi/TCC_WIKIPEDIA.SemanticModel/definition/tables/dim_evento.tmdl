@@ -20,9 +20,12 @@ table dim_evento
 
 	column categoria
 		dataType: string
+		isHidden
 		lineageTag: ec177e4b-898d-4712-934f-03bd771fa597
 		summarizeBy: none
 		sourceColumn: categoria
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -146,6 +149,12 @@ table dim_evento
 		summarizeBy: none
 
 		annotation SummarizationSetBy = User
+
+	column 'Categoria do evento' = SWITCH(dim_evento[categoria], "ciencia_global", "Ciência", "desastre_natural", "Desastre natural", "lancamento_produto", "Lançamento de produto", "morte_figura_publica", "Morte de figura pública", "politico", "Político")
+		lineageTag: ee34cbcf-5f21-496b-9e45-15e8bb52183d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	partition dim_evento = m
 		mode: import
