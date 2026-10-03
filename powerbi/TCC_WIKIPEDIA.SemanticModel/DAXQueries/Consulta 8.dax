@@ -1,0 +1,10 @@
+EVALUATE
+ADDCOLUMNS(
+    SUMMARIZECOLUMNS(
+        fato_defasagem_evento[LeituraOrdem],
+        fato_defasagem_evento[Leitura do evento],
+        "Eventos", [EventosPorLeitura]
+    ),
+    "MeiaVidaPublico", [MeiaVidaPublico]
+)
+ORDER BY fato_defasagem_evento[LeituraOrdem]

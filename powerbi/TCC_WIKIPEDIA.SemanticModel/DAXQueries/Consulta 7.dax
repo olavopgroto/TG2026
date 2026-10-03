@@ -1,0 +1,6 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    fato_defasagem_evento[leitura],
+    TREATAS({"nivel_log"}, fato_defasagem_evento[variante]),
+    "Eventos", DISTINCTCOUNT(fato_defasagem_evento[id_evento])
+)

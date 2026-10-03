@@ -84,9 +84,31 @@ table fato_defasagem_evento
 
 	column leitura
 		dataType: string
+		isHidden
 		lineageTag: dfb48b41-d1be-47f1-8f65-deeaabf0149d
 		summarizeBy: none
 		sourceColumn: leitura
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Leitura do evento' = SWITCH(fato_defasagem_evento[leitura], "simultaneo", "Simultâneo", "picos_distantes", "Picos distantes", "inicio_nao_observavel", "Início não observável", "inconclusivo", "Inconclusivo", "midia_antes", "Mídia antes", "publico_antes", "Público antes")
+		lineageTag: f7dbc3ef-7882-4ba8-8955-7131cc220fc1
+		summarizeBy: none
+		sortByColumn: LeituraOrdem
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column LeituraOrdem = SWITCH(fato_defasagem_evento[leitura], "simultaneo", 1, "picos_distantes", 2, "inicio_nao_observavel", 3, "inconclusivo", 4, "midia_antes", 5, "publico_antes", 6)
+		isHidden
+		formatString: 0
+		lineageTag: 6b55f732-88f0-494b-8325-241dcd70307d
+		summarizeBy: sum
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

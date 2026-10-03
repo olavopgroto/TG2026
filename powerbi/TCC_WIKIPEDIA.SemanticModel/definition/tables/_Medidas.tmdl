@@ -47,6 +47,14 @@ table _Medidas
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure MeiaVidaPublico = CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "publico")
+		formatString: 0.0
+		lineageTag: c5008be9-3883-4207-881f-4bb24bdfe68d
+
+	measure EventosPorLeitura = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[variante] = "nivel_log")
+		formatString: 0
+		lineageTag: 65fe6f99-cdeb-48de-9c7b-eea7ea0aa958
+
 	partition _Medidas = m
 		mode: import
 		source =
