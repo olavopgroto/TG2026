@@ -3,9 +3,9 @@
   "name": "da7655f8c11ad4f70d77",
   "position": {
     "x": 20,
-    "y": 280,
+    "y": 276,
     "z": 3200,
-    "height": 32,
+    "height": 40,
     "width": 184,
     "tabOrder": 3200
   },
@@ -73,6 +73,24 @@
                       "Value": "'#EDEFF2'"
                     }
                   }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#171C24'"
+                    }
+                  }
+                }
+              }
+            },
+            "outline": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
                 }
               }
             }
