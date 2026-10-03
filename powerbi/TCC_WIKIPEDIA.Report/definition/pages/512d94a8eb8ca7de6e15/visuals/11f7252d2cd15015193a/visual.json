@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "11f7252d2cd15015193a",
+  "position": {
+    "x": 770,
+    "y": 142,
+    "z": 1200,
+    "height": 40,
+    "width": 220,
+    "tabOrder": 1200
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "MeiaVidaPublico"
+                }
+              },
+              "queryRef": "_Medidas.MeiaVidaPublico",
+              "nativeQueryRef": "MeiaVidaPublico"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

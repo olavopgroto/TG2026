@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "d5f58b214d6cc0781aa3",
+  "position": {
+    "x": 260,
+    "y": 300,
+    "z": 2000,
+    "height": 388,
+    "width": 616,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_tempo_relativo"
+                    }
+                  },
+                  "Property": "dias_desde_evento"
+                }
+              },
+              "queryRef": "dim_tempo_relativo.dias_desde_evento",
+              "nativeQueryRef": "dias_desde_evento",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "PctPicoPublico"
+                }
+              },
+              "queryRef": "_Medidas.PctPicoPublico",
+              "nativeQueryRef": "PctPicoPublico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "PctPicoImprensa"
+                }
+              },
+              "queryRef": "_Medidas.PctPicoImprensa",
+              "nativeQueryRef": "PctPicoImprensa"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "PctPicoRobos"
+                }
+              },
+              "queryRef": "_Medidas.PctPicoRobos",
+              "nativeQueryRef": "PctPicoRobos"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

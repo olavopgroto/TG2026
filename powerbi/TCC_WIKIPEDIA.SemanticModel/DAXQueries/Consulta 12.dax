@@ -1,0 +1,6 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(INFO.VIEW.COLUMNS(), [Table] = "dim_evento" && [Name] IN {"categoria", "Categoria do evento"}),
+    "Coluna", [Name],
+    "Oculta", [IsHidden]
+)

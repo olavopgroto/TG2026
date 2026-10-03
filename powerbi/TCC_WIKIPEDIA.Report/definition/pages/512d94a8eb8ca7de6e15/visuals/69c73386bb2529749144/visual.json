@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "69c73386bb2529749144",
+  "position": {
+    "x": 20,
+    "y": 156,
+    "z": 3000,
+    "height": 32,
+    "width": 184,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "Categoria do evento"
+                }
+              },
+              "queryRef": "dim_evento.Categoria do evento",
+              "nativeQueryRef": "Categoria do evento",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

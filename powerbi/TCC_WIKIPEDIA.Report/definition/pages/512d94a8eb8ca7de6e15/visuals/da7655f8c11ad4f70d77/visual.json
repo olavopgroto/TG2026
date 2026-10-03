@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "da7655f8c11ad4f70d77",
+  "position": {
+    "x": 20,
+    "y": 280,
+    "z": 3200,
+    "height": 32,
+    "width": 184,
+    "tabOrder": 3200
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "AnoEvento"
+                }
+              },
+              "queryRef": "dim_evento.AnoEvento",
+              "nativeQueryRef": "AnoEvento",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

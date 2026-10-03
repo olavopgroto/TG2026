@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6a1bfdbd14da04c49dab",
+  "position": {
+    "x": 916,
+    "y": 276,
+    "z": 2100,
+    "height": 412,
+    "width": 328,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fato_defasagem_evento"
+                    }
+                  },
+                  "Property": "Leitura do evento"
+                }
+              },
+              "queryRef": "fato_defasagem_evento.Leitura do evento",
+              "nativeQueryRef": "Leitura do evento",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "EventosPorLeitura"
+                }
+              },
+              "queryRef": "_Medidas.EventosPorLeitura",
+              "nativeQueryRef": "EventosPorLeitura"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fato_defasagem_evento"
+                  }
+                },
+                "Property": "Leitura do evento"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
