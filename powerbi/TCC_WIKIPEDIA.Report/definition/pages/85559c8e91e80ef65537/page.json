@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "6ab450c388ae0a9b0105",
-  "displayName": "Visão geral",
+  "name": "85559c8e91e80ef65537",
+  "displayName": "Qualidade dos dados",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280
