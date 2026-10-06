@@ -1,0 +1,111 @@
+{
+  "abas": [
+    {
+      "pagina": "Visão geral",
+      "x": 24,
+      "y": 56,
+      "largura": 97,
+      "altura": 32
+    },
+    {
+      "pagina": "Subida e queda",
+      "x": 123,
+      "y": 56,
+      "largura": 124,
+      "altura": 32
+    },
+    {
+      "pagina": "Quem veio primeiro",
+      "x": 248,
+      "y": 56,
+      "largura": 148,
+      "altura": 32
+    },
+    {
+      "pagina": "Assuntos relacionados",
+      "x": 399,
+      "y": 56,
+      "largura": 167,
+      "altura": 32
+    },
+    {
+      "pagina": "Qualidade dos dados",
+      "x": 568,
+      "y": 56,
+      "largura": 158,
+      "altura": 32
+    }
+  ],
+  "botao_limpar": {
+    "x": 160,
+    "y": 104,
+    "largura": 50,
+    "altura": 20
+  },
+  "filtro_categoria": {
+    "x": 20,
+    "y": 156,
+    "largura": 184,
+    "altura": 32
+  },
+  "filtro_evento": {
+    "x": 20,
+    "y": 218,
+    "largura": 184,
+    "altura": 32
+  },
+  "filtro_ano": {
+    "x": 20,
+    "y": 280,
+    "largura": 184,
+    "altura": 32
+  },
+  "filtro_forma": {
+    "x": 20,
+    "y": 398,
+    "largura": 184,
+    "altura": 32
+  },
+  "cartao_juntos": {
+    "x": 258,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_imprensa": {
+    "x": 514,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_publico": {
+    "x": 770,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_concordam": {
+    "x": 1026,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "grafico_correlograma": {
+    "x": 260,
+    "y": 284,
+    "largura": 576,
+    "altura": 148
+  },
+  "grafico_categoria": {
+    "x": 876,
+    "y": 264,
+    "largura": 368,
+    "altura": 168
+  },
+  "tabela_eventos": {
+    "x": 260,
+    "y": 518,
+    "largura": 984,
+    "altura": 174
+  }
+}

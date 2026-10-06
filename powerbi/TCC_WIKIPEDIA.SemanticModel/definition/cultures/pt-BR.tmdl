@@ -1,2 +1,137 @@
 cultureInfo pt-BR
 
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dim_evento.nome_evento": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_evento",
+			          "ConceptualProperty": "nome_evento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Evento": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_evento.categoria_do_evento": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_evento",
+			          "ConceptualProperty": "Categoria do evento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Categoria": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fato_defasagem_evento.defasagem_otima": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fato_defasagem_evento",
+			          "ConceptualProperty": "defasagem_otima"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vantagem pela semelhança (dias)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fato_defasagem_evento.lag_por_pico": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fato_defasagem_evento",
+			          "ConceptualProperty": "lag_por_pico"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vantagem pelos picos (dias)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fato_defasagem_evento.correlacao_maxima": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fato_defasagem_evento",
+			          "ConceptualProperty": "correlacao_maxima"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Semelhança (0 a 1)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fato_defasagem_evento.leitura_do_evento": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fato_defasagem_evento",
+			          "ConceptualProperty": "Leitura do evento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Resultado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

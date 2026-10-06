@@ -103,7 +103,7 @@ def base(pagina_ativa, posicoes):
     # titulo e selo
     s.append(ret(24, 20, 4, 18, COR["publico"]))
     s.append(texto(38, 35, "Ciclo de vida da atenção digital", 17, COR["texto"], 500))
-    selo = "Camada Gold · 40 eventos · 91 dias"
+    selo = "40 eventos · 91 dias cada"
     sw = largura_texto(selo, 11) + 24
     s.append(ret(LARG - 24 - sw, 16, sw, 24, COR["fundo"], 12, COR["borda"]))
     s.append(texto(LARG - 24 - sw / 2, 32, selo, 11, COR["apagado"], ancora="middle"))
@@ -195,6 +195,53 @@ def pagina_subida_e_queda():
     return s, pos
 
 
+def pagina_quem_veio_primeiro():
+    pos = {}
+    s = base("Quem veio primeiro", pos)
+
+    # filtro desta pagina
+    s.append(texto(20, 390, "Forma de comparar", 11, COR["rotulo"]))
+    s.append(ret(20, 398, 184, 32, COR["cartao"], 6, COR["borda"]))
+    pos["filtro_forma"] = {"x": 20, "y": 398, "largura": 184, "altura": 32}
+
+    # quatro cartoes
+    gap = 16
+    cw = (MAIN_W - 3 * gap) / 4
+    itens = [("cartao_juntos", "Chegaram juntos", COR["conclusao"]),
+             ("cartao_imprensa", "Imprensa na frente", COR["imprensa"]),
+             ("cartao_publico", "Público na frente", COR["publico"]),
+             ("cartao_concordam", "Os dois métodos concordam", COR["tempo"])]
+    for i, (chave, rot, cor) in enumerate(itens):
+        cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
+
+    # painel do correlograma
+    py, ph = 204, 236
+    gw = 600
+    painel(s, MAIN_X, py, gw, ph, "Em que dia as curvas mais combinam",
+           "escolha um evento no filtro · positivo = imprensa antes")
+    lx, ly = MAIN_X + 20, py + 72
+    s.append(ret(lx, ly - 8, 10, 10, COR["tempo"], 2))
+    s.append(texto(lx + 16, ly, "Semelhança das curvas", 11, COR["rotulo"]))
+    lx += 16 + largura_texto("Semelhança das curvas", 11) + 24
+    s.append(ret(lx, ly - 4, 16, 3, "#9BA5B5"))
+    s.append(texto(lx + 22, ly, "Abaixo desta linha pode ser acaso", 11, COR["rotulo"]))
+    pos["grafico_correlograma"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
+
+    # painel do resultado por categoria
+    rx = MAIN_X + gw + 16
+    rw = MAIN_X + MAIN_W - rx
+    painel(s, rx, py, rw, ph, "Resultado por categoria", "quantos eventos em cada resultado")
+    pos["grafico_categoria"] = {"x": rx + 12, "y": py + 60, "largura": rw - 24, "altura": ph - 68}
+
+    # painel da tabela
+    ty, th = 456, 244
+    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento",
+           "as duas medidas de cada evento e o resultado final")
+    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 62, "largura": MAIN_W - 24, "altura": th - 70}
+
+    return s, pos
+
+
 def exportar(nome_base, elementos, posicoes):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{SAIDA_LARG}" height="{SAIDA_ALT}" '
            f'viewBox="0 0 {LARG} {ALT}">' + "".join(elementos) + "</svg>")
@@ -206,6 +253,15 @@ def exportar(nome_base, elementos, posicoes):
 
 
 if __name__ == "__main__":
-    elementos, posicoes = pagina_subida_e_queda()
-    exportar("moldura_subida_e_queda", elementos, posicoes)
-    print("moldura_subida_e_queda.png e posicoes_subida_e_queda.json gerados em", PASTA)
+    import sys
+    paginas = {
+        "subida_e_queda": pagina_subida_e_queda,
+        "quem_veio_primeiro": pagina_quem_veio_primeiro,
+    }
+    alvo = sys.argv[1] if len(sys.argv) > 1 else None
+    if alvo not in paginas:
+        print("uso: python gerar_moldura.py <pagina>  |  paginas:", ", ".join(paginas))
+        sys.exit(1)
+    elementos, posicoes = paginas[alvo]()
+    exportar(f"moldura_{alvo}", elementos, posicoes)
+    print(f"moldura_{alvo}.png e posicoes_{alvo}.json gerados em", PASTA)
