@@ -143,6 +143,15 @@ table _Medidas
 	measure PorQueFaltaDado = VAR semDado = [DiasSemDadoPublico] VAR rel = INT(MAX(dim_evento[data_criacao_principal]) - MAX(dim_evento[data_evento])) VAR depois = COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]) && fato_serie_diaria[dias_desde_evento] >= rel)) + 0 RETURN IF(HASONEVALUE(dim_evento[id_evento]), SWITCH(TRUE(), semDado = 0, "nada falta", depois > 0, "página existia, mas sem visitas registradas", rel = 0, "artigo criado no dia do evento", rel = 1, "artigo criado 1 dia depois", rel > 1, "artigo criado " & FORMAT(rel, "0") & " dias depois", rel = -1, "artigo criado 1 dia antes", "artigo criado " & FORMAT(-rel, "0") & " dias antes"))
 		lineageTag: c6edd625-9ee0-4cd3-9025-dd1b34cf2b33
 
+	measure PeriodoTexto = VAR a = MIN(dim_evento[AnoEvento]) VAR b = MAX(dim_evento[AnoEvento]) RETURN IF(a = b, FORMAT(a, "0"), FORMAT(a, "0") & " a " & FORMAT(b, "0"))
+		lineageTag: a2c3ff80-c011-4baf-8017-5e10af067672
+
+	measure EventosCategoriasTexto = VAR c = DISTINCTCOUNT(dim_evento[categoria]) RETURN FORMAT([TotalEventos], "0") & " em " & FORMAT(c, "0") & IF(c = 1, " categoria", " categorias")
+		lineageTag: 029d2964-cf49-4411-8964-d99841f9bb60
+
+	measure ResultadoOficial = CALCULATE(SELECTEDVALUE(fato_defasagem_evento[Leitura do evento]), fato_defasagem_evento[variante] = "nivel_log")
+		lineageTag: 5fa70398-d45d-4b74-a4d6-03ee038ecf60
+
 	partition _Medidas = m
 		mode: import
 		source =

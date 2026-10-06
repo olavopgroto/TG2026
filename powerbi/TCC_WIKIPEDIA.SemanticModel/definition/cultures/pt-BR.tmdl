@@ -222,19 +222,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "Artigo criado"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Artigo criado": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.diassemdadopublico": {
 			      "Definition": {
@@ -289,6 +277,27 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "Dá para comparar? Imprensa": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.porquefaltadado": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "PorQueFaltaDado"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Por que falta dado": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

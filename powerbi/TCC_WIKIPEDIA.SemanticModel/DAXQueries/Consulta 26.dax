@@ -1,0 +1,10 @@
+DEFINE
+    MEASURE _Medidas[t_periodo] = VAR a = MIN(dim_evento[AnoEvento]) VAR b = MAX(dim_evento[AnoEvento]) RETURN IF(a = b, FORMAT(a, "0"), FORMAT(a, "0") & " a " & FORMAT(b, "0"))
+    MEASURE _Medidas[t_eventos] = VAR c = DISTINCTCOUNT(dim_evento[categoria]) RETURN FORMAT([TotalEventos], "0") & " em " & FORMAT(c, "0") & IF(c = 1, " categoria", " categorias")
+    MEASURE _Medidas[t_result] = CALCULATE(SELECTEDVALUE(fato_defasagem_evento[Leitura do evento]), fato_defasagem_evento[variante] = "nivel_log")
+EVALUATE
+ROW("Periodo", [t_periodo], "Eventos", [t_eventos])
+EVALUATE
+CALCULATETABLE(ROW("Periodo", [t_periodo], "Eventos", [t_eventos]), dim_evento[Categoria do evento] = "Político")
+EVALUATE
+TOPN(5, ADDCOLUMNS(VALUES(dim_evento[nome_evento]), "Visitas", [VisitasPublico], "Materias", [Materias], "Resultado", [t_result]), [Visitas], DESC)
