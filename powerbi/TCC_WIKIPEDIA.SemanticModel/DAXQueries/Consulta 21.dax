@@ -1,0 +1,7 @@
+EVALUATE
+ADDCOLUMNS(
+    VALUES(fato_serie_sensibilidade[Marca da régua]),
+    "Media", [ArtigosNaMarca]
+)
+EVALUATE
+ROW("Todos", [ArtigosTodos], "Dobraram", [ArtigosDobraram], "Triplicaram", [ArtigosTriplicaram], "Cinco", [ArtigosCincoVezes])

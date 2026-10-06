@@ -96,7 +96,7 @@ def ret(x, y, w, h, cor, r=0, borda=None):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{cor}"{b}/>'
 
 
-def base(pagina_ativa, posicoes):
+def base(pagina_ativa, posicoes, filtros_pagina=True):
     """Cabecalho, abas e barra lateral: iguais nas cinco paginas."""
     s = [ret(0, 0, LARG, ALT, COR["fundo"])]
 
@@ -137,8 +137,9 @@ def base(pagina_ativa, posicoes):
     filtro("Categoria", 148, "filtro_categoria")
     filtro("Evento", 210, "filtro_evento")
     filtro("Ano do evento", 272, "filtro_ano")
-    s.append(ret(20, 332, 184, 1, COR["linha"]))
-    s.append(texto(20, 358, "DESTA PÁGINA", 11, COR["apagado"], 500, esp=1.2))
+    if filtros_pagina:
+        s.append(ret(20, 332, 184, 1, COR["linha"]))
+        s.append(texto(20, 358, "DESTA PÁGINA", 11, COR["apagado"], 500, esp=1.2))
     return s
 
 
@@ -256,6 +257,44 @@ def pagina_quem_veio_primeiro():
     return s, pos
 
 
+RAMPA = {"todos": "#2F4B5E", "dobraram": "#3F7FA6", "triplicaram": "#5BB8E8", "cinco": "#9ED8F5"}
+
+
+def pagina_assuntos_relacionados():
+    pos = {}
+    s = base("Assuntos relacionados", pos, filtros_pagina=False)
+
+    # quatro cartoes, um por marca da regua, com legenda comum acima
+    s.append(texto(MAIN_X, 106, "artigos relacionados por evento, em média", 10, COR["apagado"]))
+    gap = 16
+    cw = (MAIN_W - 3 * gap) / 4
+    itens = [("cartao_todos", "Acompanhados", RAMPA["todos"]),
+             ("cartao_dobraram", "Dobraram de acesso", RAMPA["dobraram"]),
+             ("cartao_triplicaram", "Triplicaram", RAMPA["triplicaram"]),
+             ("cartao_cinco", "Cresceram 5 vezes", RAMPA["cinco"])]
+    for i, (chave, rot, cor) in enumerate(itens):
+        cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 116, round(cw), rot, cor)
+
+    # colunas agrupadas por categoria
+    py, ph = 214, 270
+    painel(s, MAIN_X, py, MAIN_W, ph, "Quanto a atenção se espalha, por tipo de acontecimento",
+           "artigos relacionados que passam em cada marca da régua, média por evento")
+    lx, ly = MAIN_X + 20, py + 74
+    for nome, cor in [("Todos", RAMPA["todos"]), ("Dobraram", RAMPA["dobraram"]),
+                      ("Triplicaram", RAMPA["triplicaram"]), ("Cresceram 5 vezes", RAMPA["cinco"])]:
+        s.append(ret(lx, ly - 8, 9, 9, cor, 2))
+        s.append(texto(lx + 14, ly, nome, 11, COR["rotulo"]))
+        lx += 14 + largura_texto(nome, 11) + 22
+    pos["grafico_regua"] = {"x": MAIN_X + 12, "y": py + 86, "largura": MAIN_W - 24, "altura": ph - 94}
+
+    # tabela
+    ty, th = 500, 200
+    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento",
+           "artigos relacionados que passaram em cada marca da régua")
+    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 60, "largura": MAIN_W - 24, "altura": th - 68}
+    return s, pos
+
+
 def exportar(nome_base, elementos, posicoes):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{SAIDA_LARG}" height="{SAIDA_ALT}" '
            f'viewBox="0 0 {LARG} {ALT}">' + "".join(elementos) + "</svg>")
@@ -271,6 +310,7 @@ if __name__ == "__main__":
     paginas = {
         "subida_e_queda": pagina_subida_e_queda,
         "quem_veio_primeiro": pagina_quem_veio_primeiro,
+        "assuntos_relacionados": pagina_assuntos_relacionados,
     }
     alvo = sys.argv[1] if len(sys.argv) > 1 else None
     if alvo not in paginas:
