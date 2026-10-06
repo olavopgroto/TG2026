@@ -231,7 +231,21 @@ def pagina_quem_veio_primeiro():
     rx = MAIN_X + gw + 16
     rw = MAIN_X + MAIN_W - rx
     painel(s, rx, py, rw, ph, "Resultado por categoria", "quantos eventos em cada resultado")
-    pos["grafico_categoria"] = {"x": rx + 12, "y": py + 60, "largura": rw - 24, "altura": ph - 68}
+    # legenda desenhada: as cores sao fixas por resultado, entao nao dependem do dado
+    itens = [("Chegaram juntos", COR["conclusao"]), ("Imprensa na frente", COR["imprensa"]),
+             ("Público na frente", COR["publico"]), ("Picos em datas diferentes", "#7E8AA0"),
+             ("Artigo criado depois", "#5C6478"), ("Sem resposta clara", "#3E5A6E")]
+    lx, ly, limite = rx + 20, py + 74, rx + rw - 16
+    for nome, cor in itens:
+        w = 14 + largura_texto(nome, 10)
+        if lx + w > limite:
+            lx, ly = rx + 20, ly + 18
+        s.append(ret(lx, ly - 8, 9, 9, cor, 2))
+        s.append(texto(lx + 14, ly, nome, 10, COR["rotulo"]))
+        lx += w + 14
+    topo = ly + 12
+    pos["grafico_categoria"] = {"x": rx + 12, "y": round(topo), "largura": rw - 24,
+                                "altura": round(py + ph - 8 - topo)}
 
     # painel da tabela
     ty, th = 456, 244
