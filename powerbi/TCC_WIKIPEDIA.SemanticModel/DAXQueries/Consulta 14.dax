@@ -1,0 +1,12 @@
+DEFINE
+    MEASURE _Medidas[t_corr] = IF(HASONEVALUE(dim_evento[id_evento]) && HASONEVALUE(DimEscala[variante]), AVERAGE(fato_correlacao_defasagem[correlacao]))
+    MEASURE _Medidas[t_lim] = IF(HASONEVALUE(dim_evento[id_evento]) && HASONEVALUE(DimEscala[variante]), AVERAGE(fato_correlacao_defasagem[limite_critico]))
+EVALUATE
+CALCULATETABLE(
+    ADDCOLUMNS(VALUES(fato_correlacao_defasagem[defasagem]), "r", [t_corr], "limite", [t_lim]),
+    dim_evento[nome_evento] = "Kobe Bryant",
+    DimEscala[variante] = "nivel_log"
+)
+ORDER BY fato_correlacao_defasagem[defasagem]
+EVALUATE
+CALCULATETABLE(ROW("r_sem_evento", [t_corr]), DimEscala[variante] = "nivel_log")

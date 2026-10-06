@@ -93,7 +93,7 @@ table fato_defasagem_evento
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Leitura do evento' = SWITCH(fato_defasagem_evento[leitura], "simultaneo", "Simultâneo", "picos_distantes", "Picos distantes", "inicio_nao_observavel", "Início não observável", "inconclusivo", "Inconclusivo", "midia_antes", "Mídia antes", "publico_antes", "Público antes")
+	column 'Leitura do evento' = SWITCH(fato_defasagem_evento[leitura], "simultaneo", "Chegaram juntos", "picos_distantes", "Picos em datas diferentes", "inicio_nao_observavel", "Artigo criado depois", "inconclusivo", "Sem resposta clara", "midia_antes", "Imprensa na frente", "publico_antes", "Público na frente")
 		lineageTag: f7dbc3ef-7882-4ba8-8955-7131cc220fc1
 		summarizeBy: none
 		sortByColumn: LeituraOrdem

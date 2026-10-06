@@ -53,6 +53,42 @@ table _Medidas
 		formatString: 0
 		lineageTag: 65fe6f99-cdeb-48de-9c7b-eea7ea0aa958
 
+	measure QtdJuntos = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "simultaneo") + 0
+		formatString: 0
+		lineageTag: dff2037b-6337-4a86-a477-0fa72435cb24
+
+	measure QtdImprensaFrente = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "midia_antes") + 0
+		formatString: 0
+		lineageTag: 59e402c1-6e10-46a9-b608-4ca220e044d4
+
+	measure QtdPublicoFrente = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "publico_antes") + 0
+		formatString: 0
+		lineageTag: d50e1b0e-22f1-421a-835c-5cbaddd55e21
+
+	measure QtdConcordam = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[concorda_com_lag_por_pico] = TRUE()) + 0
+		formatString: 0
+		lineageTag: dc09cd76-070e-4ed7-816e-0085cfbd005a
+
+	measure ConcordamDeTotal = FORMAT([QtdConcordam], "0") & " de " & FORMAT([TotalEventos], "0")
+		lineageTag: e639dc08-ec33-464b-9bf8-6514d37e3a90
+
+	measure EventosNaEscala = DISTINCTCOUNT(fato_defasagem_evento[id_evento])
+		formatString: 0
+		lineageTag: bf5f7699-4818-4ced-95d5-f244434dcae1
+
+	measure CorrelacaoEvento = IF(HASONEVALUE(dim_evento[id_evento]) && HASONEVALUE(DimEscala[variante]), AVERAGE(fato_correlacao_defasagem[correlacao]))
+		lineageTag: 974b7c49-6553-4f43-af94-cefadf0667d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LimiteSignificancia = IF(HASONEVALUE(dim_evento[id_evento]) && HASONEVALUE(DimEscala[variante]), AVERAGE(fato_correlacao_defasagem[limite_critico]))
+		lineageTag: 5c68c4bc-18a7-4be2-b237-7feb85f6d1c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure JuntosDeTotal = FORMAT([QtdJuntos], "0") & " de " & FORMAT([TotalEventos], "0")
+		lineageTag: 26661547-e2ae-47c1-af76-58b76f652717
+
 	partition _Medidas = m
 		mode: import
 		source =

@@ -1,0 +1,37 @@
+table DimEscala
+	lineageTag: 5ef8766a-3bc6-4fa4-8562-453b7e3a338d
+
+	column variante
+		isHidden
+		lineageTag: efd5e256-6895-482e-b474-80d7da62f0b3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [variante]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forma de comparar'
+		lineageTag: 0af79dba-1fd0-4510-8edf-73fa959811c1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Forma de comparar]
+		sortByColumn: OrdemEscala
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdemEscala
+		isHidden
+		formatString: 0
+		lineageTag: 65f08264-237a-4861-a044-7256ba75b2c7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [OrdemEscala]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimEscala = calculated
+		mode: import
+		source = DATATABLE("variante", STRING, "Forma de comparar", STRING, "OrdemEscala", INTEGER, {{"nivel_log", "Curva inteira (oficial)", 1}, {"nivel_linear", "Só o pico", 2}})
+
+	annotation PBI_Id = af3ba7a59f8144c3a2e134fda5171baf
+

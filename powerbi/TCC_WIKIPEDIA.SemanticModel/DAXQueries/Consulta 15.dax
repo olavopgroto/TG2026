@@ -1,0 +1,12 @@
+EVALUATE
+CALCULATETABLE(
+    ROW("Juntos", [JuntosDeTotal], "Imprensa", [QtdImprensaFrente], "Publico", [QtdPublicoFrente], "Concordam", [ConcordamDeTotal], "EventosNaEscala", [EventosNaEscala]),
+    DimEscala[variante] = "nivel_log"
+)
+EVALUATE
+CALCULATETABLE(
+    ROW("CorrKobeDia0", [CorrelacaoEvento], "LimiteKobeDia0", [LimiteSignificancia]),
+    dim_evento[nome_evento] = "Kobe Bryant",
+    DimEscala[variante] = "nivel_log",
+    fato_correlacao_defasagem[defasagem] = 0
+)

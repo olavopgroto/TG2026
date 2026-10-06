@@ -1,0 +1,13 @@
+DEFINE
+    MEASURE _Medidas[t_juntos] = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "simultaneo") + 0
+    MEASURE _Medidas[t_imprensa] = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "midia_antes") + 0
+    MEASURE _Medidas[t_publico] = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] = "publico_antes") + 0
+    MEASURE _Medidas[t_concordam] = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[concorda_com_lag_por_pico] = TRUE()) + 0
+EVALUATE
+ADDCOLUMNS(
+    VALUES(DimEscala[Forma de comparar]),
+    "Juntos", [t_juntos],
+    "Imprensa", [t_imprensa],
+    "Publico", [t_publico],
+    "Concordam", [t_concordam]
+)

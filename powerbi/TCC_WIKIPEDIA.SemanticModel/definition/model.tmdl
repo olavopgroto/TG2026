@@ -23,6 +23,7 @@ ref table fato_serie_diaria
 ref table fato_serie_robos
 ref table fato_serie_sensibilidade
 ref table _Medidas
+ref table DimEscala
 
 ref cultureInfo pt-BR
 

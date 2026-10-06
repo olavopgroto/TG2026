@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Ciclo_de_Atencao_Escuro9301723870983071.json",
+      "name": "Ciclo_de_Atencao_Escuro3581280334012229.json",
       "reportVersionAtImport": {
         "visual": "2.11.0",
         "report": "3.4.0",
@@ -65,8 +65,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Ciclo_de_Atencao_Escuro9301723870983071.json",
-          "path": "Ciclo_de_Atencao_Escuro9301723870983071.json",
+          "name": "Ciclo_de_Atencao_Escuro3581280334012229.json",
+          "path": "Ciclo_de_Atencao_Escuro3581280334012229.json",
           "type": "CustomTheme"
         },
         {

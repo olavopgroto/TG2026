@@ -12,6 +12,7 @@
   ],
   "background": "#171C24",
   "foreground": "#EDEFF2",
+  "secondLevelElements": "#2A313D",
   "tableAccent": "#4ADE9E",
   "good": "#4ADE9E",
   "neutral": "#F7B955",

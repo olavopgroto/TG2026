@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 891.9050223644881,
+        "x": 1290.666707356771,
         "y": 0
       },
       "nodes": [
@@ -125,6 +125,18 @@
           "nodeLineageTag": "5a2ec08f-79f1-4b2f-b6e5-df2922368f72",
           "size": {
             "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1950.9908530294481,
+            "y": 366.22313890934595
+          },
+          "nodeIndex": "DimEscala",
+          "size": {
+            "height": 200,
             "width": 234
           },
           "zIndex": 0

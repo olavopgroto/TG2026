@@ -70,3 +70,11 @@ relationship 20e0b3c1-1c64-48f7-a922-49a197a5e25d
 
 	annotation PBI_IsFromSource = FS
 
+relationship 25388083-8eee-0009-833a-1f4ee53722d4
+	fromColumn: fato_correlacao_defasagem.variante
+	toColumn: DimEscala.variante
+
+relationship 7cdabafe-a65e-d17c-bea0-1560d7a4135a
+	fromColumn: fato_defasagem_evento.variante
+	toColumn: DimEscala.variante
+
