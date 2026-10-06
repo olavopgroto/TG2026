@@ -98,6 +98,13 @@
                   }
                 }
               }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -120,6 +127,13 @@
                       "Value": "'#AEB6C2'"
                     }
                   }
+                }
+              }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "45L"
                 }
               }
             }
@@ -154,7 +168,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4ADE9E'"
+                      "Value": "'#C77DFF'"
                     }
                   }
                 }
@@ -236,7 +250,48 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5BB8E8'"
+                      "Value": "'#4ADE9E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Público na frente'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7E8AA0'"
                     }
                   }
                 }
@@ -277,7 +332,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7E8AA0'"
+                      "Value": "'#5C6478'"
                     }
                   }
                 }
@@ -344,47 +399,6 @@
                     "Right": {
                       "Literal": {
                         "Value": "'Sem resposta clara'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C77DFF'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
-                          }
-                        },
-                        "Property": "Leitura do evento"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Público na frente'"
                       }
                     }
                   }
