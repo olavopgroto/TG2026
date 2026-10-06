@@ -68,6 +68,15 @@ table fato_serie_sensibilidade
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column 'Marca da régua' = SWITCH(fato_serie_sensibilidade[corte_amplificacao], 1, "Todos", 2, "Dobraram", 3, "Triplicaram", 5, "Cresceram 5 vezes")
+		lineageTag: 612a5993-6c1e-485f-b394-6ec82065201d
+		summarizeBy: none
+		sortByColumn: corte_amplificacao
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fato_serie_sensibilidade = m
 		mode: import
 		source =

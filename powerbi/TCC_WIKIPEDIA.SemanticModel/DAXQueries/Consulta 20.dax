@@ -1,0 +1,10 @@
+DEFINE
+    MEASURE _Medidas[t_art] = AVERAGEX(VALUES(dim_evento[id_evento]), CALCULATE(MAX(fato_serie_sensibilidade[artigos_no_corte])))
+    MEASURE _Medidas[t_1] = CALCULATE([t_art], fato_serie_sensibilidade[corte_amplificacao] = 1)
+    MEASURE _Medidas[t_2] = CALCULATE([t_art], fato_serie_sensibilidade[corte_amplificacao] = 2)
+    MEASURE _Medidas[t_3] = CALCULATE([t_art], fato_serie_sensibilidade[corte_amplificacao] = 3)
+    MEASURE _Medidas[t_5] = CALCULATE([t_art], fato_serie_sensibilidade[corte_amplificacao] = 5)
+EVALUATE
+ADDCOLUMNS(VALUES(dim_evento[Categoria do evento]), "Todos", [t_1], "Dobraram", [t_2], "Triplicaram", [t_3], "Cinco", [t_5])
+EVALUATE
+ROW("Todos", [t_1], "Dobraram", [t_2], "Triplicaram", [t_3], "Cinco", [t_5])

@@ -89,6 +89,26 @@ table _Medidas
 	measure JuntosDeTotal = FORMAT([QtdJuntos], "0") & " de " & FORMAT([TotalEventos], "0")
 		lineageTag: 26661547-e2ae-47c1-af76-58b76f652717
 
+	measure ArtigosNaMarca = AVERAGEX(VALUES(dim_evento[id_evento]), CALCULATE(MAX(fato_serie_sensibilidade[artigos_no_corte])))
+		formatString: 0.0
+		lineageTag: 488e9fc2-c839-4a1f-8b76-80a08f184b0c
+
+	measure ArtigosTodos = CALCULATE([ArtigosNaMarca], fato_serie_sensibilidade[corte_amplificacao] = 1)
+		formatString: 0.0
+		lineageTag: 5e73fe60-3b21-4c9c-bd48-480285e4a23b
+
+	measure ArtigosDobraram = CALCULATE([ArtigosNaMarca], fato_serie_sensibilidade[corte_amplificacao] = 2)
+		formatString: 0.0
+		lineageTag: 5e72d88f-2749-44b0-804a-636b12838f51
+
+	measure ArtigosTriplicaram = CALCULATE([ArtigosNaMarca], fato_serie_sensibilidade[corte_amplificacao] = 3)
+		formatString: 0.0
+		lineageTag: c586d7d5-8d0a-4aaa-8b9c-6609e16ddc55
+
+	measure ArtigosCincoVezes = CALCULATE([ArtigosNaMarca], fato_serie_sensibilidade[corte_amplificacao] = 5)
+		formatString: 0.0
+		lineageTag: 1f59feea-6123-4642-8819-c80fbea0080e
+
 	partition _Medidas = m
 		mode: import
 		source =
