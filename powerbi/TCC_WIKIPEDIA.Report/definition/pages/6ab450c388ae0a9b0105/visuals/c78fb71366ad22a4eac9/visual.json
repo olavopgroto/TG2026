@@ -23,11 +23,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "EventosCategoriasTexto"
+                  "Property": "TotalEventos"
                 }
               },
-              "queryRef": "_Medidas.EventosCategoriasTexto",
-              "nativeQueryRef": "EventosCategoriasTexto"
+              "queryRef": "_Medidas.TotalEventos",
+              "nativeQueryRef": "TotalEventos"
             }
           ]
         }
