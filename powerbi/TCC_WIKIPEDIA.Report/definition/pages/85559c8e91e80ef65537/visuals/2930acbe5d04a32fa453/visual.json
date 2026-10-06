@@ -62,18 +62,18 @@
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_evento"
+                      "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Artigo criado"
+                  "Property": "PorQueFaltaDado"
                 }
               },
-              "queryRef": "dim_evento.Artigo criado",
-              "nativeQueryRef": "Artigo criado",
-              "displayName": "Artigo criado"
+              "queryRef": "_Medidas.PorQueFaltaDado",
+              "nativeQueryRef": "PorQueFaltaDado",
+              "displayName": "Por que falta dado"
             },
             {
               "field": {

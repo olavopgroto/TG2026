@@ -1,0 +1,2 @@
+EVALUATE
+SUMMARIZECOLUMNS(dim_evento[Artigo criado], "Eventos", COUNTROWS(dim_evento))

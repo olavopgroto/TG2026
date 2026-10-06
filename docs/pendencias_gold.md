@@ -215,6 +215,28 @@ a partir da hora de criação do artigo. Isso pode deslocar o pico do público p
 tolerância de 1 dia da regra de leitura (D3) absorve esse deslocamento. O nome da coluna é
 enganoso, mas o dado está correto. Encontrado durante a montagem do dashboard, em 06/10.
 
+### A9. Dias sem dado que a data de criação não explica
+Dos 15 eventos com dias sem dado no público, 11 são explicados pela data de criação do artigo
+principal: o primeiro dia com dado é o dia em que o artigo nasceu. Nos outros 4, a página já
+existia e mesmo assim há dias sem registro:
+
+| Evento | Página criada | Primeiro dia com dado | Dias sem dado depois de criada |
+|---|---|---|---|
+| Google Gemini | 107 dias antes | 0 | 30 |
+| iPhone 15 | 376 dias antes | −2 | 29 |
+| Samsung Galaxy S24 | 361 dias antes | −7 | 23 |
+| Furacão Ian | 20 dias antes | −27 | 12 |
+
+O Furacão Ian tem visitas registradas antes da data de criação da página, o que mostra que essa
+data não marca o início da história do título. A explicação mais provável é que a página tenha
+começado como redirecionamento ou rascunho de pouco tráfego, e que a Wikimedia não devolva
+registro nos dias sem nenhuma visita. A confirmação exigiria abrir o histórico de cada página.
+Três dos quatro são lançamentos de produto, cujo título costuma ser reservado antes do anúncio.
+
+Nenhuma métrica muda: os 4 já estão entre os eventos sem comparação com o antes, e a correlação
+ignora os dias sem dado. O dashboard explica cada caso na coluna "Por que falta dado".
+Encontrado durante a montagem do dashboard, em 06/10.
+
 ---
 
 ## 5. Erros cometidos e corrigidos durante a construção

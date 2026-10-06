@@ -140,6 +140,9 @@ table _Medidas
 	measure ComparaImprensaResposta = VAR v = CALCULATE(SELECTEDVALUE(fato_metricas_evento[base_motivo]), fato_metricas_evento[fonte] = "midia") RETURN SWITCH(v, "ok", "Sim", "poucos_dias_com_dado", "Não: faltam dados de antes", "abaixo_do_piso", "Não: quase sem notícia antes")
 		lineageTag: ecb63371-c198-4154-adb0-3c30d3369071
 
+	measure PorQueFaltaDado = VAR semDado = [DiasSemDadoPublico] VAR rel = INT(MAX(dim_evento[data_criacao_principal]) - MAX(dim_evento[data_evento])) VAR depois = COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]) && fato_serie_diaria[dias_desde_evento] >= rel)) + 0 RETURN IF(HASONEVALUE(dim_evento[id_evento]), SWITCH(TRUE(), semDado = 0, "nada falta", depois > 0, "página existia, mas sem visitas registradas", rel = 0, "artigo criado no dia do evento", rel = 1, "artigo criado 1 dia depois", rel > 1, "artigo criado " & FORMAT(rel, "0") & " dias depois", rel = -1, "artigo criado 1 dia antes", "artigo criado " & FORMAT(-rel, "0") & " dias antes"))
+		lineageTag: c6edd625-9ee0-4cd3-9025-dd1b34cf2b33
+
 	partition _Medidas = m
 		mode: import
 		source =

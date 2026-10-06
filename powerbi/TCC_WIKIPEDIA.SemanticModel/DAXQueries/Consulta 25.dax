@@ -1,0 +1,5 @@
+DEFINE
+    MEASURE _Medidas[t_porque] = VAR semDado = [DiasSemDadoPublico] VAR rel = INT(MAX(dim_evento[data_criacao_principal]) - MAX(dim_evento[data_evento])) VAR depois = COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]) && fato_serie_diaria[dias_desde_evento] >= rel)) + 0 RETURN IF(HASONEVALUE(dim_evento[id_evento]), SWITCH(TRUE(), semDado = 0, "nada falta", depois > 0, "página existia, mas sem visitas registradas", rel = 0, "artigo criado no dia do evento", rel = 1, "artigo criado 1 dia depois", rel > 1, "artigo criado " & FORMAT(rel, "0") & " dias depois", rel = -1, "artigo criado 1 dia antes", "artigo criado " & FORMAT(-rel, "0") & " dias antes"))
+EVALUATE
+ADDCOLUMNS(VALUES(dim_evento[nome_evento]), "SemDado", [DiasSemDadoPublico], "PorQue", [t_porque])
+ORDER BY [SemDado] DESC
