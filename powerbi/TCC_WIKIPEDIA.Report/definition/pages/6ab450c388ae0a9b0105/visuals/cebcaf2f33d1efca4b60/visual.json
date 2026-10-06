@@ -1,0 +1,161 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "cebcaf2f33d1efca4b60",
+  "position": {
+    "x": 260,
+    "y": 516,
+    "z": 2100,
+    "height": 176,
+    "width": 984,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "nome_evento"
+                }
+              },
+              "queryRef": "dim_evento.nome_evento",
+              "nativeQueryRef": "nome_evento",
+              "displayName": "Evento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "Categoria do evento"
+                }
+              },
+              "queryRef": "dim_evento.Categoria do evento",
+              "nativeQueryRef": "Categoria do evento",
+              "displayName": "Categoria"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "data_evento"
+                }
+              },
+              "queryRef": "dim_evento.data_evento",
+              "nativeQueryRef": "data_evento",
+              "displayName": "Data"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "VisitasPublico"
+                }
+              },
+              "queryRef": "_Medidas.VisitasPublico",
+              "nativeQueryRef": "VisitasPublico",
+              "displayName": "Visitas do público"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Materias"
+                }
+              },
+              "queryRef": "_Medidas.Materias",
+              "nativeQueryRef": "Materias",
+              "displayName": "Matérias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "ResultadoOficial"
+                }
+              },
+              "queryRef": "_Medidas.ResultadoOficial",
+              "nativeQueryRef": "ResultadoOficial",
+              "displayName": "Resultado"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_evento"
+                  }
+                },
+                "Property": "data_evento"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "abas": [
+    {
+      "pagina": "Visão geral",
+      "x": 24,
+      "y": 56,
+      "largura": 97,
+      "altura": 32
+    },
+    {
+      "pagina": "Subida e queda",
+      "x": 123,
+      "y": 56,
+      "largura": 124,
+      "altura": 32
+    },
+    {
+      "pagina": "Quem veio primeiro",
+      "x": 248,
+      "y": 56,
+      "largura": 148,
+      "altura": 32
+    },
+    {
+      "pagina": "Assuntos relacionados",
+      "x": 399,
+      "y": 56,
+      "largura": 167,
+      "altura": 32
+    },
+    {
+      "pagina": "Qualidade dos dados",
+      "x": 568,
+      "y": 56,
+      "largura": 158,
+      "altura": 32
+    }
+  ],
+  "botao_limpar": {
+    "x": 160,
+    "y": 104,
+    "largura": 50,
+    "altura": 20
+  },
+  "filtro_categoria": {
+    "x": 20,
+    "y": 156,
+    "largura": 184,
+    "altura": 32
+  },
+  "filtro_evento": {
+    "x": 20,
+    "y": 218,
+    "largura": 184,
+    "altura": 32
+  },
+  "filtro_ano": {
+    "x": 20,
+    "y": 280,
+    "largura": 184,
+    "altura": 32
+  },
+  "cartao_eventos": {
+    "x": 258,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_periodo": {
+    "x": 514,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_visitas": {
+    "x": 770,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "cartao_materias": {
+    "x": 1026,
+    "y": 142,
+    "largura": 220,
+    "altura": 40
+  },
+  "grafico_anos": {
+    "x": 260,
+    "y": 266,
+    "largura": 416,
+    "altura": 166
+  },
+  "tabela_eventos": {
+    "x": 260,
+    "y": 516,
+    "largura": 984,
+    "altura": 176
+  }
+}

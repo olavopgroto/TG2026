@@ -344,6 +344,49 @@ def pagina_qualidade_dos_dados():
     return s, pos
 
 
+def pagina_visao_geral():
+    pos = {}
+    s = base("Visão geral", pos, filtros_pagina=False)
+
+    gap = 16
+    cw = (MAIN_W - 3 * gap) / 4
+    itens = [("cartao_eventos", "Eventos analisados", COR["texto2"]),
+             ("cartao_periodo", "Período", COR["texto2"]),
+             ("cartao_visitas", "Visitas do público na Wikipédia", COR["publico"]),
+             ("cartao_materias", "Matérias da imprensa", COR["imprensa"])]
+    for i, (chave, rot, cor) in enumerate(itens):
+        cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
+
+    # eventos por ano
+    py, ph = 204, 236
+    gw = 440
+    painel(s, MAIN_X, py, gw, ph, "Quando os eventos aconteceram", "quantos eventos em cada ano")
+    pos["grafico_anos"] = {"x": MAIN_X + 12, "y": py + 62, "largura": gw - 24, "altura": ph - 70}
+
+    # sumario de navegacao (texto fixo sobre o painel, nao dado)
+    gx = MAIN_X + gw + 16
+    gw2 = MAIN_X + MAIN_W - gx
+    painel(s, gx, py, gw2, ph, "Como ler este painel", "uma pergunta em cada página")
+    perguntas = [("Subida e queda", "quão rápido a atenção sobe e some?"),
+                 ("Quem veio primeiro", "o público ou a imprensa reagiu antes?"),
+                 ("Assuntos relacionados", "a atenção se espalha para outros temas?"),
+                 ("Qualidade dos dados", "dá para confiar, e onde estão os buracos?")]
+    meia = (gw2 - 40) / 2
+    for i, (pagina, pergunta) in enumerate(perguntas):
+        cx = gx + 20 + (i % 2) * (meia + 20)
+        cy = py + 92 + (i // 2) * 66
+        s.append(ret(cx, cy - 13, 3, 38, COR["publico"]))
+        s.append(texto(cx + 12, cy, pagina, 12, COR["publico"], 500))
+        s.append(texto(cx + 12, cy + 20, pergunta, 11, COR["texto2"]))
+
+    # tabela
+    ty, th = 456, 244
+    painel(s, MAIN_X, ty, MAIN_W, th, "Os 40 eventos",
+           "uma linha por evento, com o resultado da página Quem veio primeiro")
+    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 60, "largura": MAIN_W - 24, "altura": th - 68}
+    return s, pos
+
+
 def exportar(nome_base, elementos, posicoes):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{SAIDA_LARG}" height="{SAIDA_ALT}" '
            f'viewBox="0 0 {LARG} {ALT}">' + "".join(elementos) + "</svg>")
@@ -361,6 +404,7 @@ if __name__ == "__main__":
         "quem_veio_primeiro": pagina_quem_veio_primeiro,
         "assuntos_relacionados": pagina_assuntos_relacionados,
         "qualidade_dos_dados": pagina_qualidade_dos_dados,
+        "visao_geral": pagina_visao_geral,
     }
     alvo = sys.argv[1] if len(sys.argv) > 1 else None
     if alvo not in paginas:

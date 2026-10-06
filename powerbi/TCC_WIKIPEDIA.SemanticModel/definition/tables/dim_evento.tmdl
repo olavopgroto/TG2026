@@ -31,7 +31,7 @@ table dim_evento
 
 	column data_evento
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 7015bb3c-8df7-4bbd-8f3d-721abed82ac5
 		summarizeBy: none
 		sourceColumn: data_evento
