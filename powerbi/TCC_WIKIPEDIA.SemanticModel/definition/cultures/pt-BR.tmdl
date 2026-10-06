@@ -130,6 +130,90 @@ cultureInfo pt-BR
 			          }
 			        }
 			      ]
+			    },
+			    "table_medidas.artigostodos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "ArtigosTodos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Todos": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.artigosdobraram": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "ArtigosDobraram"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dobraram": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.artigostriplicaram": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "ArtigosTriplicaram"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Triplicaram": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.artigoscincovezes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "ArtigosCincoVezes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cresceram 5 vezes": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  }
 			}

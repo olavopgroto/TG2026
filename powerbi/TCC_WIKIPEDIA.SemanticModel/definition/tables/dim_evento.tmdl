@@ -156,6 +156,12 @@ table dim_evento
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Artigo criado' = VAR d = INT(dim_evento[data_criacao_principal] - dim_evento[data_evento]) RETURN SWITCH(TRUE(), ISBLANK(dim_evento[data_criacao_principal]), "sem data", d < 0, "antes do evento", d = 0, "no dia do evento", d = 1, "1 dia depois", FORMAT(d, "0") & " dias depois")
+		lineageTag: 0e437b55-1479-4d88-b969-8e0d0277f5d1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_evento = m
 		mode: import
 		source =

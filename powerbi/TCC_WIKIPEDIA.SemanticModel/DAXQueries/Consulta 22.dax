@@ -1,0 +1,15 @@
+DEFINE
+    MEASURE _Medidas[t_semdado] = COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal])))
+    MEASURE _Medidas[t_dias] = COUNTROWS(fato_serie_diaria)
+    MEASURE _Medidas[t_depois] = COUNTROWS(FILTER(dim_evento, dim_evento[data_criacao_principal] > dim_evento[data_evento])) + 0
+    MEASURE _Medidas[t_pub] = CALCULATE(DISTINCTCOUNT(fato_metricas_evento[id_evento]), fato_metricas_evento[fonte] = "publico", fato_metricas_evento[base_valida] = TRUE()) + 0
+    MEASURE _Medidas[t_imp] = CALCULATE(DISTINCTCOUNT(fato_metricas_evento[id_evento]), fato_metricas_evento[fonte] = "midia", fato_metricas_evento[base_valida] = TRUE()) + 0
+    MEASURE _Medidas[t_busca] = CALCULATE(AVERAGE(fato_serie_robos[pct_pico]), fato_serie_robos[tipo_agente] = "spider")
+    MEASURE _Medidas[t_outros] = CALCULATE(AVERAGE(fato_serie_robos[pct_pico]), fato_serie_robos[tipo_agente] = "automated")
+    MEASURE _Medidas[t_resp_pub] = VAR v = CALCULATE(SELECTEDVALUE(fato_metricas_evento[base_motivo]), fato_metricas_evento[fonte] = "publico") RETURN SWITCH(v, "ok", "Sim", "poucos_dias_com_dado", "Não: faltam dados de antes", "abaixo_do_piso", "Não: quase sem notícia antes")
+    MEASURE _Medidas[t_resp_imp] = VAR v = CALCULATE(SELECTEDVALUE(fato_metricas_evento[base_motivo]), fato_metricas_evento[fonte] = "midia") RETURN SWITCH(v, "ok", "Sim", "poucos_dias_com_dado", "Não: faltam dados de antes", "abaixo_do_piso", "Não: quase sem notícia antes")
+EVALUATE
+ROW("SemDado", [t_semdado], "Dias", [t_dias], "Depois", [t_depois], "Publico", [t_pub], "Imprensa", [t_imp], "Busca", [t_busca], "Outros", [t_outros], "Pessoas", [PctPicoPublico])
+EVALUATE
+ADDCOLUMNS(VALUES(dim_evento[nome_evento]), "SemDado", [t_semdado], "Publico", [t_resp_pub], "Imprensa", [t_resp_imp])
+ORDER BY [SemDado] DESC

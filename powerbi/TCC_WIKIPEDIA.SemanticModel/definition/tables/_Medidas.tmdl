@@ -109,6 +109,37 @@ table _Medidas
 		formatString: 0.0
 		lineageTag: 1f59feea-6123-4642-8819-c80fbea0080e
 
+	measure DiasSemDadoPublico = COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]))) + 0
+		formatString: 0
+		lineageTag: 4e5680c8-c805-412d-8932-b3ee41b7279a
+
+	measure DiasSemDadoTexto = FORMAT([DiasSemDadoPublico], "#,0") & " de " & FORMAT(COUNTROWS(fato_serie_diaria), "#,0")
+		lineageTag: cfe7682a-0ec8-46a2-902a-38383a01192c
+
+	measure ArtigoCriadoDepois = COUNTROWS(FILTER(dim_evento, dim_evento[data_criacao_principal] > dim_evento[data_evento])) + 0
+		formatString: 0
+		lineageTag: b5885726-ad62-43ef-a3b9-9e48df1cce9d
+
+	measure ComparaPublicoTexto = FORMAT(CALCULATE(DISTINCTCOUNT(fato_metricas_evento[id_evento]), fato_metricas_evento[fonte] = "publico", fato_metricas_evento[base_valida] = TRUE()) + 0, "0") & " de " & FORMAT([TotalEventos], "0")
+		lineageTag: 3920adc5-a647-4f26-a33a-0ff24f765bbb
+
+	measure ComparaImprensaTexto = FORMAT(CALCULATE(DISTINCTCOUNT(fato_metricas_evento[id_evento]), fato_metricas_evento[fonte] = "midia", fato_metricas_evento[base_valida] = TRUE()) + 0, "0") & " de " & FORMAT([TotalEventos], "0")
+		lineageTag: 1f0d1f72-41db-40a8-be1f-800fcb71289d
+
+	measure PctPicoRobosBusca = CALCULATE(AVERAGE(fato_serie_robos[pct_pico]), fato_serie_robos[tipo_agente] = "spider")
+		formatString: 0%;-0%;0%
+		lineageTag: 418ac54b-e645-4e3c-b373-6967e54837df
+
+	measure PctPicoOutrosRobos = CALCULATE(AVERAGE(fato_serie_robos[pct_pico]), fato_serie_robos[tipo_agente] = "automated")
+		formatString: 0%;-0%;0%
+		lineageTag: b81eca2c-b799-4efd-a3ce-87c1a7596796
+
+	measure ComparaPublicoResposta = VAR v = CALCULATE(SELECTEDVALUE(fato_metricas_evento[base_motivo]), fato_metricas_evento[fonte] = "publico") RETURN SWITCH(v, "ok", "Sim", "poucos_dias_com_dado", "Não: faltam dados de antes", "abaixo_do_piso", "Não: quase sem notícia antes")
+		lineageTag: 1c0abb9e-285b-4c93-b8d8-249791a16e67
+
+	measure ComparaImprensaResposta = VAR v = CALCULATE(SELECTEDVALUE(fato_metricas_evento[base_motivo]), fato_metricas_evento[fonte] = "midia") RETURN SWITCH(v, "ok", "Sim", "poucos_dias_com_dado", "Não: faltam dados de antes", "abaixo_do_piso", "Não: quase sem notícia antes")
+		lineageTag: ecb63371-c198-4154-adb0-3c30d3369071
+
 	partition _Medidas = m
 		mode: import
 		source =
