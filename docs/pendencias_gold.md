@@ -202,6 +202,19 @@ Google Gemini fica com 1 artigo no corte de 5x e Galaxy S24 com 2. Nesses evento
 de sensibilidade perde o sentido, porque a curva do conjunto vira a do principal. É o dado
 indicando ausência de transbordamento.
 
+### A8. Artigo principal criado no próprio dia do evento
+A coluna `principal_criado_apos_evento` da `dim_evento` marca 10 eventos, porque o critério
+é "criado no dia do evento ou depois". A leitura `inicio_nao_observavel` usa "estritamente
+depois" e marca 3 (Maui, Enchentes do RS e ChatGPT). Os outros 7 tiveram o artigo criado no
+próprio dia: os terremotos do Haiti, Turquia-Síria, Myanmar, Marrocos e Japão, o assassinato
+de Shinzo Abe e a morte de Elizabeth II. Nesses casos, o artigo principal é sobre o
+acontecimento em si, e não sobre a pessoa ou o lugar, então só podia nascer naquele dia.
+
+Consequência: nesses 7 eventos, o dia 0 do público está incompleto, porque conta só as visitas
+a partir da hora de criação do artigo. Isso pode deslocar o pico do público para o dia 1. A
+tolerância de 1 dia da regra de leitura (D3) absorve esse deslocamento. O nome da coluna é
+enganoso, mas o dado está correto. Encontrado durante a montagem do dashboard, em 06/10.
+
 ---
 
 ## 5. Erros cometidos e corrigidos durante a construção
