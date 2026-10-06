@@ -4,7 +4,7 @@ Documento vivo. Registra o que foi verificado, o que divergiu do esperado, as de
 método tomadas durante a construção e o que ficou fora de escopo. A intenção é não fechar a
 camada com a impressão de que está tudo resolvido.
 
-Atualizado em 01/10/2026, depois do gate e da auditoria profunda.
+Atualizado em 01/10/2026, depois do gate e da auditoria profunda. Revisado em 06/10/2026: limitação L2 corrigida (erro E6).
 
 **Estado: camada completa.** 9 tabelas carregadas, 1 view, 9 pipelines, 1 workflow e 2
 arquivos de auditoria.
@@ -215,6 +215,7 @@ Registrados porque mostram onde o método é frágil e porque explicam decisões
 | E3 | R² combinado usado como critério de comparação | indicava que o ajuste duplo era pior em 38 de 39 eventos na mídia | a comparação válida é R² da fase 1 contra o da reta única |
 | E4 | Métrica de assimetria proposta sem checar os dados | o pico cai no dia 0 ou 1 na maioria dos eventos, zerando o denominador | métrica descartada |
 | E5 | Duas checagens da auditoria escritas com `GROUP BY` em subconsulta escalar | devolviam vazio em vez de zero e disparavam alerta falso | checagens reescritas |
+| E6 | Afirmação de que a correlação em log nunca fica negativa, generalizada a partir dos eventos olhados de perto | o correlograma do Galaxy S24 no dashboard mostrou valores abaixo de zero | medido nos 40 eventos e reescrita a limitação L2 |
 
 ---
 
@@ -223,7 +224,7 @@ Registrados porque mostram onde o método é frágil e porque explicam decisões
 | # | Limitação |
 |---|---|
 | L1 | **Resolução diária.** Se a imprensa publica às 8h e o público consulta às 11h, isso é defasagem zero no dado. O fenômeno pode ocorrer em horas, e a Wikimedia só oferece granularidade diária nesse endpoint |
-| L2 | **Tendência comum.** A correlação em log nunca fica negativa em nenhuma defasagem, o que indica que parte dela vem de as duas séries subirem e descerem juntas ao longo da janela. A variante de primeira diferença resolveria isso e ficou fora do escopo |
+| L2 | **Tendência comum.** Na variante oficial, 793 das 840 correlações (94%) são positivas. As 47 negativas aparecem em 16 eventos e se concentram longe do evento: 41 entre 7 e 10 dias de deslocamento, 5 entre 4 e 6, e apenas 1 entre 0 e 3 (−0,008, praticamente zero). Perto do evento, a correlação é positiva em 279 de 280 casos, o que indica que parte dela vem de as duas séries subirem e descerem juntas ao longo da janela, e não só do alinhamento dia a dia. A variante de primeira diferença resolveria isso e ficou fora do escopo |
 | L3 | **Razão de amplificação em outro recorte.** Foi medida na curadoria com `all-access/all-agents`, enquanto as séries da Gold usam o agente `user` com os três acessos somados |
 | L4 | **Pico sobre a janela inteira.** A Eleição do Brasil tem pico no dia -28 (primeiro turno) e o ChatGPT no dia 55 |
 | L5 | **Queries da Media Cloud apenas em inglês**, o que subestima a cobertura em países cuja imprensa não escreve em inglês |
