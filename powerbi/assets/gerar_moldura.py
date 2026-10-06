@@ -146,7 +146,10 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
 def cartao(s, posicoes, chave, x, y, w, rotulo, cor):
     s.append(ret(x, y, w, 80, COR["cartao"], 8))
     s.append(ret(x, y, w, 3, cor))
-    s.append(texto(x + 16, y + 26, rotulo, 12, COR["apagado"]))
+    tam = 12
+    while tam > 9 and largura_texto(rotulo, tam) > w - 28:
+        tam -= 0.5
+    s.append(texto(x + 16, y + 26, rotulo, tam, COR["apagado"]))
     posicoes[chave] = {"x": x + 10, "y": y + 34, "largura": w - 20, "altura": 40}
 
 
@@ -295,6 +298,52 @@ def pagina_assuntos_relacionados():
     return s, pos
 
 
+def pagina_qualidade_dos_dados():
+    pos = {}
+    s = base("Qualidade dos dados", pos, filtros_pagina=False)
+
+    gap = 16
+    cw = (MAIN_W - 3 * gap) / 4
+    itens = [("cartao_sem_dado", "Dias sem dado no público", COR["robos"]),
+             ("cartao_criado_depois", "Artigo criado depois do evento", COR["robos"]),
+             ("cartao_compara_publico", "Dá para comparar com antes? Público", COR["publico"]),
+             ("cartao_compara_imprensa", "Dá para comparar com antes? Imprensa", COR["imprensa"])]
+    for i, (chave, rot, cor) in enumerate(itens):
+        cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
+
+    # curva de pessoas e robos
+    py, ph = 204, 236
+    gw = 600
+    painel(s, MAIN_X, py, gw, ph, "Pessoas e robôs reagem ao mesmo evento",
+           "curva média, o pico de cada evento vale 100%")
+    lx, ly = MAIN_X + 20, py + 72
+    for nome, cor in [("Pessoas", COR["publico"]), ("Robôs de busca", "#C3C9D4"), ("Outros robôs", COR["robos"])]:
+        s.append(ret(lx, ly - 4, 16, 3, cor))
+        s.append(texto(lx + 22, ly, nome, 11, COR["rotulo"]))
+        lx += 22 + largura_texto(nome, 11) + 22
+    pos["grafico_robos"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
+
+    # painel fixo das auditorias (texto sobre o processo, nao dado de evento)
+    ax = MAIN_X + gw + 16
+    aw = MAIN_X + MAIN_W - ax
+    painel(s, ax, py, aw, ph, "Como estes dados foram conferidos", "auditoria automática da camada final")
+    s.append(texto(ax + 20, py + 100, "112", 34, COR["publico"], 500))
+    s.append(texto(ax + 20 + largura_texto("112", 34) + 10, py + 98, "checagens automáticas, nenhum alerta", 12, COR["rotulo"]))
+    linhas = ["59 conferem volumes, regras e coerência entre as tabelas",
+              "53 refazem cada conta por outro caminho e comparam",
+              "1.680 correlações recalculadas uma a uma",
+              "6 erros encontrados e corrigidos durante a construção"]
+    for i, t in enumerate(linhas):
+        s.append(ret(ax + 20, py + 131 + i * 24, 4, 4, COR["borda"], 1))
+        s.append(texto(ax + 32, py + 136 + i * 24, t, 11, COR["texto2"]))
+
+    # tabela
+    ty, th = 456, 244
+    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento", "o que falta em cada evento, e por quê")
+    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 60, "largura": MAIN_W - 24, "altura": th - 68}
+    return s, pos
+
+
 def exportar(nome_base, elementos, posicoes):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{SAIDA_LARG}" height="{SAIDA_ALT}" '
            f'viewBox="0 0 {LARG} {ALT}">' + "".join(elementos) + "</svg>")
@@ -311,6 +360,7 @@ if __name__ == "__main__":
         "subida_e_queda": pagina_subida_e_queda,
         "quem_veio_primeiro": pagina_quem_veio_primeiro,
         "assuntos_relacionados": pagina_assuntos_relacionados,
+        "qualidade_dos_dados": pagina_qualidade_dos_dados,
     }
     alvo = sys.argv[1] if len(sys.argv) > 1 else None
     if alvo not in paginas:

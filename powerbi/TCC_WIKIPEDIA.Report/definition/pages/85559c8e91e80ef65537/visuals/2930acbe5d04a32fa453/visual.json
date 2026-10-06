@@ -1,0 +1,161 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "2930acbe5d04a32fa453",
+  "position": {
+    "x": 260,
+    "y": 516,
+    "z": 2100,
+    "height": 176,
+    "width": 984,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "nome_evento"
+                }
+              },
+              "queryRef": "dim_evento.nome_evento",
+              "nativeQueryRef": "nome_evento",
+              "displayName": "Evento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "Categoria do evento"
+                }
+              },
+              "queryRef": "dim_evento.Categoria do evento",
+              "nativeQueryRef": "Categoria do evento",
+              "displayName": "Categoria"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "DiasSemDadoPublico"
+                }
+              },
+              "queryRef": "_Medidas.DiasSemDadoPublico",
+              "nativeQueryRef": "DiasSemDadoPublico",
+              "displayName": "Dias sem dado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_evento"
+                    }
+                  },
+                  "Property": "Artigo criado"
+                }
+              },
+              "queryRef": "dim_evento.Artigo criado",
+              "nativeQueryRef": "Artigo criado",
+              "displayName": "Artigo criado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "ComparaPublicoResposta"
+                }
+              },
+              "queryRef": "_Medidas.ComparaPublicoResposta",
+              "nativeQueryRef": "ComparaPublicoResposta",
+              "displayName": "Dá para comparar? Público"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "ComparaImprensaResposta"
+                }
+              },
+              "queryRef": "_Medidas.ComparaImprensaResposta",
+              "nativeQueryRef": "ComparaImprensaResposta",
+              "displayName": "Dá para comparar? Imprensa"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "DiasSemDadoPublico"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
