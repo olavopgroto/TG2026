@@ -150,7 +150,7 @@ table dim_evento
 
 		annotation SummarizationSetBy = User
 
-	column 'Categoria do evento' = SWITCH(dim_evento[categoria], "ciencia_global", "Ciência", "desastre_natural", "Desastre natural", "lancamento_produto", "Lançamento de produto", "morte_figura_publica", "Morte de figura pública", "politico", "Político")
+	column 'Categoria do evento' = SWITCH(dim_evento[categoria], "ciencia_global", "Ciência", "desastre_natural", "Desastre natural", "lancamento_produto", "Lançamento de produto", "morte_figura_publica", "Morte de figura pública", "politico", "Política")
 		lineageTag: ee34cbcf-5f21-496b-9e45-15e8bb52183d
 		summarizeBy: none
 
@@ -158,6 +158,12 @@ table dim_evento
 
 	column 'Artigo criado' = VAR d = INT(dim_evento[data_criacao_principal] - dim_evento[data_evento]) RETURN SWITCH(TRUE(), ISBLANK(dim_evento[data_criacao_principal]), "sem data", d < -30, "mais de 30 dias antes", d < -1, FORMAT(-d, "0") & " dias antes", d = -1, "1 dia antes", d = 0, "no dia do evento", d = 1, "1 dia depois", FORMAT(d, "0") & " dias depois")
 		lineageTag: 0e437b55-1479-4d88-b969-8e0d0277f5d1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Evento = SWITCH(dim_evento[nome_evento], "Enchentes Rio Grande do Sul", "Enchentes no Rio Grande do Sul", "Incendios Maui Havai", "Incêndios em Maui, Havaí", "Terremoto Noto Japao", "Terremoto em Noto, Japão", "Terremoto Myanmar", "Terremoto em Mianmar", "Terremoto Haiti", "Terremoto no Haiti", "Terremoto Al Haouz Marrocos", "Terremoto em Al Haouz, Marrocos", "Terremoto Turquia-Siria", "Terremoto na Turquia e na Síria", "Threads Meta", "Threads, da Meta", "Furacao Ian", "Furacão Ian", "Eleicao presidencial Brasil", "Eleição presidencial no Brasil", "Cupula G20 Nova Delhi", "Cúpula do G20 em Nova Délhi", "COP28 Dubai", "COP28 em Dubai", "Eleicao presidencial Mexico", "Eleição presidencial no México", "Eleicao geral India", "Eleição geral na Índia", "Eleicao presidencial EUA", "Eleição presidencial nos EUA", "Cupula G20 Rio", "Cúpula do G20 no Rio", "COP30 Belem", "COP30 em Belém", "Imagem Sagitario A", "Imagem de Sagitário A*", "Imagens James Webb", "Primeiras imagens do James Webb", "Impacto sonda DART", "Impacto da sonda DART", "Lancamento Artemis I", "Lançamento da Artemis I", "Ignicao fusao nuclear", "Ignição da fusão nuclear", "Primeiro voo Starship", "Primeiro voo da Starship", "Pouso Chandrayaan-3", "Pouso da Chandrayaan-3", "Pouso Perseverance Marte", "Pouso do Perseverance em Marte", "Pele", "Pelé", dim_evento[nome_evento])
+		lineageTag: 45a5628e-c6d2-4663-8798-7cb7eb63437c
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic

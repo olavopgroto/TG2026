@@ -23,11 +23,11 @@
                       "Entity": "dim_tempo_relativo"
                     }
                   },
-                  "Property": "Fase da janela"
+                  "Property": "Período"
                 }
               },
               "queryRef": "dim_tempo_relativo.Fase da janela",
-              "nativeQueryRef": "Fase da janela",
+              "nativeQueryRef": "Período",
               "active": true
             }
           ]

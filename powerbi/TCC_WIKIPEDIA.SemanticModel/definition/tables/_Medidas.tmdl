@@ -152,6 +152,9 @@ table _Medidas
 	measure ResultadoOficial = CALCULATE(SELECTEDVALUE(fato_defasagem_evento[Leitura do evento]), fato_defasagem_evento[variante] = "nivel_log")
 		lineageTag: 5fa70398-d45d-4b74-a4d6-03ee038ecf60
 
+	measure SimultaneosDeTotal = FORMAT([EventosSimultaneos], "0") & " de " & FORMAT([TotalEventos], "0")
+		lineageTag: 52e18590-4b7b-4762-8c73-2b3285751bb5
+
 	partition _Medidas = m
 		mode: import
 		source =
