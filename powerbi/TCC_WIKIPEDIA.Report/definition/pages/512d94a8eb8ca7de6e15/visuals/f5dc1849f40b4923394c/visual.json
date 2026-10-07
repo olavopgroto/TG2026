@@ -34,12 +34,6 @@
         }
       }
     },
-    "syncGroup": {
-      "groupName": "evento",
-      "fieldChanges": true,
-      "filterChanges": true
-    },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "data": [
         {
@@ -124,7 +118,18 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
       ]
-    }
+    },
+    "syncGroup": {
+      "groupName": "evento",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
   }
 }
