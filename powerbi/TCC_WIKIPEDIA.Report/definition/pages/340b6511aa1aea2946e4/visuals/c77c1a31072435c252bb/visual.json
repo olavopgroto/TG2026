@@ -7,7 +7,7 @@
     "z": 4005,
     "height": 20,
     "width": 50,
-    "tabOrder": 4005
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "actionButton",
@@ -29,6 +29,33 @@
         }
       ],
       "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "text": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
         {
           "properties": {
             "show": {
