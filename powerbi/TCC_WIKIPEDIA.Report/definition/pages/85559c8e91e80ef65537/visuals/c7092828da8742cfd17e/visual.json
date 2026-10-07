@@ -118,9 +118,18 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
       ]
     },
-    "syncGroup": { "groupName": "categoria", "fieldChanges": true, "filterChanges": true },
+    "syncGroup": {
+      "groupName": "categoria",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   }
 }

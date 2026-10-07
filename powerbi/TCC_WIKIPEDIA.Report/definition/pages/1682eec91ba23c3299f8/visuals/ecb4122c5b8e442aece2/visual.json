@@ -125,7 +125,11 @@
         }
       ]
     },
-    "syncGroup": { "groupName": "evento", "fieldChanges": true, "filterChanges": true },
+    "syncGroup": {
+      "groupName": "evento",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   }
 }
