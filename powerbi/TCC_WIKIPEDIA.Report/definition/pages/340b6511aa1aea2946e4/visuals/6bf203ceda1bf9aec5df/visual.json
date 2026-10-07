@@ -23,11 +23,11 @@
                       "Entity": "dim_evento"
                     }
                   },
-                  "Property": "nome_evento"
+                  "Property": "Evento"
                 }
               },
-              "queryRef": "dim_evento.nome_evento",
-              "nativeQueryRef": "nome_evento",
+              "queryRef": "dim_evento.Evento",
+              "nativeQueryRef": "Evento",
               "active": true
             }
           ]
@@ -144,7 +144,7 @@
                                   "Source": "d"
                                 }
                               },
-                              "Property": "nome_evento"
+                              "Property": "Evento"
                             }
                           }
                         ],

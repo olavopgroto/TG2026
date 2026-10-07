@@ -12,19 +12,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "nome_evento"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Evento": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "dim_evento.categoria_do_evento": {
 			      "Definition": {
@@ -382,6 +370,27 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "Resultado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_evento.evento": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_evento",
+			          "ConceptualProperty": "Evento"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Evento": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

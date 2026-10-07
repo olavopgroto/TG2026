@@ -1,0 +1,8 @@
+EVALUATE
+ROW("Eventos", DISTINCTCOUNT(dim_evento[Evento]), "Pele", LOOKUPVALUE(dim_evento[Evento], dim_evento[nome_evento], "Pele"), "Simultaneos", [SimultaneosDeTotal])
+EVALUATE
+SUMMARIZECOLUMNS(dim_evento[Categoria do evento], "Eventos", COUNTROWS(dim_evento))
+EVALUATE
+SELECTCOLUMNS(FILTER(INFO.VIEW.COLUMNS(), [Table] = "dim_tempo_relativo" && [Name] = "Período"), "Coluna", [Name], "OrdenadaPor", [SortByColumn])
+EVALUATE
+SUMMARIZECOLUMNS(dim_tempo_relativo[Período], "Dias", COUNTROWS(dim_tempo_relativo))
