@@ -54,12 +54,6 @@
     "largura": 184,
     "altura": 32
   },
-  "filtro_ano": {
-    "x": 20,
-    "y": 280,
-    "largura": 184,
-    "altura": 32
-  },
   "cartao_sem_dado": {
     "x": 258,
     "y": 142,

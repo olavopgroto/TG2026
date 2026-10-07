@@ -54,18 +54,6 @@
     "largura": 184,
     "altura": 32
   },
-  "filtro_ano": {
-    "x": 20,
-    "y": 280,
-    "largura": 184,
-    "altura": 32
-  },
-  "filtro_fase": {
-    "x": 20,
-    "y": 398,
-    "largura": 184,
-    "altura": 32
-  },
   "cartao_visitas": {
     "x": 258,
     "y": 142,
@@ -98,8 +86,8 @@
   },
   "grafico_leitura": {
     "x": 916,
-    "y": 276,
+    "y": 332,
     "largura": 328,
-    "altura": 412
+    "altura": 360
   }
 }

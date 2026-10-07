@@ -103,7 +103,7 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
     # titulo e selo
     s.append(ret(24, 20, 4, 18, COR["publico"]))
     s.append(texto(38, 35, "Ciclo de vida da atenção digital", 17, COR["texto"], 500))
-    selo = "40 eventos · 91 dias cada"
+    selo = "40 eventos · de 30 dias antes a 60 depois"
     sw = largura_texto(selo, 11) + 24
     s.append(ret(LARG - 24 - sw, 16, sw, 24, COR["fundo"], 12, COR["borda"]))
     s.append(texto(LARG - 24 - sw / 2, 32, selo, 11, COR["apagado"], ancora="middle"))
@@ -129,17 +129,16 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
     s.append(texto(204, 118, "limpar", 11, COR["publico"], ancora="end"))
     posicoes["botao_limpar"] = {"x": 160, "y": 104, "largura": 50, "altura": 20}
 
+    # plano C: so o rotulo; a caixa e a do proprio filtro do Power BI
     def filtro(rotulo, y, chave):
         s.append(texto(20, y, rotulo, 11, COR["rotulo"]))
-        s.append(ret(20, y + 8, 184, 32, COR["cartao"], 6, COR["borda"]))
         posicoes[chave] = {"x": 20, "y": y + 8, "largura": 184, "altura": 32}
 
     filtro("Categoria", 148, "filtro_categoria")
     filtro("Evento", 210, "filtro_evento")
-    filtro("Ano do evento", 272, "filtro_ano")
     if filtros_pagina:
-        s.append(ret(20, 332, 184, 1, COR["linha"]))
-        s.append(texto(20, 358, "DESTA PÁGINA", 11, COR["apagado"], 500, esp=1.2))
+        s.append(ret(20, 270, 184, 1, COR["linha"]))
+        s.append(texto(20, 296, "DESTA PÁGINA", 11, COR["apagado"], 500, esp=1.2))
     return s
 
 
@@ -161,28 +160,20 @@ def painel(s, x, y, w, h, titulo, subtitulo):
 
 def pagina_subida_e_queda():
     pos = {}
-    s = base("Subida e queda", pos)
+    s = base("Subida e queda", pos, filtros_pagina=False)
 
-    # filtros desta pagina
-    s.append(texto(20, 390, "Fase da janela", 11, COR["rotulo"]))
-    s.append(ret(20, 398, 184, 32, COR["cartao"], 6, COR["borda"]))
-    pos["filtro_fase"] = {"x": 20, "y": 398, "largura": 184, "altura": 32}
-
-    # quatro cartoes
     gap = 16
     cw = (MAIN_W - 3 * gap) / 4
     itens = [("cartao_visitas", "Visitas do público", COR["publico"]),
-             ("cartao_materias", "Matérias", COR["imprensa"]),
-             ("cartao_meia_vida", "Meia-vida do público", COR["tempo"]),
-             ("cartao_simultaneos", "Eventos simultâneos", COR["conclusao"])]
+             ("cartao_materias", "Matérias da imprensa", COR["imprensa"]),
+             ("cartao_meia_vida", "Cai pela metade em", COR["tempo"]),
+             ("cartao_simultaneos", "Chegaram juntos", COR["conclusao"])]
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
 
-    # painel da curva media
     py, ph = 208, 492
     gw = 640
-    painel(s, MAIN_X, py, gw, ph, "Curva média de atenção",
-           "todos os eventos, normalizados pelo próprio pico")
+    painel(s, MAIN_X, py, gw, ph, "Como a atenção sobe e cai", "o pico de cada evento vale 100%")
     lx, ly = MAIN_X + 20, py + 76
     for nome, cor in [("Público", COR["publico"]), ("Imprensa", COR["imprensa"]), ("Robôs", COR["robos"])]:
         s.append(ret(lx, ly - 4, 16, 3, cor))
@@ -190,23 +181,32 @@ def pagina_subida_e_queda():
         lx += 22 + largura_texto(nome, 11) + 22
     pos["grafico_curva"] = {"x": MAIN_X + 12, "y": py + 92, "largura": gw - 24, "altura": ph - 104}
 
-    # painel das leituras
-    lx0 = MAIN_X + gw + 16
-    lw = MAIN_X + MAIN_W - lx0
-    painel(s, lx0, py, lw, ph, "Leitura do evento", "quem se moveu primeiro")
-    pos["grafico_leitura"] = {"x": lx0 + 12, "y": py + 68, "largura": lw - 24, "altura": ph - 80}
-
+    rx = MAIN_X + gw + 16
+    rw = MAIN_X + MAIN_W - rx
+    painel(s, rx, py, rw, ph, "Quem veio primeiro", "resultado de cada evento")
+    itens = [("Chegaram juntos", COR["conclusao"]), ("Imprensa na frente", COR["imprensa"]),
+             ("Público na frente", COR["publico"]), ("Picos em datas diferentes", "#7E8AA0"),
+             ("Artigo criado depois", "#5C6478"), ("Sem resposta clara", "#3E5A6E")]
+    lx, ly, limite = rx + 20, py + 74, rx + rw - 16
+    for nome, cor in itens:
+        w = 14 + largura_texto(nome, 10)
+        if lx + w > limite:
+            lx, ly = rx + 20, ly + 18
+        s.append(ret(lx, ly - 8, 9, 9, cor, 2))
+        s.append(texto(lx + 14, ly, nome, 10, COR["rotulo"]))
+        lx += w + 14
+    topo = ly + 14
+    pos["grafico_leitura"] = {"x": rx + 12, "y": round(topo), "largura": rw - 24,
+                              "altura": round(py + ph - 8 - topo)}
     return s, pos
-
 
 def pagina_quem_veio_primeiro():
     pos = {}
     s = base("Quem veio primeiro", pos)
 
     # filtro desta pagina
-    s.append(texto(20, 390, "Forma de comparar", 11, COR["rotulo"]))
-    s.append(ret(20, 398, 184, 32, COR["cartao"], 6, COR["borda"]))
-    pos["filtro_forma"] = {"x": 20, "y": 398, "largura": 184, "altura": 32}
+    s.append(texto(20, 328, "Forma de comparar", 11, COR["rotulo"]))
+    pos["filtro_forma"] = {"x": 20, "y": 336, "largura": 184, "altura": 32}
 
     # quatro cartoes
     gap = 16
@@ -271,7 +271,7 @@ def pagina_assuntos_relacionados():
     s.append(texto(MAIN_X, 106, "artigos relacionados por evento, em média", 10, COR["apagado"]))
     gap = 16
     cw = (MAIN_W - 3 * gap) / 4
-    itens = [("cartao_todos", "Acompanhados", RAMPA["todos"]),
+    itens = [("cartao_todos", "Todos os artigos", RAMPA["todos"]),
              ("cartao_dobraram", "Dobraram de acesso", RAMPA["dobraram"]),
              ("cartao_triplicaram", "Triplicaram", RAMPA["triplicaram"]),
              ("cartao_cinco", "Cresceram 5 vezes", RAMPA["cinco"])]
@@ -317,7 +317,7 @@ def pagina_qualidade_dos_dados():
     painel(s, MAIN_X, py, gw, ph, "Pessoas e robôs reagem ao mesmo evento",
            "curva média, o pico de cada evento vale 100%")
     lx, ly = MAIN_X + 20, py + 72
-    for nome, cor in [("Pessoas", COR["publico"]), ("Robôs de busca", "#C3C9D4"), ("Outros robôs", COR["robos"])]:
+    for nome, cor in [("Público", COR["publico"]), ("Robôs de busca", "#C3C9D4"), ("Outros robôs", COR["robos"])]:
         s.append(ret(lx, ly - 4, 16, 3, cor))
         s.append(texto(lx + 22, ly, nome, 11, COR["rotulo"]))
         lx += 22 + largura_texto(nome, 11) + 22

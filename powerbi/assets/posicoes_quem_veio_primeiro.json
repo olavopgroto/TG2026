@@ -54,15 +54,9 @@
     "largura": 184,
     "altura": 32
   },
-  "filtro_ano": {
-    "x": 20,
-    "y": 280,
-    "largura": 184,
-    "altura": 32
-  },
   "filtro_forma": {
     "x": 20,
-    "y": 398,
+    "y": 336,
     "largura": 184,
     "altura": 32
   },

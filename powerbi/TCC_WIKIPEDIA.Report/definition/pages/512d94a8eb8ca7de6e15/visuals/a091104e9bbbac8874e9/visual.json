@@ -23,11 +23,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "EventosSimultaneos"
+                  "Property": "SimultaneosDeTotal"
                 }
               },
-              "queryRef": "_Medidas.EventosSimultaneos",
-              "nativeQueryRef": "EventosSimultaneos"
+              "queryRef": "_Medidas.SimultaneosDeTotal",
+              "nativeQueryRef": "SimultaneosDeTotal"
             }
           ]
         }

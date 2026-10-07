@@ -3,9 +3,9 @@
   "name": "6a1bfdbd14da04c49dab",
   "position": {
     "x": 916,
-    "y": 276,
+    "y": 332,
     "z": 2100,
-    "height": 412,
+    "height": 360,
     "width": 328,
     "tabOrder": 2100
   },
@@ -71,6 +71,19 @@
     },
     "drillFilterOtherVisuals": true,
     "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "categoryAxis": [
         {
           "properties": {
@@ -143,6 +156,254 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C77DFF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Chegaram juntos'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F7B955'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Imprensa na frente'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4ADE9E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Público na frente'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7E8AA0'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Picos em datas diferentes'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#5C6478'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Artigo criado depois'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3E5A6E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sem resposta clara'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ]
