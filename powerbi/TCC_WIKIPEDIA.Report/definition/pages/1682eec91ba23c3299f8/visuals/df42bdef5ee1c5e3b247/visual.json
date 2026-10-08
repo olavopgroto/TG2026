@@ -157,7 +157,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2F4B5E'"
+                      "Value": "'#5266A0'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#3F7FA6'"
+                      "Value": "'#2188C5'"
                     }
                   }
                 }
@@ -239,7 +239,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5BB8E8'"
+                      "Value": "'#38BEE8'"
                     }
                   }
                 }
@@ -280,7 +280,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9ED8F5'"
+                      "Value": "'#BDEAF7'"
                     }
                   }
                 }
