@@ -1,0 +1,58 @@
+{
+  "name": "Ciclo de Atencao Azul",
+  "dataColors": [
+    "#BDEAF7",
+    "#2188C5",
+    "#626F7A",
+    "#38BEE8",
+    "#95A2AE",
+    "#5266A0",
+    "#9BA5B5",
+    "#2A313D"
+  ],
+  "background": "#171C24",
+  "foreground": "#EDEFF2",
+  "secondLevelElements": "#2A313D",
+  "tableAccent": "#38BEE8",
+  "good": "#38BEE8",
+  "neutral": "#95A2AE",
+  "bad": "#626F7A",
+  "textClasses": {
+    "callout": {
+      "fontSize": 24,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#EDEFF2"
+    },
+    "title": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI",
+      "color": "#EDEFF2"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI",
+      "color": "#AEB6C2"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#8B95A5"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

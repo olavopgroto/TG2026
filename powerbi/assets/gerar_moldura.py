@@ -59,11 +59,11 @@ COR = {
     "texto2": "#AEB6C2",
     "rotulo": "#8B95A5",
     "apagado": "#6B7686",
-    "publico": "#4ADE9E",
-    "imprensa": "#F7B955",
-    "tempo": "#5BB8E8",
-    "conclusao": "#C77DFF",
-    "robos": "#7E8AA0",
+    "publico": "#BDEAF7",      # azul gelo
+    "imprensa": "#2188C5",     # azul royal
+    "destaque": "#38BEE8",     # azul ceu: abas, limpar, chegaram juntos
+    "robos": "#626F7A",        # cinza azulado escuro
+    "secundario": "#95A2AE",   # cinza azulado claro: robos de busca, sem conclusao
 }
 
 PAGINAS = ["Visão geral", "Subida e queda", "Quem veio primeiro",
@@ -101,7 +101,7 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
     s = [ret(0, 0, LARG, ALT, COR["fundo"])]
 
     # titulo e selo
-    s.append(ret(24, 20, 4, 18, COR["publico"]))
+    s.append(ret(24, 20, 4, 18, COR["destaque"]))
     s.append(texto(38, 35, "Ciclo de vida da atenção digital", 17, COR["texto"], 500))
     selo = "40 eventos · de 30 dias antes a 60 depois"
     sw = largura_texto(selo, 11) + 24
@@ -115,9 +115,9 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
         w = largura_texto(nome, 13) + 28
         ativa = nome == pagina_ativa
         s.append(texto(x + w / 2, 75, nome, 13,
-                       COR["publico"] if ativa else COR["texto2"], 500 if ativa else 400, "middle"))
+                       COR["destaque"] if ativa else COR["texto2"], 500 if ativa else 400, "middle"))
         if ativa:
-            s.append(ret(x, 85, w, 3, COR["publico"]))
+            s.append(ret(x, 85, w, 3, COR["destaque"]))
         posicoes["abas"].append({"pagina": nome, "x": round(x), "y": 56,
                                  "largura": round(w), "altura": 32})
         x += w + 2
@@ -126,7 +126,7 @@ def base(pagina_ativa, posicoes, filtros_pagina=True):
     # barra lateral de filtros
     s.append(ret(LAT_LARG, CAB_ALT, 1, ALT - CAB_ALT, COR["linha"]))
     s.append(texto(20, 118, "FILTROS", 11, COR["apagado"], 500, esp=1.2))
-    s.append(texto(204, 118, "limpar", 11, COR["publico"], ancora="end"))
+    s.append(texto(204, 118, "limpar", 11, COR["destaque"], ancora="end"))
     posicoes["botao_limpar"] = {"x": 160, "y": 104, "largura": 50, "altura": 20}
 
     # plano C: so o rotulo; a caixa e a do proprio filtro do Power BI
@@ -166,8 +166,8 @@ def pagina_subida_e_queda():
     cw = (MAIN_W - 3 * gap) / 4
     itens = [("cartao_visitas", "Visitas do público", COR["publico"]),
              ("cartao_materias", "Matérias da imprensa", COR["imprensa"]),
-             ("cartao_meia_vida", "Cai pela metade em", COR["tempo"]),
-             ("cartao_simultaneos", "Chegaram juntos", COR["conclusao"])]
+             ("cartao_meia_vida", "Cai pela metade em", COR["publico"]),
+             ("cartao_simultaneos", "Chegaram juntos", COR["destaque"])]
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
 
@@ -184,9 +184,8 @@ def pagina_subida_e_queda():
     rx = MAIN_X + gw + 16
     rw = MAIN_X + MAIN_W - rx
     painel(s, rx, py, rw, ph, "Quem veio primeiro", "resultado de cada evento")
-    itens = [("Chegaram juntos", COR["conclusao"]), ("Imprensa na frente", COR["imprensa"]),
-             ("Público na frente", COR["publico"]), ("Picos em datas diferentes", "#7E8AA0"),
-             ("Artigo criado depois", "#5C6478"), ("Sem resposta clara", "#3E5A6E")]
+    itens = [("Chegaram juntos", COR["destaque"]), ("Imprensa na frente", COR["imprensa"]),
+             ("Público na frente", COR["publico"]), ("Sem conclusão", COR["secundario"])]
     lx, ly, limite = rx + 20, py + 74, rx + rw - 16
     for nome, cor in itens:
         w = 14 + largura_texto(nome, 10)
@@ -211,10 +210,10 @@ def pagina_quem_veio_primeiro():
     # quatro cartoes
     gap = 16
     cw = (MAIN_W - 3 * gap) / 4
-    itens = [("cartao_juntos", "Chegaram juntos", COR["conclusao"]),
+    itens = [("cartao_juntos", "Chegaram juntos", COR["destaque"]),
              ("cartao_imprensa", "Imprensa na frente", COR["imprensa"]),
              ("cartao_publico", "Público na frente", COR["publico"]),
-             ("cartao_concordam", "Os dois métodos concordam", COR["tempo"])]
+             ("cartao_concordam", "Os dois métodos concordam", COR["texto2"])]
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
 
@@ -224,7 +223,7 @@ def pagina_quem_veio_primeiro():
     painel(s, MAIN_X, py, gw, ph, "Em que dia as curvas mais combinam",
            "escolha um evento no filtro · positivo = imprensa antes")
     lx, ly = MAIN_X + 20, py + 72
-    s.append(ret(lx, ly - 8, 10, 10, COR["tempo"], 2))
+    s.append(ret(lx, ly - 8, 10, 10, COR["destaque"], 2))
     s.append(texto(lx + 16, ly, "Semelhança das curvas", 11, COR["rotulo"]))
     lx += 16 + largura_texto("Semelhança das curvas", 11) + 24
     s.append(ret(lx, ly - 4, 16, 3, "#9BA5B5"))
@@ -236,9 +235,8 @@ def pagina_quem_veio_primeiro():
     rw = MAIN_X + MAIN_W - rx
     painel(s, rx, py, rw, ph, "Resultado por categoria", "quantos eventos em cada resultado")
     # legenda desenhada: as cores sao fixas por resultado, entao nao dependem do dado
-    itens = [("Chegaram juntos", COR["conclusao"]), ("Imprensa na frente", COR["imprensa"]),
-             ("Público na frente", COR["publico"]), ("Picos em datas diferentes", "#7E8AA0"),
-             ("Artigo criado depois", "#5C6478"), ("Sem resposta clara", "#3E5A6E")]
+    itens = [("Chegaram juntos", COR["destaque"]), ("Imprensa na frente", COR["imprensa"]),
+             ("Público na frente", COR["publico"]), ("Sem conclusão", COR["secundario"])]
     lx, ly, limite = rx + 20, py + 74, rx + rw - 16
     for nome, cor in itens:
         w = 14 + largura_texto(nome, 10)
@@ -260,7 +258,7 @@ def pagina_quem_veio_primeiro():
     return s, pos
 
 
-RAMPA = {"todos": "#2F4B5E", "dobraram": "#3F7FA6", "triplicaram": "#5BB8E8", "cinco": "#9ED8F5"}
+RAMPA = {"todos": "#5266A0", "dobraram": "#2188C5", "triplicaram": "#38BEE8", "cinco": "#BDEAF7"}
 
 
 def pagina_assuntos_relacionados():
@@ -304,8 +302,8 @@ def pagina_qualidade_dos_dados():
 
     gap = 16
     cw = (MAIN_W - 3 * gap) / 4
-    itens = [("cartao_sem_dado", "Dias sem dado no público", COR["robos"]),
-             ("cartao_criado_depois", "Artigo criado depois do evento", COR["robos"]),
+    itens = [("cartao_sem_dado", "Dias sem dado no público", COR["texto2"]),
+             ("cartao_criado_depois", "Artigo criado depois do evento", COR["texto2"]),
              ("cartao_compara_publico", "Dá para comparar com antes? Público", COR["publico"]),
              ("cartao_compara_imprensa", "Dá para comparar com antes? Imprensa", COR["imprensa"])]
     for i, (chave, rot, cor) in enumerate(itens):
@@ -317,7 +315,7 @@ def pagina_qualidade_dos_dados():
     painel(s, MAIN_X, py, gw, ph, "Pessoas e robôs reagem ao mesmo evento",
            "curva média, o pico de cada evento vale 100%")
     lx, ly = MAIN_X + 20, py + 72
-    for nome, cor in [("Público", COR["publico"]), ("Robôs de busca", "#C3C9D4"), ("Outros robôs", COR["robos"])]:
+    for nome, cor in [("Público", COR["publico"]), ("Robôs de busca", COR["secundario"]), ("Outros robôs", COR["robos"])]:
         s.append(ret(lx, ly - 4, 16, 3, cor))
         s.append(texto(lx + 22, ly, nome, 11, COR["rotulo"]))
         lx += 22 + largura_texto(nome, 11) + 22
@@ -327,7 +325,7 @@ def pagina_qualidade_dos_dados():
     ax = MAIN_X + gw + 16
     aw = MAIN_X + MAIN_W - ax
     painel(s, ax, py, aw, ph, "Como estes dados foram conferidos", "auditoria automática da camada final")
-    s.append(texto(ax + 20, py + 100, "112", 34, COR["publico"], 500))
+    s.append(texto(ax + 20, py + 100, "112", 34, COR["destaque"], 500))
     s.append(texto(ax + 20 + largura_texto("112", 34) + 10, py + 98, "checagens automáticas, nenhum alerta", 12, COR["rotulo"]))
     linhas = ["59 conferem volumes, regras e coerência entre as tabelas",
               "53 refazem cada conta por outro caminho e comparam",
@@ -375,8 +373,8 @@ def pagina_visao_geral():
     for i, (pagina, pergunta) in enumerate(perguntas):
         cx = gx + 20 + (i % 2) * (meia + 20)
         cy = py + 92 + (i // 2) * 66
-        s.append(ret(cx, cy - 13, 3, 38, COR["publico"]))
-        s.append(texto(cx + 12, cy, pagina, 12, COR["publico"], 500))
+        s.append(ret(cx, cy - 13, 3, 38, COR["destaque"]))
+        s.append(texto(cx + 12, cy, pagina, 12, COR["destaque"], 500))
         s.append(texto(cx + 12, cy + 20, pergunta, 11, COR["texto2"]))
 
     # tabela
