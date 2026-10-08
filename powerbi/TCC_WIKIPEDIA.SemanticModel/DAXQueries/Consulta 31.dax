@@ -1,0 +1,6 @@
+EVALUATE
+CALCULATETABLE(ROW("MediaNoZero", [CorrelacaoEvento], "Limite", [LimiteSignificancia]), DimEscala[Forma de comparar] = "Curva inteira (oficial)", fato_correlacao_defasagem[defasagem] = 0)
+EVALUATE
+CALCULATETABLE(ROW("Tres", [CorrelacaoEvento]), dim_evento[nome_evento] IN {"Kobe Bryant", "Pele", "Furacao Ian"}, DimEscala[Forma de comparar] = "Curva inteira (oficial)", fato_correlacao_defasagem[defasagem] = 0)
+EVALUATE
+ROW("SemForma", [CorrelacaoEvento])

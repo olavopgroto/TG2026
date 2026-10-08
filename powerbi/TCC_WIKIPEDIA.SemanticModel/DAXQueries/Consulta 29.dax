@@ -1,0 +1,13 @@
+DEFINE
+    MEASURE _Medidas[t_corr] = IF(HASONEVALUE(DimEscala[Forma de comparar]), AVERAGE(fato_correlacao_defasagem[correlacao]))
+EVALUATE
+CALCULATETABLE(
+    ADDCOLUMNS(VALUES(fato_correlacao_defasagem[defasagem]), "Media", [t_corr], "Eventos", CALCULATE(DISTINCTCOUNT(fato_correlacao_defasagem[id_evento]))),
+    DimEscala[Forma de comparar] = "Curva inteira (oficial)")
+ORDER BY fato_correlacao_defasagem[defasagem]
+EVALUATE
+CALCULATETABLE(
+    ROW("Nova", [t_corr], "Atual", [CorrelacaoEvento]),
+    dim_evento[nome_evento] = "Kobe Bryant", DimEscala[Forma de comparar] = "Curva inteira (oficial)", fato_correlacao_defasagem[defasagem] = 0)
+EVALUATE
+ROW("SemForma", [t_corr])

@@ -76,7 +76,7 @@ table _Medidas
 		formatString: 0
 		lineageTag: bf5f7699-4818-4ced-95d5-f244434dcae1
 
-	measure CorrelacaoEvento = IF(HASONEVALUE(dim_evento[id_evento]) && HASONEVALUE(DimEscala[variante]), AVERAGE(fato_correlacao_defasagem[correlacao]))
+	measure CorrelacaoEvento = IF(HASONEVALUE(DimEscala[Forma de comparar]), AVERAGE(fato_correlacao_defasagem[correlacao]))
 		lineageTag: 974b7c49-6553-4f43-af94-cefadf0667d9
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

@@ -221,13 +221,13 @@ def pagina_quem_veio_primeiro():
     py, ph = 204, 236
     gw = 600
     painel(s, MAIN_X, py, gw, ph, "Em que dia as curvas mais combinam",
-           "escolha um evento no filtro · positivo = imprensa antes")
+           "com mais de um evento, mostra a média deles · positivo = imprensa antes")
     lx, ly = MAIN_X + 20, py + 72
     s.append(ret(lx, ly - 8, 10, 10, COR["destaque"], 2))
     s.append(texto(lx + 16, ly, "Semelhança das curvas", 11, COR["rotulo"]))
     lx += 16 + largura_texto("Semelhança das curvas", 11) + 24
     s.append(ret(lx, ly - 4, 16, 3, "#9BA5B5"))
-    s.append(texto(lx + 22, ly, "Abaixo desta linha pode ser acaso", 11, COR["rotulo"]))
+    s.append(texto(lx + 22, ly, "Abaixo da linha, pode ser acaso (com um evento)", 11, COR["rotulo"]))
     pos["grafico_correlograma"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
 
     # painel do resultado por categoria

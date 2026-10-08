@@ -1,0 +1,16 @@
+DEFINE
+    MEASURE _Medidas[t_corr] = IF(HASONEVALUE(DimEscala[Forma de comparar]), AVERAGE(fato_correlacao_defasagem[correlacao]))
+EVALUATE
+VAR t = ADDCOLUMNS(
+    CROSSJOIN(VALUES(dim_evento[nome_evento]), VALUES(fato_correlacao_defasagem[defasagem]), VALUES(DimEscala[Forma de comparar])),
+    "Nova", [t_corr], "Atual", [CorrelacaoEvento])
+RETURN ROW(
+    "Combinacoes", COUNTROWS(t),
+    "Diferentes", COUNTROWS(FILTER(t, ABS([Nova] - [Atual]) > 0.000001)) + 0,
+    "AtualVazia", COUNTROWS(FILTER(t, ISBLANK([Atual]))) + 0)
+EVALUATE
+CALCULATETABLE(
+    ROW("Media3", [t_corr], "MediaFeitaAMao", AVERAGEX(VALUES(dim_evento[nome_evento]), [CorrelacaoEvento]), "Atual", [CorrelacaoEvento]),
+    dim_evento[nome_evento] IN {"Kobe Bryant", "Pele", "Furacao Ian"},
+    DimEscala[Forma de comparar] = "Curva inteira (oficial)",
+    fato_correlacao_defasagem[defasagem] = 0)
