@@ -87,19 +87,19 @@
   "grafico_correlograma": {
     "x": 260,
     "y": 284,
-    "largura": 576,
-    "altura": 148
+    "largura": 984,
+    "altura": 138
+  },
+  "grafico_vantagem": {
+    "x": 260,
+    "y": 558,
+    "largura": 588,
+    "altura": 134
   },
   "grafico_categoria": {
-    "x": 876,
-    "y": 308,
-    "largura": 368,
-    "altura": 124
-  },
-  "tabela_eventos": {
-    "x": 260,
-    "y": 518,
-    "largura": 984,
-    "altura": 174
+    "x": 872,
+    "y": 558,
+    "largura": 372,
+    "altura": 134
   }
 }

@@ -78,16 +78,16 @@
     "largura": 220,
     "altura": 40
   },
-  "grafico_robos": {
+  "grafico_falta": {
     "x": 260,
     "y": 284,
     "largura": 576,
-    "altura": 148
+    "altura": 408
   },
-  "tabela_eventos": {
-    "x": 260,
-    "y": 516,
-    "largura": 984,
-    "altura": 176
+  "grafico_robos": {
+    "x": 876,
+    "y": 536,
+    "largura": 368,
+    "altura": 156
   }
 }

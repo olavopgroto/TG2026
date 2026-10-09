@@ -217,10 +217,9 @@ def pagina_quem_veio_primeiro():
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
 
-    # painel do correlograma
-    py, ph = 204, 236
-    gw = 600
-    painel(s, MAIN_X, py, gw, ph, "Em que dia as curvas mais combinam",
+    # correlograma na largura inteira
+    py, ph = 204, 226
+    painel(s, MAIN_X, py, MAIN_W, ph, "Em que dia as curvas mais combinam",
            "com mais de um evento, mostra a média deles · positivo = imprensa antes")
     lx, ly = MAIN_X + 20, py + 72
     s.append(ret(lx, ly - 8, 10, 10, COR["destaque"], 2))
@@ -228,33 +227,25 @@ def pagina_quem_veio_primeiro():
     lx += 16 + largura_texto("Semelhança das curvas", 11) + 24
     s.append(ret(lx, ly - 4, 16, 3, "#9BA5B5"))
     s.append(texto(lx + 22, ly, "Abaixo da linha, pode ser acaso (com um evento)", 11, COR["rotulo"]))
-    pos["grafico_correlograma"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
+    pos["grafico_correlograma"] = {"x": MAIN_X + 12, "y": py + 80, "largura": MAIN_W - 24, "altura": ph - 88}
 
-    # painel do resultado por categoria
-    rx = MAIN_X + gw + 16
-    rw = MAIN_X + MAIN_W - rx
-    painel(s, rx, py, rw, ph, "Resultado por categoria", "quantos eventos em cada resultado")
-    # legenda desenhada: as cores sao fixas por resultado, entao nao dependem do dado
-    itens = [("Chegaram juntos", COR["destaque"]), ("Imprensa na frente", COR["imprensa"]),
-             ("Público na frente", COR["publico"]), ("Sem conclusão", COR["secundario"])]
-    lx, ly, limite = rx + 20, py + 74, rx + rw - 16
-    for nome, cor in itens:
-        w = 14 + largura_texto(nome, 10)
-        if lx + w > limite:
-            lx, ly = rx + 20, ly + 18
-        s.append(ret(lx, ly - 8, 9, 9, cor, 2))
-        s.append(texto(lx + 14, ly, nome, 10, COR["rotulo"]))
-        lx += w + 14
-    topo = ly + 12
-    pos["grafico_categoria"] = {"x": rx + 12, "y": round(topo), "largura": rw - 24,
-                                "altura": round(py + ph - 8 - topo)}
-
-    # painel da tabela
-    ty, th = 456, 244
-    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento",
-           "as duas medidas de cada evento e o resultado final")
-    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 62, "largura": MAIN_W - 24, "altura": th - 70}
-
+    # um painel com uma legenda e dois graficos que usam as mesmas cores
+    ty, th = 446, 254
+    painel(s, MAIN_X, ty, MAIN_W, th, "Resultado de cada evento",
+           "cada evento conta uma vez · 0 = mesmo dia · positivo = imprensa antes")
+    lx, ly = MAIN_X + 20, ty + 72
+    for nome, cor in [("Chegaram juntos", COR["destaque"]), ("Imprensa na frente", COR["imprensa"]),
+                      ("Público na frente", COR["publico"]), ("Sem conclusão", COR["secundario"])]:
+        s.append(ret(lx, ly - 8, 10, 10, cor, 2))
+        s.append(texto(lx + 16, ly, nome, 11, COR["rotulo"]))
+        lx += 16 + largura_texto(nome, 11) + 24
+    corte = MAIN_X + 612
+    s.append(ret(corte, ty + 90, 1, th - 102, COR["linha"]))
+    s.append(texto(MAIN_X + 20, ty + 104, "Dias de vantagem da imprensa", 11, COR["texto2"], 500))
+    s.append(texto(corte + 20, ty + 104, "Por categoria", 11, COR["texto2"], 500))
+    topo = ty + 112
+    pos["grafico_vantagem"] = {"x": MAIN_X + 12, "y": topo, "largura": corte - MAIN_X - 24, "altura": ty + th - 8 - topo}
+    pos["grafico_categoria"] = {"x": corte + 12, "y": topo, "largura": MAIN_X + MAIN_W - corte - 24, "altura": ty + th - 8 - topo}
     return s, pos
 
 
@@ -276,8 +267,8 @@ def pagina_assuntos_relacionados():
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 116, round(cw), rot, cor)
 
-    # colunas agrupadas por categoria
-    py, ph = 214, 270
+    # colunas agrupadas por categoria, agora na altura toda
+    py, ph = 214, 486
     painel(s, MAIN_X, py, MAIN_W, ph, "Quanto a atenção se espalha, por tipo de acontecimento",
            "artigos relacionados que passam em cada marca da régua, média por evento")
     lx, ly = MAIN_X + 20, py + 74
@@ -287,12 +278,6 @@ def pagina_assuntos_relacionados():
         s.append(texto(lx + 14, ly, nome, 11, COR["rotulo"]))
         lx += 14 + largura_texto(nome, 11) + 22
     pos["grafico_regua"] = {"x": MAIN_X + 12, "y": py + 86, "largura": MAIN_W - 24, "altura": ph - 94}
-
-    # tabela
-    ty, th = 500, 200
-    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento",
-           "artigos relacionados que passaram em cada marca da régua")
-    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 60, "largura": MAIN_W - 24, "altura": th - 68}
     return s, pos
 
 
@@ -309,22 +294,24 @@ def pagina_qualidade_dos_dados():
     for i, (chave, rot, cor) in enumerate(itens):
         cartao(s, pos, chave, round(MAIN_X + i * (cw + gap)), 108, round(cw), rot, cor)
 
-    # curva de pessoas e robos
-    py, ph = 204, 236
-    gw = 600
-    painel(s, MAIN_X, py, gw, ph, "Pessoas e robôs reagem ao mesmo evento",
-           "curva média, o pico de cada evento vale 100%")
+    # painel alto: os eventos com buracos, e o motivo
+    py, gw = 204, 600
+    ph = 496
+    painel(s, MAIN_X, py, gw, ph, "Por que falta dado no público",
+           "só os eventos com dias sem registro · o número é de dias")
     lx, ly = MAIN_X + 20, py + 72
-    for nome, cor in [("Público", COR["publico"]), ("Robôs de busca", COR["secundario"]), ("Outros robôs", COR["robos"])]:
-        s.append(ret(lx, ly - 4, 16, 3, cor))
-        s.append(texto(lx + 22, ly, nome, 11, COR["rotulo"]))
-        lx += 22 + largura_texto(nome, 11) + 22
-    pos["grafico_robos"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
+    for nome, cor in [("O artigo ainda não existia", COR["destaque"]),
+                      ("A página existia, sem visitas registradas", COR["secundario"])]:
+        s.append(ret(lx, ly - 8, 10, 10, cor, 2))
+        s.append(texto(lx + 16, ly, nome, 11, COR["rotulo"]))
+        lx += 16 + largura_texto(nome, 11) + 24
+    pos["grafico_falta"] = {"x": MAIN_X + 12, "y": py + 80, "largura": gw - 24, "altura": ph - 88}
 
-    # painel fixo das auditorias (texto sobre o processo, nao dado de evento)
+    # direita, em cima: auditorias (texto sobre o processo, nao dado de evento)
     ax = MAIN_X + gw + 16
     aw = MAIN_X + MAIN_W - ax
-    painel(s, ax, py, aw, ph, "Como estes dados foram conferidos", "auditoria automática da camada final")
+    ah = 236
+    painel(s, ax, py, aw, ah, "Como estes dados foram conferidos", "auditoria automática da camada final")
     s.append(texto(ax + 20, py + 100, "112", 34, COR["destaque"], 500))
     s.append(texto(ax + 20 + largura_texto("112", 34) + 10, py + 98, "checagens automáticas, nenhum alerta", 12, COR["rotulo"]))
     linhas = ["59 conferem volumes, regras e coerência entre as tabelas",
@@ -335,10 +322,16 @@ def pagina_qualidade_dos_dados():
         s.append(ret(ax + 20, py + 131 + i * 24, 4, 4, COR["borda"], 1))
         s.append(texto(ax + 32, py + 136 + i * 24, t, 11, COR["texto2"]))
 
-    # tabela
-    ty, th = 456, 244
-    painel(s, MAIN_X, ty, MAIN_W, th, "Evento a evento", "o que falta em cada evento, e por quê")
-    pos["tabela_eventos"] = {"x": MAIN_X + 12, "y": ty + 60, "largura": MAIN_W - 24, "altura": th - 68}
+    # direita, embaixo: a curva de publico e robos
+    cy, ch = py + ah + 16, ph - ah - 16
+    painel(s, ax, cy, aw, ch, "Público e robôs reagem ao mesmo evento",
+           "curva média, o pico de cada evento vale 100%")
+    lx, ly = ax + 20, cy + 72
+    for nome, cor in [("Público", COR["publico"]), ("Robôs de busca", COR["secundario"]), ("Outros robôs", COR["robos"])]:
+        s.append(ret(lx, ly - 4, 16, 3, cor))
+        s.append(texto(lx + 22, ly, nome, 11, COR["rotulo"]))
+        lx += 22 + largura_texto(nome, 11) + 22
+    pos["grafico_robos"] = {"x": ax + 12, "y": cy + 80, "largura": aw - 24, "altura": ch - 88}
     return s, pos
 
 
