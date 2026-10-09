@@ -168,6 +168,12 @@ table dim_evento
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Motivo da falta' = VAR semDado = CALCULATE(COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal])))) + 0 VAR rel = INT(dim_evento[data_criacao_principal] - dim_evento[data_evento]) VAR depois = CALCULATE(COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]) && fato_serie_diaria[dias_desde_evento] >= rel))) + 0 RETURN SWITCH(TRUE(), semDado = 0, "Nada falta", depois > 0, "A página existia, sem visitas registradas", "O artigo ainda não existia")
+		lineageTag: 6119cb4b-14fc-4667-ad84-ee4fc318a127
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_evento = m
 		mode: import
 		source =

@@ -159,6 +159,19 @@ table _Medidas
 	measure SimultaneosDeTotal = FORMAT([EventosSimultaneos], "0") & " de " & FORMAT([TotalEventos], "0")
 		lineageTag: 52e18590-4b7b-4762-8c73-2b3285751bb5
 
+	measure DiasSemDadoGrafico = VAR d = [DiasSemDadoPublico] RETURN IF(d > 0, d)
+		formatString: 0
+		lineageTag: 12b6505f-8b7c-4e74-aa24-f9c2271acf7b
+
+	measure EventosNaVantagem = VAR d = SELECTEDVALUE(fato_correlacao_defasagem[defasagem]) RETURN CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[defasagem_otima] = d) + 0
+		formatString: 0;-0;
+		lineageTag: 6f7f7d7d-d6a2-4167-9ac1-1fad6c32870c
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure QuemNaVantagem = VAR d = SELECTEDVALUE(fato_correlacao_defasagem[defasagem]) VAR t = CALCULATETABLE(fato_defasagem_evento, fato_defasagem_evento[defasagem_otima] = d) VAR n = COUNTROWS(t) RETURN IF(n > 6, FORMAT(n, "0") & " eventos", CONCATENATEX(t, RELATED(dim_evento[Evento]), ", ", RELATED(dim_evento[Evento]), ASC))
+		lineageTag: 2bd5aac6-0613-45c0-aa82-e3f0b859d76d
+
 	partition _Medidas = m
 		mode: import
 		source =

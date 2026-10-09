@@ -1,0 +1,12 @@
+DEFINE
+    COLUMN dim_evento[t_motivo] = VAR semDado = CALCULATE(COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal])))) + 0 VAR rel = INT(dim_evento[data_criacao_principal] - dim_evento[data_evento]) VAR depois = CALCULATE(COUNTROWS(FILTER(fato_serie_diaria, ISBLANK(fato_serie_diaria[views_principal]) && fato_serie_diaria[dias_desde_evento] >= rel))) + 0 RETURN SWITCH(TRUE(), semDado = 0, "Nada falta", depois > 0, "A página existia, sem visitas registradas", "O artigo ainda não existia")
+    MEASURE _Medidas[t_graf] = VAR d = [DiasSemDadoPublico] RETURN IF(d > 0, d)
+    MEASURE _Medidas[t_hist] = VAR d = SELECTEDVALUE(fato_correlacao_defasagem[defasagem]) RETURN CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[defasagem_otima] = d) + 0
+    MEASURE _Medidas[t_quem] = VAR d = SELECTEDVALUE(fato_correlacao_defasagem[defasagem]) VAR t = CALCULATETABLE(fato_defasagem_evento, fato_defasagem_evento[defasagem_otima] = d) VAR n = COUNTROWS(t) RETURN IF(n > 6, FORMAT(n, "0") & " eventos", CONCATENATEX(t, RELATED(dim_evento[Evento]), ", ", RELATED(dim_evento[Evento]), ASC))
+EVALUATE
+SUMMARIZECOLUMNS(dim_evento[t_motivo], "Eventos", COUNTROWS(dim_evento), "Dias", [DiasSemDadoPublico], "ComBarra", COUNTROWS(FILTER(VALUES(dim_evento[Evento]), NOT ISBLANK([t_graf]))) + 0)
+EVALUATE
+CALCULATETABLE(ADDCOLUMNS(VALUES(fato_correlacao_defasagem[defasagem]), "Eventos", [t_hist], "Quem", [t_quem]), DimEscala[Forma de comparar] = "Curva inteira (oficial)")
+ORDER BY fato_correlacao_defasagem[defasagem]
+EVALUATE
+CALCULATETABLE(SUMMARIZECOLUMNS(fato_defasagem_evento[Leitura do evento], "Total", SUMX(VALUES(fato_correlacao_defasagem[defasagem]), [t_hist])), DimEscala[Forma de comparar] = "Curva inteira (oficial)")

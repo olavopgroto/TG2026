@@ -42,19 +42,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "defasagem_otima"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Vantagem pela semelhança (dias)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fato_defasagem_evento.lag_por_pico": {
 			      "Definition": {
@@ -63,19 +51,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "lag_por_pico"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Vantagem pelos picos (dias)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fato_defasagem_evento.correlacao_maxima": {
 			      "Definition": {
@@ -84,19 +60,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "correlacao_maxima"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Semelhança (0 a 1)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fato_defasagem_evento.leitura_do_evento": {
 			      "Definition": {
@@ -105,19 +69,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "Leitura do evento"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Resultado": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.artigostodos": {
 			      "Definition": {
@@ -126,19 +78,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ArtigosTodos"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Todos": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.artigosdobraram": {
 			      "Definition": {
@@ -147,19 +87,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ArtigosDobraram"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Dobraram": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.artigostriplicaram": {
 			      "Definition": {
@@ -168,19 +96,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ArtigosTriplicaram"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Triplicaram": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.artigoscincovezes": {
 			      "Definition": {
@@ -189,19 +105,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ArtigosCincoVezes"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Cresceram 5 vezes": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "dim_evento.artigo_criado": {
 			      "Definition": {
@@ -219,19 +123,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "DiasSemDadoPublico"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Dias sem dado": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.comparapublicoresposta": {
 			      "Definition": {
@@ -240,19 +132,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ComparaPublicoResposta"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Dá para comparar? Público": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.comparaimprensaresposta": {
 			      "Definition": {
@@ -261,19 +141,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ComparaImprensaResposta"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Dá para comparar? Imprensa": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.porquefaltadado": {
 			      "Definition": {
@@ -285,7 +153,7 @@ cultureInfo pt-BR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Por que falta dado": {
+			          "Detalhe": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -324,19 +192,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "VisitasPublico"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Visitas do público": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.materias": {
 			      "Definition": {
@@ -345,19 +201,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "Materias"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Matérias": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.resultadooficial": {
 			      "Definition": {
@@ -391,6 +235,69 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "Evento": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.eventosnavantagem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "EventosNaVantagem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Eventos": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.quemnavantagem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "QuemNaVantagem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quais": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.diassemdadografico": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "DiasSemDadoGrafico"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dias sem dado": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

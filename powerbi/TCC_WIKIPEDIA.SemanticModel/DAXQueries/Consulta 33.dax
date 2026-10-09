@@ -1,0 +1,5 @@
+EVALUATE
+SUMMARIZECOLUMNS(dim_evento[Motivo da falta], "Eventos", COUNTROWS(dim_evento), "Dias", [DiasSemDadoPublico], "ComBarra", COUNTROWS(FILTER(VALUES(dim_evento[Evento]), NOT ISBLANK([DiasSemDadoGrafico]))) + 0)
+EVALUATE
+CALCULATETABLE(ADDCOLUMNS(VALUES(fato_correlacao_defasagem[defasagem]), "Eventos", [EventosNaVantagem], "Quem", [QuemNaVantagem]), DimEscala[Forma de comparar] = "Curva inteira (oficial)")
+ORDER BY fato_correlacao_defasagem[defasagem]

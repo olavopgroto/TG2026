@@ -68,36 +68,6 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "VisitasPublico"
-                }
-              },
-              "queryRef": "_Medidas.VisitasPublico",
-              "nativeQueryRef": "VisitasPublico",
-              "displayName": "Visitas do público"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Materias"
-                }
-              },
-              "queryRef": "_Medidas.Materias",
-              "nativeQueryRef": "Materias",
-              "displayName": "Matérias"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
                   "Property": "ResultadoOficial"
                 }
               },

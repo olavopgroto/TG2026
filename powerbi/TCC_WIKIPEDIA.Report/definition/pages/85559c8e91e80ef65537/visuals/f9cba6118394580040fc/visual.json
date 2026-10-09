@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "df42bdef5ee1c5e3b247",
+  "name": "f9cba6118394580040fc",
   "position": {
     "x": 260,
-    "y": 300,
-    "z": 2000,
-    "height": 392,
-    "width": 984,
-    "tabOrder": 2000
+    "y": 284,
+    "z": 2050,
+    "height": 408,
+    "width": 576,
+    "tabOrder": 2050
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,11 @@
                       "Entity": "dim_evento"
                     }
                   },
-                  "Property": "Categoria do evento"
+                  "Property": "Evento"
                 }
               },
-              "queryRef": "dim_evento.Categoria do evento",
-              "nativeQueryRef": "Categoria do evento",
+              "queryRef": "dim_evento.Evento",
+              "nativeQueryRef": "Evento",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fato_serie_sensibilidade"
+                      "Entity": "dim_evento"
                     }
                   },
-                  "Property": "Marca da régua"
+                  "Property": "Motivo da falta"
                 }
               },
-              "queryRef": "fato_serie_sensibilidade.Marca da régua",
-              "nativeQueryRef": "Marca da régua"
+              "queryRef": "dim_evento.Motivo da falta",
+              "nativeQueryRef": "Motivo da falta"
             }
           ]
         },
@@ -60,11 +60,31 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "ArtigosNaMarca"
+                  "Property": "DiasSemDadoGrafico"
                 }
               },
-              "queryRef": "_Medidas.ArtigosNaMarca",
-              "nativeQueryRef": "ArtigosNaMarca"
+              "queryRef": "_Medidas.DiasSemDadoGrafico",
+              "nativeQueryRef": "DiasSemDadoGrafico",
+              "displayName": "Dias sem dado"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "PorQueFaltaDado"
+                }
+              },
+              "queryRef": "_Medidas.PorQueFaltaDado",
+              "nativeQueryRef": "PorQueFaltaDado",
+              "displayName": "Detalhe"
             }
           ]
         }
@@ -79,7 +99,7 @@
                     "Entity": "_Medidas"
                   }
                 },
-                "Property": "ArtigosNaMarca"
+                "Property": "DiasSemDadoGrafico"
               }
             },
             "direction": "Descending"
@@ -121,6 +141,13 @@
                   }
                 }
               }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "45L"
+                }
+              }
             }
           }
         }
@@ -128,19 +155,39 @@
       "valueAxis": [
         {
           "properties": {
-            "showAxisTitle": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "labelColor": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#6B7686'"
+                      "Value": "'#0F1217'"
                     }
                   }
                 }
@@ -150,88 +197,6 @@
         }
       ],
       "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#5266A0'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
-                          }
-                        },
-                        "Property": "Marca da régua"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Todos'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2188C5'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
-                          }
-                        },
-                        "Property": "Marca da régua"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Dobraram'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
         {
           "properties": {
             "fill": {
@@ -256,15 +221,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Marca da régua"
+                        "Property": "Motivo da falta"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Triplicaram'"
+                        "Value": "'O artigo ainda não existia'"
                       }
                     }
                   }
@@ -280,7 +245,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#BDEAF7'"
+                      "Value": "'#95A2AE'"
                     }
                   }
                 }
@@ -297,15 +262,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Marca da régua"
+                        "Property": "Motivo da falta"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Cresceram 5 vezes'"
+                        "Value": "'A página existia, sem visitas registradas'"
                       }
                     }
                   }

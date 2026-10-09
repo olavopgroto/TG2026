@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "df42bdef5ee1c5e3b247",
+  "name": "36eeff368f395fd65501",
   "position": {
     "x": 260,
-    "y": 300,
-    "z": 2000,
-    "height": 392,
-    "width": 984,
-    "tabOrder": 2000
+    "y": 558,
+    "z": 2050,
+    "height": 134,
+    "width": 588,
+    "tabOrder": 2050
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_evento"
+                      "Entity": "fato_correlacao_defasagem"
                     }
                   },
-                  "Property": "Categoria do evento"
+                  "Property": "defasagem"
                 }
               },
-              "queryRef": "dim_evento.Categoria do evento",
-              "nativeQueryRef": "Categoria do evento",
+              "queryRef": "fato_correlacao_defasagem.defasagem",
+              "nativeQueryRef": "defasagem",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fato_serie_sensibilidade"
+                      "Entity": "fato_defasagem_evento"
                     }
                   },
-                  "Property": "Marca da régua"
+                  "Property": "Leitura do evento"
                 }
               },
-              "queryRef": "fato_serie_sensibilidade.Marca da régua",
-              "nativeQueryRef": "Marca da régua"
+              "queryRef": "fato_defasagem_evento.Leitura do evento",
+              "nativeQueryRef": "Leitura do evento"
             }
           ]
         },
@@ -60,11 +60,31 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "ArtigosNaMarca"
+                  "Property": "EventosNaVantagem"
                 }
               },
-              "queryRef": "_Medidas.ArtigosNaMarca",
-              "nativeQueryRef": "ArtigosNaMarca"
+              "queryRef": "_Medidas.EventosNaVantagem",
+              "nativeQueryRef": "EventosNaVantagem",
+              "displayName": "Eventos"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "QuemNaVantagem"
+                }
+              },
+              "queryRef": "_Medidas.QuemNaVantagem",
+              "nativeQueryRef": "QuemNaVantagem",
+              "displayName": "Quais"
             }
           ]
         }
@@ -73,16 +93,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Medidas"
+                    "Entity": "fato_correlacao_defasagem"
                   }
                 },
-                "Property": "ArtigosNaMarca"
+                "Property": "defasagem"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -104,6 +124,13 @@
       "categoryAxis": [
         {
           "properties": {
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Categorical'"
+                }
+              }
+            },
             "showAxisTitle": {
               "expr": {
                 "Literal": {
@@ -128,19 +155,39 @@
       "valueAxis": [
         {
           "properties": {
-            "showAxisTitle": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "labelColor": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#6B7686'"
+                      "Value": "'#0F1217'"
                     }
                   }
                 }
@@ -157,7 +204,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5266A0'"
+                      "Value": "'#38BEE8'"
                     }
                   }
                 }
@@ -174,15 +221,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
+                            "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Marca da régua"
+                        "Property": "Leitura do evento"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Todos'"
+                        "Value": "'Chegaram juntos'"
                       }
                     }
                   }
@@ -215,56 +262,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
+                            "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Marca da régua"
+                        "Property": "Leitura do evento"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Dobraram'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#38BEE8'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
-                          }
-                        },
-                        "Property": "Marca da régua"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Triplicaram'"
+                        "Value": "'Imprensa na frente'"
                       }
                     }
                   }
@@ -297,15 +303,138 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_serie_sensibilidade"
+                            "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Marca da régua"
+                        "Property": "Leitura do evento"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Cresceram 5 vezes'"
+                        "Value": "'Público na frente'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#95A2AE'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Picos em datas diferentes'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#95A2AE'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Artigo criado depois'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#95A2AE'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fato_defasagem_evento"
+                          }
+                        },
+                        "Property": "Leitura do evento"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sem resposta clara'"
                       }
                     }
                   }
