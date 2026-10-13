@@ -1,0 +1,7 @@
+EVALUATE
+TOPN(10, SUMMARIZECOLUMNS(dim_evento[Evento], dim_evento[Categoria do evento], "Visitas", [VisitasPublico]), [Visitas], DESC)
+ORDER BY [Visitas] DESC
+
+EVALUATE
+TOPN(10, SUMMARIZECOLUMNS(dim_evento[Evento], dim_evento[Categoria do evento], "Materias", [Materias]), [Materias], DESC)
+ORDER BY [Materias] DESC

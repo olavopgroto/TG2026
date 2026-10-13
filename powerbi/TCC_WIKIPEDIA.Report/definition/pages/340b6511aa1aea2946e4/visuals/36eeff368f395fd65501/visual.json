@@ -50,25 +50,6 @@
             }
           ]
         },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "EventosNaVantagem"
-                }
-              },
-              "queryRef": "_Medidas.EventosNaVantagem",
-              "nativeQueryRef": "EventosNaVantagem",
-              "displayName": "Eventos"
-            }
-          ]
-        },
         "Tooltips": {
           "projections": [
             {
@@ -85,6 +66,25 @@
               "queryRef": "_Medidas.QuemNaVantagem",
               "nativeQueryRef": "QuemNaVantagem",
               "displayName": "Quais"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "EventosNaVantagem"
+                }
+              },
+              "queryRef": "_Medidas.EventosNaVantagem",
+              "nativeQueryRef": "EventosNaVantagem",
+              "displayName": "Eventos"
             }
           ]
         }
@@ -146,6 +146,13 @@
                       "Value": "'#AEB6C2'"
                     }
                   }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -438,6 +445,43 @@
                       }
                     }
                   }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "totals": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#AEB6C2'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
                 }
               }
             ]

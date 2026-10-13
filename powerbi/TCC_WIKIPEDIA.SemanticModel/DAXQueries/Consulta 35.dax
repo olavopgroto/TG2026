@@ -1,0 +1,11 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_evento[Evento],
+    dim_evento[Categoria do evento],
+    dim_evento[data_evento],
+    "Cai pela metade em", [MeiaVidaPublico],
+    "Quem veio primeiro", [ResultadoOficial],
+    "Artigos que dobraram", [ArtigosDobraram],
+    "Dias sem dado", [DiasSemDadoPublico]
+)
+ORDER BY dim_evento[data_evento]
