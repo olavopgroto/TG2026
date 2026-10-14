@@ -1,4 +1,0 @@
-EVALUATE
-ROW("SemDado", [DiasSemDadoTexto], "Depois", [ArtigoCriadoDepois], "Publico", [ComparaPublicoTexto], "Imprensa", [ComparaImprensaTexto])
-EVALUATE
-SUMMARIZECOLUMNS(dim_evento[Artigo criado], "Eventos", COUNTROWS(dim_evento))

@@ -1,8 +1,0 @@
-EVALUATE
-ROW(
-    "VisitasPublico", [VisitasPublico],
-    "Materias", [Materias],
-    "TotalEventos", [TotalEventos],
-    "EventosSimultaneos", [EventosSimultaneos],
-    "MeiaVidaContada", [MeiaVidaContada]
-)

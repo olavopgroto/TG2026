@@ -1,3 +1,0 @@
-EVALUATE
-SUMMARIZECOLUMNS(dim_evento[AnoEvento], "Eventos", COUNTROWS(dim_evento))
-ORDER BY dim_evento[AnoEvento]

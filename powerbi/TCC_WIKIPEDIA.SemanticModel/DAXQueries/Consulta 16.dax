@@ -1,7 +1,0 @@
-EVALUATE
-SELECTCOLUMNS(
-    INFO.VIEW.MEASURES(),
-    "Tabela", [Table],
-    "Medida", [Name]
-)
-ORDER BY [Medida]

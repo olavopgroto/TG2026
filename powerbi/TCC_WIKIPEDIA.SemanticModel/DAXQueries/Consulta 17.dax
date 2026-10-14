@@ -1,5 +1,0 @@
-EVALUATE
-SELECTCOLUMNS(
-    FILTER(INFO.VIEW.MEASURES(), [Name] = "Medida"),
-    "Expressao", [Expression]
-)

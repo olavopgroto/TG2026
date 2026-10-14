@@ -1,8 +1,0 @@
-EVALUATE
-ROW(
-    "MeiaVidaPublico",
-    CALCULATE(
-        AVERAGE(fato_metricas_evento[meia_vida_observada]),
-        fato_metricas_evento[fonte] = "publico"
-    )
-)

@@ -1,6 +1,0 @@
-EVALUATE
-SUMMARIZECOLUMNS(
-    dim_evento[Categoria do evento],
-    "Publico", CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "publico"),
-    "Imprensa", CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "midia")
-)
