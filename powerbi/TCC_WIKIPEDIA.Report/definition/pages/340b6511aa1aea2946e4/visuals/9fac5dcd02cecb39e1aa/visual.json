@@ -23,11 +23,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "ConcordamDeTotal"
+                  "Property": "QtdSemConclusao"
                 }
               },
-              "queryRef": "_Medidas.ConcordamDeTotal",
-              "nativeQueryRef": "ConcordamDeTotal"
+              "queryRef": "_Medidas.QtdSemConclusao",
+              "nativeQueryRef": "QtdSemConclusao"
             }
           ]
         }
@@ -42,7 +42,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#AEB6C2'"
+                      "Value": "'#95A2AE'"
                     }
                   }
                 }

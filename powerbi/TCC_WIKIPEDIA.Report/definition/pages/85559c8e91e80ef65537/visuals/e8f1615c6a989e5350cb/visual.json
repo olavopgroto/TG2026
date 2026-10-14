@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e8f1615c6a989e5350cb",
   "position": {
-    "x": 876,
-    "y": 536,
+    "x": 756,
+    "y": 284,
     "z": 2000,
-    "height": 156,
-    "width": 368,
+    "height": 192,
+    "width": 488,
     "tabOrder": 2000
   },
   "visual": {
@@ -259,7 +259,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#95A2AE'"
+                      "Value": "'#5266A0'"
                     }
                   }
                 }
@@ -277,9 +277,46 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#626F7A'"
+                      "Value": "'#95A2AE'"
                     }
                   }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.PctPicoOutrosRobos"
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.PctPicoRobosBusca"
+          }
+        },
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
                 }
               }
             }

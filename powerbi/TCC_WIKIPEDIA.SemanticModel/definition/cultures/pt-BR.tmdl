@@ -21,19 +21,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "Categoria do evento"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Categoria": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fato_defasagem_evento.defasagem_otima": {
 			      "Definition": {
@@ -171,19 +159,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "data_evento"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Data": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.visitaspublico": {
 			      "Definition": {
@@ -210,19 +186,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "ResultadoOficial"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Resultado": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "dim_evento.evento": {
 			      "Definition": {
@@ -231,19 +195,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "Evento"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Evento": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_medidas.eventosnavantagem": {
 			      "Definition": {
@@ -298,6 +250,48 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "Dias sem dado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.meiavidapublico": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "MeiaVidaPublico"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Público": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.meiavidaimprensa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "MeiaVidaImprensa"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Imprensa": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

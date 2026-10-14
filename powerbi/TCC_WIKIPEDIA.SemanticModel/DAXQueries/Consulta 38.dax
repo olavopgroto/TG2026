@@ -1,0 +1,1 @@
+EVALUATE SUMMARIZECOLUMNS(dim_evento[Resultado oficial], "Eventos", [TotalEventos])

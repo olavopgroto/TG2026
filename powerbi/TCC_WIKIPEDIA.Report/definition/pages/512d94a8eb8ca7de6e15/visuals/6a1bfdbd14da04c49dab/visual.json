@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fato_defasagem_evento"
+                      "Entity": "dim_evento"
                     }
                   },
-                  "Property": "Leitura do evento"
+                  "Property": "Resultado oficial"
                 }
               },
-              "queryRef": "fato_defasagem_evento.Leitura do evento",
-              "nativeQueryRef": "Leitura do evento",
+              "queryRef": "dim_evento.Resultado oficial",
+              "nativeQueryRef": "Resultado oficial",
               "active": true
             }
           ]
@@ -55,18 +55,19 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fato_defasagem_evento"
+                    "Entity": "_Medidas"
                   }
                 },
-                "Property": "Leitura do evento"
+                "Property": "EventosPorLeitura"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true,
@@ -184,10 +185,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {
@@ -225,10 +226,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {
@@ -266,10 +267,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {
@@ -307,10 +308,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {
@@ -348,10 +349,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {
@@ -389,10 +390,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
+                            "Entity": "dim_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Resultado oficial"
                       }
                     },
                     "Right": {

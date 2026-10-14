@@ -232,6 +232,22 @@
             "id": "1"
           }
         }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas.PctPicoRobos"
+          }
+        }
       ]
     },
     "visualContainerObjects": {

@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "moldura_subida_e_queda1808832880158976.png"
+                    "ItemName": "moldura_subida_e_queda11793706019645811.png"
                   }
                 }
               },
@@ -63,5 +63,72 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "1d269b52e6bd8746126c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "1d9341ee8c93b0683fa0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "11f7252d2cd15015193a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "a091104e9bbbac8874e9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "6a1bfdbd14da04c49dab",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "f5dc1849f40b4923394c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "69c73386bb2529749144",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "38ab8efea65867b6ffa5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "c7b81d55c6e964d51767",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "9a060048443ab06c4ca6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "f3b93ea42fccf4b89920",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "a5457c2ccd02271c4e6e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d5f58b214d6cc0781aa3",
+      "target": "6ff40ffbbc66556080e7",
+      "type": "NoFilter"
+    }
+  ]
 }
