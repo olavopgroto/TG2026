@@ -83,7 +83,14 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'ClearAllSlicers'"
+                  "Value": "'Bookmark'"
+                }
+              }
+            },
+            "bookmark": {
+              "expr": {
+                "Literal": {
+                  "Value": "'709d30620232d81b0567'"
                 }
               }
             }

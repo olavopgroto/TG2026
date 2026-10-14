@@ -69,7 +69,14 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'ClearAllSlicers'"
+                  "Value": "'Bookmark'"
+                }
+              }
+            },
+            "bookmark": {
+              "expr": {
+                "Literal": {
+                  "Value": "'71ca49f241f5dab603fa'"
                 }
               }
             }

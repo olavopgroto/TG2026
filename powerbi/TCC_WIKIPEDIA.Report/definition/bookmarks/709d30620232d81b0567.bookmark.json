@@ -1,0 +1,634 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Limpar Quem Veio Primeiro",
+  "name": "709d30620232d81b0567",
+  "options": {
+    "targetVisualNames": [],
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "340b6511aa1aea2946e4",
+    "sections": {
+      "340b6511aa1aea2946e4": {
+        "visualContainers": {
+          "0faf4743e14c5264c2b1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6c235ed1285a0eaf56f6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_correlacao_defasagem"
+                        }
+                      },
+                      "Property": "defasagem"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7017473cfb975a31a364",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "CorrelacaoEvento"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cf7624cc89ddc9ed3aca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "LimiteSignificancia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_correlacao_defasagem"
+                        }
+                      },
+                      "Property": "defasagem"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "36eeff368f395fd65501": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "16c72a81d8e6f678e563",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_correlacao_defasagem"
+                        }
+                      },
+                      "Property": "defasagem"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0983c684cf374c1ebb39",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_defasagem_evento"
+                        }
+                      },
+                      "Property": "Leitura do evento"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "16c88a907e6bee1c5702",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "QuemNaVantagem"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "326cfa9b5a3aedeca09f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "EventosNaVantagem"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_correlacao_defasagem"
+                        }
+                      },
+                      "Property": "defasagem"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_correlacao_defasagem"
+                        }
+                      },
+                      "Property": "defasagem"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "3d5186905f2fbf51eb50": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "93587a17020add30f88b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "QtdImprensaFrente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "5f99667c56cb5dfccfc6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "74e81dd3b32d97c4d9f6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimEscala"
+                        }
+                      },
+                      "Property": "Forma de comparar"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "d",
+                                "Entity": "DimEscala",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "d"
+                                            }
+                                          },
+                                          "Property": "Forma de comparar"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Curva inteira (oficial)'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimEscala"
+                        }
+                      },
+                      "Property": "Forma de comparar"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6039359a69d2fb3f329f": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "6bf203ceda1bf9aec5df": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "992fd09dc4a795b51375",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Evento"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Evento"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7a499012e209b96ef435": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "90e029d6a8973f906ac7": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "9fac5dcd02cecb39e1aa": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "35f1a32e9e9a75b08c04",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "QtdSemConclusao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "ad762d5ab47b1fd7b19c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e43efea38a6850d70b9f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Categoria do evento"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Categoria do evento"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c77c1a31072435c252bb": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "cdec382b4459699a9666": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "668a7710efd5c11a8e0a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Categoria do evento"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "34acdda96ff06b5b48a0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fato_defasagem_evento"
+                        }
+                      },
+                      "Property": "Leitura do evento"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "55ab1add9749fd7b9d98",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "EventosNaEscala"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_evento"
+                        }
+                      },
+                      "Property": "Categoria do evento"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d0869467807f410cec64": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "034916543ce1e132a918",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "QtdPublicoFrente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "de1f531efcbfaf6fda5a": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "e83a00f132630b40ed8f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bd74801d5daefef46d40",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Medidas"
+                        }
+                      },
+                      "Property": "JuntosDeTotal"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "f924f22305ca0f0e7073": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
