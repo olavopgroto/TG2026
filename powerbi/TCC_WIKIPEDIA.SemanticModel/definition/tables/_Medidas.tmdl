@@ -181,6 +181,23 @@ table _Medidas
 		formatString: 0
 		lineageTag: f1298f8f-18a1-44b4-bfcb-0d277ecddc78
 
+	measure SeloContexto = ```
+			
+			        VAR n = [TotalEventos] + 0
+			        VAR total = CALCULATE([TotalEventos], REMOVEFILTERS(dim_evento))
+			        VAR janela = " · de 30 dias antes a 60 depois"
+			        RETURN
+			            SWITCH(TRUE(),
+			                n = 0, "Nenhum evento nesta seleção · aperte limpar",
+			                n = 1, SELECTEDVALUE(dim_evento[Evento]) & janela,
+			                n = total, FORMAT(total, "0") & " eventos" & janela,
+			                FORMAT(n, "0") & " de " & FORMAT(total, "0") & " eventos" & janela)
+			```
+		lineageTag: e9616d2f-fa69-42c8-84a2-d8140983fe1e
+
+	measure CorSelo = IF([TotalEventos] + 0 = 0, "#38BEE8", "#6B7686")
+		lineageTag: 2f91beda-4be8-4b93-ad02-43e43a7af0c1
+
 	partition _Medidas = m
 		mode: import
 		source =

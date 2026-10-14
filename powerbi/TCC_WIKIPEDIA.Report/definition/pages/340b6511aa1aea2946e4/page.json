@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "moldura_quem_veio_primeiro685291427522329.png"
+                    "ItemName": "moldura_quem_veio_primeiro12377148246857905.png"
                   }
                 }
               },
@@ -63,5 +63,137 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "0faf4743e14c5264c2b1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "cdec382b4459699a9666",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "5c3f0a95ecc9a3f54582",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "9fac5dcd02cecb39e1aa",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "d0869467807f410cec64",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "3d5186905f2fbf51eb50",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "e83a00f132630b40ed8f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "6bf203ceda1bf9aec5df",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "5f99667c56cb5dfccfc6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "ad762d5ab47b1fd7b19c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "de1f531efcbfaf6fda5a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "c77c1a31072435c252bb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "90e029d6a8973f906ac7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "f924f22305ca0f0e7073",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "6039359a69d2fb3f329f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "36eeff368f395fd65501",
+      "target": "7a499012e209b96ef435",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "e83a00f132630b40ed8f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "3d5186905f2fbf51eb50",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "d0869467807f410cec64",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "9fac5dcd02cecb39e1aa",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "0faf4743e14c5264c2b1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "36eeff368f395fd65501",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "5c3f0a95ecc9a3f54582",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "5f99667c56cb5dfccfc6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "6bf203ceda1bf9aec5df",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cdec382b4459699a9666",
+      "target": "ad762d5ab47b1fd7b19c",
+      "type": "NoFilter"
+    }
+  ]
 }
