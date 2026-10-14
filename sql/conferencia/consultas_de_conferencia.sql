@@ -135,15 +135,16 @@ SELECT COUNT(*) FILTER (WHERE eh_principal) AS principais,
        COUNT(*) AS total
 FROM silver.artigos;
 
-SELECT 'AR.5 | menos artigos na marca de 5 vezes | esperado: Google Gemini 1 e Samsung Galaxy S24 2 no topo' AS conferencia;
+SELECT 'AR.5 | todos os eventos com ate 2 artigos na marca de 5 vezes | esperado: Google Gemini com 1; com 2, pelo menos Apple Vision Pro, Cupula G20 Rio, ChatGPT e Samsung Galaxy S24 (anotar se houver outros)' AS conferencia;
 SELECT e.nome_evento, t.artigos_no_corte
 FROM (SELECT DISTINCT id_evento, artigos_no_corte
       FROM gold.fato_serie_sensibilidade
       WHERE corte_amplificacao = 5.0) t
 JOIN gold.dim_evento e USING (id_evento)
-ORDER BY 2 LIMIT 5;
+WHERE t.artigos_no_corte <= 2
+ORDER BY 2, 1;
 
-SELECT 'AR.6 | artigos sem base (razao 999) | esperado: DESCOBERTA, anotar o numero' AS conferencia;
+SELECT 'AR.6 | artigos sem base (razao 999) | esperado: 55 (descoberta registrada na rodada 1, 14/10)' AS conferencia;
 SELECT COUNT(*) AS artigos_sem_base
 FROM silver.artigos
 WHERE razao_amplificacao = 999;
@@ -176,7 +177,7 @@ SELECT fonte, base_motivo, COUNT(*) AS eventos
 FROM gold.fato_metricas_evento
 GROUP BY 1, 2 ORDER BY 1, 2;
 
-SELECT 'QD.6 | na imprensa nao existe dia vazio | esperado: 0 dias vazios; dias sem materia e DESCOBERTA' AS conferencia;
+SELECT 'QD.6 | na imprensa nao existe dia vazio | esperado: 0 dias vazios e 594 dias sem materia (registrado na rodada 1, 14/10)' AS conferencia;
 SELECT COUNT(*) FILTER (WHERE materias IS NULL) AS dias_vazios,
        COUNT(*) FILTER (WHERE materias = 0)     AS dias_sem_materia
 FROM gold.fato_serie_diaria;
