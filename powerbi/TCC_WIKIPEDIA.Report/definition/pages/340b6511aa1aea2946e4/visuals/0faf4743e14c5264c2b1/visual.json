@@ -97,7 +97,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'dias de vantagem da imprensa'"
+                  "Value": "'dias de vantagem da imprensa · negativo = público antes'"
                 }
               }
             },
@@ -222,6 +222,19 @@
                       "Value": "'#38BEE8'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "responsive": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

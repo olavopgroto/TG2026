@@ -346,6 +346,13 @@
                   }
                 }
               }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'InsideCenter'"
+                }
+              }
             }
           }
         }
