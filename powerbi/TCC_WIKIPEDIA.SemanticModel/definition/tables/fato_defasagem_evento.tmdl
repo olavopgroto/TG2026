@@ -112,6 +112,12 @@ table fato_defasagem_evento
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Grupo do resultado' = SWITCH(fato_defasagem_evento[leitura], "simultaneo", "Chegaram juntos", "midia_antes", "Imprensa na frente", "publico_antes", "Público na frente", "Sem conclusão")
+		lineageTag: 6558d7ce-765a-45ef-abe7-3847e3c1dfec
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fato_defasagem_evento = m
 		mode: import
 		source =

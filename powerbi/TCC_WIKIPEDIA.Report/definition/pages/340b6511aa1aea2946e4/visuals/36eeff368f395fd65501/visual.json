@@ -42,11 +42,11 @@
                       "Entity": "fato_defasagem_evento"
                     }
                   },
-                  "Property": "Leitura do evento"
+                  "Property": "Grupo do resultado"
                 }
               },
-              "queryRef": "fato_defasagem_evento.Leitura do evento",
-              "nativeQueryRef": "Leitura do evento"
+              "queryRef": "fato_defasagem_evento.Grupo do resultado",
+              "nativeQueryRef": "Grupo do resultado"
             }
           ]
         },
@@ -185,7 +185,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -231,7 +231,7 @@
                             "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Grupo do resultado"
                       }
                     },
                     "Right": {
@@ -272,7 +272,7 @@
                             "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Grupo do resultado"
                       }
                     },
                     "Right": {
@@ -313,7 +313,7 @@
                             "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Grupo do resultado"
                       }
                     },
                     "Right": {
@@ -354,94 +354,12 @@
                             "Entity": "fato_defasagem_evento"
                           }
                         },
-                        "Property": "Leitura do evento"
+                        "Property": "Grupo do resultado"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Picos em datas diferentes'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#95A2AE'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
-                          }
-                        },
-                        "Property": "Leitura do evento"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Artigo criado depois'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#95A2AE'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "fato_defasagem_evento"
-                          }
-                        },
-                        "Property": "Leitura do evento"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Sem resposta clara'"
+                        "Value": "'Sem conclusão'"
                       }
                     }
                   }
