@@ -132,6 +132,13 @@
                   }
                 }
               }
+            },
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -174,6 +181,13 @@
                   }
                 }
               }
+            },
+            "gridlineThickness": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
             }
           }
         }
@@ -207,7 +221,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9BA5B5'"
+                      "Value": "'#38BEE8'"
                     }
                   }
                 }
@@ -224,6 +238,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Name'"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
                 }
               }
             }

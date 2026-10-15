@@ -110,7 +110,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9BA5B5'"
+                      "Value": "'#38BEE8'"
                     }
                   }
                 }
@@ -127,6 +127,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Name'"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
                 }
               }
             }

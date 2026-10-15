@@ -23,17 +23,16 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "MeiaVidaPublico"
+                  "Property": "MeiaVidaCartao"
                 }
               },
-              "queryRef": "_Medidas.MeiaVidaPublico",
-              "nativeQueryRef": "MeiaVidaPublico"
+              "queryRef": "_Medidas.MeiaVidaCartao",
+              "nativeQueryRef": "MeiaVidaCartao"
             }
           ]
         }
       }
     },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "labels": [
         {
@@ -94,6 +93,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

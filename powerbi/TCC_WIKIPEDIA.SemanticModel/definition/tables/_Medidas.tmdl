@@ -47,7 +47,7 @@ table _Medidas
 	measure MeiaVidaPublico = CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "publico")
 		lineageTag: c5008be9-3883-4207-881f-4bb24bdfe68d
 
-		formatStringDefinition = IF(SELECTEDMEASURE() = INT(SELECTEDMEASURE()), "0 ""dias""", "0.0 ""dias""")
+		formatStringDefinition = IF(SELECTEDMEASURE() = 1, "0 ""dia""", IF(SELECTEDMEASURE() = INT(SELECTEDMEASURE()), "0 ""dias""", "0.0 ""dias"""))
 
 	measure EventosPorLeitura = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[variante] = "nivel_log")
 		formatString: 0
@@ -178,7 +178,7 @@ table _Medidas
 	measure MeiaVidaImprensa = CALCULATE(AVERAGE(fato_metricas_evento[meia_vida_observada]), fato_metricas_evento[fonte] = "midia")
 		lineageTag: b3456771-4736-4e15-9766-e57c5a8212ef
 
-		formatStringDefinition = IF(SELECTEDMEASURE() = INT(SELECTEDMEASURE()), "0 ""dias""", "0.0 ""dias""")
+		formatStringDefinition = IF(SELECTEDMEASURE() = 1, "0 ""dia""", IF(SELECTEDMEASURE() = INT(SELECTEDMEASURE()), "0 ""dias""", "0.0 ""dias"""))
 
 	measure QtdSemConclusao = CALCULATE(DISTINCTCOUNT(fato_defasagem_evento[id_evento]), fato_defasagem_evento[leitura] IN {"picos_distantes", "inicio_nao_observavel", "inconclusivo"}) + 0
 		formatString: 0
@@ -203,6 +203,18 @@ table _Medidas
 
 	measure AvisoSemFalta = IF([TotalEventos] + 0 > 0 && [DiasSemDadoPublico] = 0, "Nenhum dia sem registro: os dados do público estão completos", "")
 		lineageTag: 116893bf-84ed-4303-93ad-f847135ab0e0
+
+	measure MeiaVidaCartao =
+			
+			VAR m = [MeiaVidaPublico]
+			RETURN
+			    SWITCH(TRUE(),
+			        [TotalEventos] + 0 = 0, BLANK(),
+			        ISBLANK(m), "além da janela",
+			        m = 1, "1 dia",
+			        m = INT(m), FORMAT(m, "0", "pt-BR") & " dias",
+			        FORMAT(m, "0.0", "pt-BR") & " dias")
+		lineageTag: e8f5ba27-5935-457f-8d2a-839a26e03561
 
 	partition _Medidas = m
 		mode: import
