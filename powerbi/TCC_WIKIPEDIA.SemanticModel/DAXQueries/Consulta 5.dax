@@ -1,0 +1,17 @@
+DEFINE
+    MEASURE _Medidas[MensagemVaziaTitulo] = IF([TotalEventos] + 0 = 0, "Nenhum evento combina com esta seleção", "")
+    MEASURE _Medidas[MensagemVaziaTexto] = IF([TotalEventos] + 0 = 0, "O clique e o filtro escolhido não têm eventos em comum.", "")
+    MEASURE _Medidas[MensagemVaziaAcao] = IF([TotalEventos] + 0 = 0, "Aperte limpar para recomeçar.", "")
+    MEASURE _Medidas[CorCartaoGelo] = IF([TotalEventos] + 0 = 0, "#171C24", "#BDEAF7")
+    MEASURE _Medidas[CorCartaoRoyal] = IF([TotalEventos] + 0 = 0, "#171C24", "#2188C5")
+    MEASURE _Medidas[CorCartaoCeu] = IF([TotalEventos] + 0 = 0, "#171C24", "#38BEE8")
+    MEASURE _Medidas[CorCartaoTexto] = IF([TotalEventos] + 0 = 0, "#171C24", "#EDEFF2")
+    MEASURE _Medidas[CorCartaoCinza] = IF([TotalEventos] + 0 = 0, "#171C24", "#AEB6C2")
+    MEASURE _Medidas[LinhaDiaEvento] = IF([TotalEventos] + 0 = 0, BLANK(), 0)
+EVALUATE
+UNION(
+    ROW("Cenario", "1. Sem filtro", "Titulo", [MensagemVaziaTitulo], "Gelo", [CorCartaoGelo], "Linha", [LinhaDiaEvento]),
+    CALCULATETABLE(
+        ROW("Cenario", "2. Impossivel", "Titulo", [MensagemVaziaTitulo], "Gelo", [CorCartaoGelo], "Linha", [LinhaDiaEvento]),
+        dim_evento[Resultado oficial] = "Chegaram juntos", dim_evento[Evento] = "Furacão Ian")
+)
