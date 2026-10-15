@@ -135,7 +135,7 @@ SELECT COUNT(*) FILTER (WHERE eh_principal) AS principais,
        COUNT(*) AS total
 FROM silver.artigos;
 
-SELECT 'AR.5 | todos os eventos com ate 2 artigos na marca de 5 vezes | esperado: Google Gemini com 1; com 2, pelo menos Apple Vision Pro, Cupula G20 Rio, ChatGPT e Samsung Galaxy S24 (anotar se houver outros)' AS conferencia;
+SELECT 'AR.5 | todos os eventos com ate 2 artigos na marca de 5 vezes | esperado: 5 eventos, Google Gemini com 1; Apple Vision Pro, ChatGPT, Cupula G20 Rio e Samsung Galaxy S24 com 2 (conferido em 14/10)' AS conferencia;
 SELECT e.nome_evento, t.artigos_no_corte
 FROM (SELECT DISTINCT id_evento, artigos_no_corte
       FROM gold.fato_serie_sensibilidade
