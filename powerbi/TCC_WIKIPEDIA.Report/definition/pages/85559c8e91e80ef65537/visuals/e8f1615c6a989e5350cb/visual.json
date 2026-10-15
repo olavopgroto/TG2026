@@ -100,8 +100,13 @@
             },
             "value": {
               "expr": {
-                "Literal": {
-                  "Value": "0D"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "LinhaDiaEvento"
                 }
               }
             },

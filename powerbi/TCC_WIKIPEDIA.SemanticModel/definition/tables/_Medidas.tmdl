@@ -216,6 +216,34 @@ table _Medidas
 			        FORMAT(m, "0.0", "pt-BR") & " dias")
 		lineageTag: e8f5ba27-5935-457f-8d2a-839a26e03561
 
+	measure MensagemVaziaTitulo = IF([TotalEventos] + 0 = 0, "Nenhum evento combina com esta seleção", "")
+		lineageTag: dd0b18d2-7f7d-4254-9c7c-6808dd18dd1f
+
+	measure MensagemVaziaTexto = IF([TotalEventos] + 0 = 0, "O clique e o filtro escolhido não têm eventos em comum.", "")
+		lineageTag: afe49c73-9bd0-4247-81be-090b1cf405d3
+
+	measure MensagemVaziaAcao = IF([TotalEventos] + 0 = 0, "Aperte limpar para recomeçar.", "")
+		lineageTag: d0018daf-60c5-4e8a-984c-85b2d1250bf9
+
+	measure CorCartaoGelo = IF([TotalEventos] + 0 = 0, "#171C24", "#BDEAF7")
+		lineageTag: 538376d2-57fe-4f05-92d6-13929786db84
+
+	measure CorCartaoRoyal = IF([TotalEventos] + 0 = 0, "#171C24", "#2188C5")
+		lineageTag: 167d438e-ba1d-49e0-8b10-df571f730a3f
+
+	measure CorCartaoCeu = IF([TotalEventos] + 0 = 0, "#171C24", "#38BEE8")
+		lineageTag: bb156b8a-37d9-4702-9c6e-94e26e5cc6c1
+
+	measure CorCartaoTexto = IF([TotalEventos] + 0 = 0, "#171C24", "#EDEFF2")
+		lineageTag: f5937fe8-0add-4d12-8048-d1bf0d831634
+
+	measure CorCartaoCinza = IF([TotalEventos] + 0 = 0, "#171C24", "#AEB6C2")
+		lineageTag: e7f7d2cd-7cf8-4eda-afc7-ae1a7789f2a7
+
+	measure LinhaDiaEvento = IF([TotalEventos] + 0 = 0, BLANK(), 0)
+		formatString: 0
+		lineageTag: 093f79ee-8cc9-4adc-82c0-2dea4e6001d5
+
 	partition _Medidas = m
 		mode: import
 		source =
