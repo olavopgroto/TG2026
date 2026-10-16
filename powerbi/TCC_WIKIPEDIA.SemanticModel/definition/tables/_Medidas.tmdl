@@ -219,7 +219,7 @@ table _Medidas
 	measure MensagemVaziaTitulo = IF([TotalEventos] + 0 = 0, "Nenhum evento combina com esta seleção", "")
 		lineageTag: dd0b18d2-7f7d-4254-9c7c-6808dd18dd1f
 
-	measure MensagemVaziaTexto = IF([TotalEventos] + 0 = 0, "O clique e o filtro escolhido não têm eventos em comum.", "")
+	measure MensagemVaziaTexto = IF([TotalEventos] + 0 = 0, "Nenhum evento passa pelos filtros e cliques escolhidos.", "")
 		lineageTag: afe49c73-9bd0-4247-81be-090b1cf405d3
 
 	measure MensagemVaziaAcao = IF([TotalEventos] + 0 = 0, "Aperte limpar para recomeçar.", "")
@@ -243,6 +243,9 @@ table _Medidas
 	measure LinhaDiaEvento = IF([TotalEventos] + 0 = 0, BLANK(), 0)
 		formatString: 0
 		lineageTag: 093f79ee-8cc9-4adc-82c0-2dea4e6001d5
+
+	measure CorCartaoSecundario = IF([TotalEventos] + 0 = 0, "#171C24", "#95A2AE")
+		lineageTag: 38c0c0ba-4e4d-455c-b6f2-d81b3a707a5b
 
 	partition _Medidas = m
 		mode: import
