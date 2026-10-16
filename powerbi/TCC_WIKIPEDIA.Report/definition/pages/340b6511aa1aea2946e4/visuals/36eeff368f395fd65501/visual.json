@@ -28,7 +28,8 @@
               },
               "queryRef": "fato_correlacao_defasagem.defasagem",
               "nativeQueryRef": "defasagem",
-              "active": true
+              "active": true,
+              "displayName": "Dias de vantagem da imprensa"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "fato_defasagem_evento.Grupo do resultado",
-              "nativeQueryRef": "Grupo do resultado"
+              "nativeQueryRef": "Grupo do resultado",
+              "displayName": "Resultado"
             }
           ]
         },

@@ -28,7 +28,8 @@
               },
               "queryRef": "dim_evento.Resultado oficial",
               "nativeQueryRef": "Resultado oficial",
-              "active": true
+              "active": true,
+              "displayName": "Resultado"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Medidas.EventosPorLeitura",
-              "nativeQueryRef": "EventosPorLeitura"
+              "nativeQueryRef": "EventosPorLeitura",
+              "displayName": "Eventos"
             }
           ]
         }

@@ -28,7 +28,8 @@
               },
               "queryRef": "dim_tempo_relativo.dias_desde_evento",
               "nativeQueryRef": "dias_desde_evento",
-              "active": true
+              "active": true,
+              "displayName": "Dias desde o evento"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Medidas.PctPicoPublico",
-              "nativeQueryRef": "PctPicoPublico"
+              "nativeQueryRef": "PctPicoPublico",
+              "displayName": "Público"
             },
             {
               "field": {
@@ -60,7 +62,8 @@
                 }
               },
               "queryRef": "_Medidas.PctPicoRobosBusca",
-              "nativeQueryRef": "PctPicoRobosBusca"
+              "nativeQueryRef": "PctPicoRobosBusca",
+              "displayName": "Robôs de busca"
             },
             {
               "field": {
@@ -74,7 +77,8 @@
                 }
               },
               "queryRef": "_Medidas.PctPicoOutrosRobos",
-              "nativeQueryRef": "PctPicoOutrosRobos"
+              "nativeQueryRef": "PctPicoOutrosRobos",
+              "displayName": "Outros robôs"
             }
           ]
         }

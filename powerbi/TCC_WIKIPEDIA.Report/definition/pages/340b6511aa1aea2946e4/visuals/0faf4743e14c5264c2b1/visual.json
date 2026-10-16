@@ -28,7 +28,8 @@
               },
               "queryRef": "fato_correlacao_defasagem.defasagem",
               "nativeQueryRef": "defasagem",
-              "active": true
+              "active": true,
+              "displayName": "Dias de vantagem da imprensa"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Medidas.CorrelacaoEvento",
-              "nativeQueryRef": "CorrelacaoEvento"
+              "nativeQueryRef": "CorrelacaoEvento",
+              "displayName": "Semelhança"
             }
           ]
         },
@@ -64,7 +66,8 @@
                 }
               },
               "queryRef": "_Medidas.LimiteSignificancia",
-              "nativeQueryRef": "LimiteSignificancia"
+              "nativeQueryRef": "LimiteSignificancia",
+              "displayName": "Limite do acaso"
             }
           ]
         }

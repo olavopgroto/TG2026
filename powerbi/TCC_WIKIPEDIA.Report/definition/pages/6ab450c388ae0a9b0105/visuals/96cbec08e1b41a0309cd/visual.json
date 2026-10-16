@@ -28,7 +28,8 @@
               },
               "queryRef": "dim_evento.AnoEvento",
               "nativeQueryRef": "AnoEvento",
-              "active": true
+              "active": true,
+              "displayName": "Ano"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Medidas.TotalEventos",
-              "nativeQueryRef": "TotalEventos"
+              "nativeQueryRef": "TotalEventos",
+              "displayName": "Eventos"
             }
           ]
         }

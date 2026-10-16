@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "fato_defasagem_evento.Grupo do resultado",
-              "nativeQueryRef": "Grupo do resultado"
+              "nativeQueryRef": "Grupo do resultado",
+              "displayName": "Resultado"
             }
           ]
         },
@@ -64,7 +65,8 @@
                 }
               },
               "queryRef": "_Medidas.EventosNaEscala",
-              "nativeQueryRef": "EventosNaEscala"
+              "nativeQueryRef": "EventosNaEscala",
+              "displayName": "Eventos"
             }
           ]
         }

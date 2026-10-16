@@ -64,7 +64,8 @@
                 }
               },
               "queryRef": "_Medidas.ArtigosNaMarca",
-              "nativeQueryRef": "ArtigosNaMarca"
+              "nativeQueryRef": "ArtigosNaMarca",
+              "displayName": "Artigos por evento"
             }
           ]
         }
