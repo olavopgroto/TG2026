@@ -65,7 +65,7 @@ docker compose up -d
 
 O Hop Web fica em `http://localhost:<HOP_PORT>/ui`, e o PostgreSQL na porta `POSTGRES_PORT` do `.env`. Quando o banco nasce, o script de `docker/postgres/init` cria os esquemas `bronze`, `silver` e `gold`. As variáveis de ambiente não são versionadas.
 
-**2. Criar a conexão do Hop.** A conexão `postgres_tcc` fica em `hop/metadata/rdbms`, pasta que não é versionada porque guarda a senha. No Hop, ela aponta para `host.docker.internal`, na porta do banco, com a opção `stringtype=unspecified`.
+**2. Criar a conexão do Hop.** A conexão `postgres` (é o nome que os pipelines procuram) fica em `hop/metadata/rdbms`, pasta que não é versionada porque guarda a senha. No Hop, ela aponta para `host.docker.internal`, na porta do banco, com a opção `stringtype=unspecified`.
 
 **3. Criar as tabelas**, nesta ordem:
 
